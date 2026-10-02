@@ -3,154 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LVT Competition Selection</title>
 
 <style>
-*{
-  box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#06101d,#10283e);
-  color:white;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top, #123d68 0%, #061522 45%, #02070c 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.card{
-  width:100%;
-  max-width:500px;
-  background:#0b1929;
-  border:1px solid #c9a43b;
-  border-radius:24px;
-  padding:25px;
-  box-shadow:0 15px 45px rgba(0,0,0,.5);
+.card {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(5, 18, 30, 0.96);
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    border-radius: 24px;
+    padding: 28px 22px;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.55),
+        0 0 30px rgba(212,175,55,0.08);
 }
 
-.logo{
-  text-align:center;
-  color:#d8b44a;
-  font-weight:bold;
-  letter-spacing:4px;
-  font-size:13px;
+.logo {
+    text-align: center;
+    color: #d4af37;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
 }
 
-h1{
-  text-align:center;
-  margin:10px 0;
+h1 {
+    text-align: center;
+    font-size: 29px;
+    margin-bottom: 8px;
 }
 
-.subtitle{
-  text-align:center;
-  color:#aab5c2;
-  margin-bottom:25px;
+.subtitle {
+    text-align: center;
+    color: #aebdca;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 28px;
 }
 
-label{
-  display:block;
-  color:#d8b44a;
-  font-weight:bold;
-  margin:15px 0 8px;
+label {
+    display: block;
+    font-size: 14px;
+    color: #d4af37;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
-select{
-  width:100%;
-  padding:15px;
-  border-radius:12px;
-  border:1px solid #36506b;
-  background:#081522;
-  color:white;
-  font-size:16px;
+select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #36536b;
+    background: #0b2235;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 24px;
 }
 
-.numbers{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-top:12px;
+select:focus {
+    border-color: #d4af37;
 }
 
-.number{
-  padding:16px 5px;
-  border-radius:12px;
-  border:1px solid #36506b;
-  background:#10263b;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
 }
 
-.number:hover{
-  border-color:#d8b44a;
+.number {
+    height: 62px;
+    border-radius: 15px;
+    border: 1px solid #49677f;
+    background: #0c263b;
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-.number.selected{
-  background:#d8b44a;
-  color:#07111f;
+.number:hover:not(.used) {
+    transform: translateY(-2px);
+    border-color: #d4af37;
 }
 
-.number.used{
-  opacity:.25;
-  cursor:not-allowed;
+.number.selected {
+    background: #d4af37;
+    color: #071521;
+    border-color: #f2d675;
+    box-shadow: 0 0 18px rgba(212,175,55,0.35);
 }
 
-#confirm{
-  width:100%;
-  margin-top:20px;
-  padding:16px;
-  border:0;
-  border-radius:12px;
-  background:#d8b44a;
-  color:#07111f;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+.number.used {
+    background: #20272c;
+    color: #68737b;
+    border-color: #30383d;
+    cursor: not-allowed;
+    position: relative;
 }
 
-#confirm:disabled{
-  opacity:.4;
-  cursor:not-allowed;
+.number.used::after {
+    content: "✓";
+    display: block;
+    font-size: 12px;
+    margin-top: 2px;
 }
 
-.result{
-  display:none;
-  margin-top:20px;
-  padding:22px;
-  text-align:center;
-  background:#10263b;
-  border:1px solid #d8b44a;
-  border-radius:15px;
+button#confirm {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #d4af37, #f0d46a);
+    color: #071521;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.2s;
 }
 
-.result small{
-  color:#aab5c2;
+button#confirm:hover:not(:disabled) {
+    transform: translateY(-2px);
 }
 
-.result strong{
-  display:block;
-  margin-top:8px;
-  color:#d8b44a;
-  font-size:24px;
+button#confirm:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
-.status{
-  text-align:center;
-  margin-top:16px;
-  color:#9eacbb;
-  font-size:13px;
+.result {
+    display: none;
+    margin-top: 24px;
+    padding: 22px;
+    text-align: center;
+    border-radius: 16px;
+    background: linear-gradient(
+        145deg,
+        rgba(212,175,55,0.12),
+        rgba(12,38,59,0.8)
+    );
+    border: 1px solid rgba(212,175,55,0.45);
 }
 
-.note{
-  text-align:center;
-  margin-top:15px;
-  color:#718094;
-  font-size:12px;
+.result.show {
+    display: block;
+}
+
+.result small {
+    display: block;
+    color: #aebdca;
+    margin-bottom: 9px;
+}
+
+.result strong {
+    display: block;
+    color: #f0d46a;
+    font-size: 25px;
+}
+
+.status {
+    text-align: center;
+    margin-top: 18px;
+    color: #9db0be;
+    font-size: 13px;
+}
+
+.note {
+    text-align: center;
+    color: #637785;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.message {
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(190,50,50,0.15);
+    color: #ffaaaa;
+    font-size: 13px;
+}
+
+.message.show {
+    display: block;
+}
+
+.reset {
+    display: block;
+    margin: 18px auto 0;
+    background: transparent;
+    border: none;
+    color: #596e7d;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.reset:hover {
+    color: #d4af37;
+}
+
+@media (max-width: 360px) {
+    .card {
+        padding: 22px 16px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .number {
+        height: 55px;
+    }
 }
 </style>
 </head>
@@ -159,217 +246,434 @@ select{
 
 <div class="card">
 
-  <div class="logo">LVT COMPETITION</div>
+    <div class="logo">LVT COMPETITION</div>
 
-  <h1>Private Selection</h1>
+    <h1>Private Selection</h1>
 
-  <div class="subtitle">
-    Choose your name and select one available number.
-  </div>
+    <div class="subtitle">
+        Choose your name, select one available number,
+        then confirm your selection.
+    </div>
 
-  <label>Your Name</label>
+    <label for="woman">Your Name</label>
 
-  <select id="woman">
-    <option value="">Select your name</option>
-    <option>Mar’atussaliha</option>
-    <option>Auntyn Yara</option>
-    <option>Zahraty</option>
-    <option>Cutieteemah Lyrics</option>
-    <option>Autah Lyrics</option>
-    <option>Teemarluvly</option>
-    <option>Merhmerh Lyrics</option>
-    <option>Queenjurry</option>
-  </select>
+    <select id="woman">
+        <option value="">Select your name</option>
 
-  <label>Select Number</label>
+        <option value="Mar’atussaliha">
+            Mar’atussaliha
+        </option>
 
-  <div class="numbers" id="numbers"></div>
+        <option value="Auntyn Yara">
+            Auntyn Yara
+        </option>
 
-  <button id="confirm" disabled>
-    CONFIRM SELECTION
-  </button>
+        <option value="Zahraty">
+            Zahraty
+        </option>
 
-  <div class="result" id="result">
-    <small>Your selected partner is:</small>
-    <strong id="partner"></strong>
-  </div>
+        <option value="Cutieteemah Lyrics">
+            Cutieteemah Lyrics
+        </option>
 
-  <div class="status" id="status">
-    8 numbers available
-  </div>
+        <option value="Autah Lyrics">
+            Autah Lyrics
+        </option>
 
-  <div class="note">
-    Each participant can select only once.
-  </div>
+        <option value="Teemarluvly">
+            Teemarluvly
+        </option>
+
+        <option value="Merhmerh Lyrics">
+            Merhmerh Lyrics
+        </option>
+
+        <option value="Queenjurry">
+            Queenjurry
+        </option>
+    </select>
+
+    <label>Select Number</label>
+
+    <div class="numbers" id="numbers"></div>
+
+    <button id="confirm" disabled>
+        CONFIRM SELECTION
+    </button>
+
+    <div class="message" id="message"></div>
+
+    <div class="result" id="result">
+
+        <small>Your selected partner is:</small>
+
+        <strong id="partner"></strong>
+
+    </div>
+
+    <div class="status" id="status">
+        8 numbers available
+    </div>
+
+    <div class="note">
+        Each participant can select only once.
+    </div>
+
+    <button class="reset" onclick="resetDemo()">
+        Reset demo
+    </button>
 
 </div>
 
 <script>
 
+/*
+====================================================
+LVT COMPETITION SELECTION SYSTEM
+====================================================
+
+IMPORTANT:
+
+The male names below are intentionally hidden
+from the participant until confirmation.
+
+Number 1 = Bakori Lyrics
+Number 2 = Bash Lyrics
+Number 3 = Yusufa Lyrics
+Number 4 = Jagora Lyrics
+Number 5 = Alkhaddab Lyrics
+Number 6 = King Haidar Lyrics
+Number 7 = Abbas Lyrics
+Number 8 = IBB Lyrics
+====================================================
+*/
+
+
+// HIDDEN MALE NAMES
 const men = [
-  "Bakori Lyrics",
-  "Bash Lyrics",
-  "Yusufa Lyrics",
-  "Jagora Lyrics",
-  "Alkhaddab Lyrics",
-  "King Haidar Lyrics",
-  "Abbas Lyrics",
-  "IBB Lyrics"
+    "Bakori Lyrics",
+    "Bash Lyrics",
+    "Yusufa Lyrics",
+    "Jagora Lyrics",
+    "Alkhaddab Lyrics",
+    "King Haidar Lyrics",
+    "Abbas Lyrics",
+    "IBB Lyrics"
 ];
 
+
+// FEMALE PARTICIPANTS
 const women = [
-  "Mar’atussaliha",
-  "Auntyn Yara",
-  "Zahraty",
-  "Cutieteemah Lyrics",
-  "Autah Lyrics",
-  "Teemarluvly",
-  "Merhmerh Lyrics",
-  "Queenjurry"
+    "Mar’atussaliha",
+    "Auntyn Yara",
+    "Zahraty",
+    "Cutieteemah Lyrics",
+    "Autah Lyrics",
+    "Teemarluvly",
+    "Merhmerh Lyrics",
+    "Queenjurry"
 ];
 
-let selectedNumber = null;
 
-let usedNumbers =
-  JSON.parse(localStorage.getItem("lvt_used_numbers") || "[]");
-
-let completedWomen =
-  JSON.parse(localStorage.getItem("lvt_completed_women") || "[]");
-
+// HTML ELEMENTS
 const womanSelect = document.getElementById("woman");
-const numbersBox = document.getElementById("numbers");
+const numbersContainer = document.getElementById("numbers");
 const confirmButton = document.getElementById("confirm");
 const resultBox = document.getElementById("result");
 const partnerText = document.getElementById("partner");
 const statusText = document.getElementById("status");
+const messageBox = document.getElementById("message");
 
 
-function renderNumbers(){
+// SELECTED NUMBER
+let selectedNumber = null;
 
-  numbersBox.innerHTML = "";
 
-  for(let i = 1; i <= 8; i++){
+// GET SAVED DATA
+let usedNumbers =
+    JSON.parse(localStorage.getItem("LVT_USED_NUMBERS") || "[]");
 
-    const button = document.createElement("button");
+let completedWomen =
+    JSON.parse(localStorage.getItem("LVT_COMPLETED_WOMEN") || "[]");
 
-    button.className = "number";
 
-    button.textContent = i;
+// CREATE NUMBER BUTTONS
+function createNumbers() {
 
-    if(usedNumbers.includes(i)){
-      button.classList.add("used");
-      button.disabled = true;
+    numbersContainer.innerHTML = "";
+
+    for (let i = 1; i <= 8; i++) {
+
+        const button = document.createElement("button");
+
+        button.className = "number";
+
+        button.textContent = i;
+
+        // CHECK IF NUMBER IS ALREADY USED
+        if (usedNumbers.includes(i)) {
+
+            button.classList.add("used");
+
+            button.disabled = true;
+
+        } else {
+
+            button.addEventListener("click", function () {
+
+                selectNumber(i);
+
+            });
+
+        }
+
+        numbersContainer.appendChild(button);
     }
 
-    if(selectedNumber === i){
-      button.classList.add("selected");
+    updateStatus();
+}
+
+
+// SELECT NUMBER
+function selectNumber(number) {
+
+    if (usedNumbers.includes(number)) {
+        return;
     }
 
-    if(
-      !womanSelect.value ||
-      completedWomen.includes(womanSelect.value)
-    ){
-      button.disabled = true;
+    selectedNumber = number;
+
+    const allButtons =
+        document.querySelectorAll(".number");
+
+    allButtons.forEach(button => {
+
+        button.classList.remove("selected");
+
+    });
+
+    allButtons[number - 1]
+        .classList.add("selected");
+
+    confirmButton.disabled =
+        womanSelect.value === "";
+}
+
+
+// CHECK WOMAN SELECTION
+womanSelect.addEventListener("change", function () {
+
+    hideMessage();
+
+    resultBox.classList.remove("show");
+
+    selectedNumber = null;
+
+    document.querySelectorAll(".number")
+        .forEach(button => {
+            button.classList.remove("selected");
+        });
+
+    const selectedWoman = womanSelect.value;
+
+    if (completedWomen.includes(selectedWoman)) {
+
+        showMessage(
+            "This participant has already completed a selection."
+        );
+
+        confirmButton.disabled = true;
+
+        return;
     }
 
-    button.onclick = function(){
+    confirmButton.disabled = true;
 
-      if(usedNumbers.includes(i)) return;
+});
 
-      selectedNumber = i;
 
-      renderNumbers();
+// CONFIRM SELECTION
+confirmButton.addEventListener("click", function () {
 
-      confirmButton.disabled = false;
-    };
+    const woman = womanSelect.value;
 
-    numbersBox.appendChild(button);
-  }
+    if (!woman) {
 
-  const remaining = 8 - usedNumbers.length;
+        showMessage("Please select your name first.");
 
-  statusText.textContent =
-    remaining + (remaining === 1
-      ? " number available"
-      : " numbers available");
+        return;
+    }
+
+
+    if (selectedNumber === null) {
+
+        showMessage("Please select a number.");
+
+        return;
+    }
+
+
+    // CHECK AGAIN
+    if (usedNumbers.includes(selectedNumber)) {
+
+        showMessage(
+            "Sorry, this number has already been selected."
+        );
+
+        createNumbers();
+
+        return;
+    }
+
+
+    if (completedWomen.includes(woman)) {
+
+        showMessage(
+            "This participant has already completed a selection."
+        );
+
+        return;
+    }
+
+
+    /*
+    ================================================
+    SAVE SELECTION
+    ================================================
+    */
+
+    usedNumbers.push(selectedNumber);
+
+    completedWomen.push(woman);
+
+
+    localStorage.setItem(
+        "LVT_USED_NUMBERS",
+        JSON.stringify(usedNumbers)
+    );
+
+    localStorage.setItem(
+        "LVT_COMPLETED_WOMEN",
+        JSON.stringify(completedWomen)
+    );
+
+
+    /*
+    ================================================
+    REVEAL MALE NAME
+    ================================================
+    */
+
+    const selectedMan =
+        men[selectedNumber - 1];
+
+
+    partnerText.textContent =
+        selectedMan;
+
+
+    resultBox.classList.add("show");
+
+
+    // DISABLE EVERYTHING
+    womanSelect.disabled = true;
+
+    confirmButton.disabled = true;
+
+    document.querySelectorAll(".number")
+        .forEach(button => {
+            button.disabled = true;
+        });
+
+
+    updateStatus();
+
+
+    /*
+    SECURITY MESSAGE
+    */
+
+    showMessage(
+        "Selection confirmed successfully.",
+        true
+    );
+
+});
+
+
+// UPDATE STATUS
+function updateStatus() {
+
+    const available =
+        8 - usedNumbers.length;
+
+    if (available === 0) {
+
+        statusText.textContent =
+            "All numbers have been selected.";
+
+    } else {
+
+        statusText.textContent =
+            available + " numbers available";
+
+    }
+}
+
+
+// SHOW MESSAGE
+function showMessage(text, success = false) {
+
+    messageBox.textContent = text;
+
+    messageBox.style.color =
+        success ? "#b8e6c1" : "#ffaaaa";
+
+    messageBox.style.background =
+        success
+            ? "rgba(50,160,80,0.15)"
+            : "rgba(190,50,50,0.15)";
+
+    messageBox.classList.add("show");
+}
+
+
+// HIDE MESSAGE
+function hideMessage() {
+
+    messageBox.classList.remove("show");
 
 }
 
 
-womanSelect.addEventListener("change", function(){
+// RESET DEMO
+function resetDemo() {
 
-  selectedNumber = null;
+    const confirmReset =
+        confirm(
+            "Reset all selections on this device?"
+        );
 
-  resultBox.style.display = "none";
-
-  if(completedWomen.includes(womanSelect.value)){
-
-    alert("This participant has already made a selection.");
-
-  }
-
-  confirmButton.disabled = true;
-
-  renderNumbers();
-
-});
+    if (!confirmReset) {
+        return;
+    }
 
 
-confirmButton.addEventListener("click", function(){
+    localStorage.removeItem(
+        "LVT_USED_NUMBERS"
+    );
 
-  const woman = womanSelect.value;
-
-  if(!woman){
-    alert("Please select your name.");
-    return;
-  }
-
-  if(!selectedNumber){
-    alert("Please select a number.");
-    return;
-  }
-
-  if(completedWomen.includes(woman)){
-    alert("You have already selected.");
-    return;
-  }
-
-  if(usedNumbers.includes(selectedNumber)){
-    alert("This number is no longer available.");
-    renderNumbers();
-    return;
-  }
-
-  const male = men[selectedNumber - 1];
-
-  usedNumbers.push(selectedNumber);
-
-  completedWomen.push(woman);
-
-  localStorage.setItem(
-    "lvt_used_numbers",
-    JSON.stringify(usedNumbers)
-  );
-
-  localStorage.setItem(
-    "lvt_completed_women",
-    JSON.stringify(completedWomen)
-  );
-
-  partnerText.textContent = male;
-
-  resultBox.style.display = "block";
-
-  selectedNumber = null;
-
-  confirmButton.disabled = true;
-
-  renderNumbers();
-
-});
+    localStorage.removeItem(
+        "LVT_COMPLETED_WOMEN"
+    );
 
 
-renderNumbers();
+    location.reload();
+}
+
+
+// START SYSTEM
+createNumbers();
 
 </script>
 
