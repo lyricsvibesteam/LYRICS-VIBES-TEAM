@@ -3,15 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LVT Competition</title>
+<title>LVT Lyrics Competition</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 body{
     min-height:100vh;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(145deg,#03101c,#0b2b49,#03101c);
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at top,#123b60 0%,#061522 48%,#02070c 100%);
     color:white;
     display:flex;
     justify-content:center;
@@ -22,25 +27,26 @@ body{
 .card{
     width:100%;
     max-width:460px;
-    background:#061827;
-    border:1px solid #c9a52b;
+    background:rgba(5,18,30,.97);
+    border:1px solid rgba(212,175,55,.65);
     border-radius:24px;
     padding:28px 22px;
-    box-shadow:0 20px 60px #000;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
 }
 
 .logo{
     text-align:center;
-    color:#d8b63f;
+    color:#d4af37;
+    font-size:15px;
     font-weight:bold;
     letter-spacing:4px;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 h1{
     text-align:center;
     font-size:28px;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 .subtitle{
@@ -53,37 +59,45 @@ h1{
 
 label{
     display:block;
-    color:#d8b63f;
+    color:#d4af37;
     font-weight:bold;
     font-size:14px;
     margin-bottom:8px;
 }
 
-input,select{
+select,
+input{
     width:100%;
     padding:15px;
     border-radius:12px;
-    border:1px solid #42627b;
-    background:#0a2439;
+    border:1px solid #36536b;
+    background:#0b2235;
     color:white;
     font-size:16px;
-    margin-bottom:18px;
     outline:none;
+    margin-bottom:18px;
 }
 
-input:focus,select:focus{
-    border-color:#d8b63f;
+select:focus,
+input:focus{
+    border-color:#d4af37;
 }
 
-.btn{
+.main-btn{
     width:100%;
     padding:16px;
-    border:0;
+    border:none;
     border-radius:13px;
-    background:linear-gradient(135deg,#c9a52b,#f0d46a);
+    background:linear-gradient(135deg,#d4af37,#f0d46a);
     color:#071521;
-    font-weight:bold;
     font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.main-btn:disabled{
+    opacity:.4;
+    cursor:not-allowed;
 }
 
 .error{
@@ -92,8 +106,8 @@ input:focus,select:focus{
     margin-bottom:15px;
     border-radius:10px;
     text-align:center;
-    background:#4b1717;
-    color:#ffb0b0;
+    background:rgba(190,50,50,.15);
+    color:#ffaaaa;
     font-size:13px;
 }
 
@@ -115,27 +129,42 @@ input:focus,select:focus{
 .number{
     height:62px;
     border-radius:15px;
-    border:1px solid #48677e;
-    background:#0b2940;
+    border:1px solid #49677f;
+    background:#0c263b;
     color:white;
     font-size:21px;
     font-weight:bold;
+    cursor:pointer;
+    position:relative;
+}
+
+.number:hover:not(:disabled){
+    border-color:#d4af37;
+    transform:translateY(-2px);
 }
 
 .number.selected{
-    background:#d8b63f;
+    background:#d4af37;
     color:#071521;
-    border-color:#f5dc72;
+    border-color:#f2d675;
+    box-shadow:0 0 18px rgba(212,175,55,.3);
 }
 
-.number.used{
-    background:#242b30;
-    color:#69747c;
+.number.locked{
+    background:#222a2f;
+    color:#68737b;
+    border-color:#343c41;
     cursor:not-allowed;
 }
 
-.number:disabled{
-    cursor:not-allowed;
+.number.locked::after{
+    content:"LOCKED";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:5px;
+    font-size:7px;
+    letter-spacing:1px;
 }
 
 .result{
@@ -144,8 +173,8 @@ input:focus,select:focus{
     padding:22px;
     text-align:center;
     border-radius:16px;
-    border:1px solid #c9a52b;
-    background:#102c40;
+    background:rgba(212,175,55,.10);
+    border:1px solid rgba(212,175,55,.5);
 }
 
 .result.show{
@@ -153,28 +182,38 @@ input:focus,select:focus{
 }
 
 .result small{
+    display:block;
     color:#aebdca;
+    margin-bottom:8px;
 }
 
 .result strong{
     display:block;
     color:#f0d46a;
     font-size:25px;
-    margin-top:8px;
 }
 
 .status{
     text-align:center;
+    margin-top:18px;
     color:#9db0be;
     font-size:13px;
-    margin-top:17px;
 }
 
-.locked{
+.warning{
     text-align:center;
-    color:#d8b63f;
-    font-size:13px;
-    margin-top:15px;
+    margin-top:10px;
+    color:#7f929f;
+    font-size:11px;
+    line-height:1.5;
+}
+
+.success{
+    color:#b8e6c1;
+}
+
+.hidden{
+    display:none !important;
 }
 </style>
 </head>
@@ -201,14 +240,15 @@ input:focus,select:focus{
 
     <select id="loginName">
         <option value="">Select your name</option>
+
         <option>Mar’atussaliha</option>
         <option>Auntyn Yara</option>
         <option>Zahraty</option>
         <option>Cutieteemah Lyrics</option>
         <option>Autah Lyrics</option>
         <option>Teemarluvly</option>
-        <option>Merhmerh Lyrics</option>
-        <option>Queenjurry</option>
+        <option>Ameenatou Lyrics</option>
+        <option>Queenjurry Lyrics</option>
     </select>
 
     <label>Password</label>
@@ -219,7 +259,7 @@ input:focus,select:focus{
         placeholder="Enter your password"
     >
 
-    <button class="btn" onclick="login()">
+    <button class="main-btn" onclick="login()">
         ENTER COMPETITION
     </button>
 
@@ -236,7 +276,7 @@ input:focus,select:focus{
 
     <div class="subtitle">
         Welcome, <strong id="welcomeName"></strong>.<br>
-        Choose one number.
+        Select one available number.
     </div>
 
     <label>Select Number</label>
@@ -245,7 +285,7 @@ input:focus,select:focus{
 
     <button
         id="confirmBtn"
-        class="btn"
+        class="main-btn"
         disabled
         onclick="confirmSelection()"
     >
@@ -262,8 +302,8 @@ input:focus,select:focus{
 
     <div id="status" class="status"></div>
 
-    <div class="locked">
-        Your selection can only be made once.
+    <div class="warning">
+        Numbers already selected are locked and cannot be chosen.
     </div>
 
 </div>
@@ -273,9 +313,9 @@ input:focus,select:focus{
 
 <script>
 
-/* ==========================================
-   USERS + PASSWORDS
-   ========================================== */
+/* ==================================================
+   PARTICIPANTS + PASSWORDS
+   ================================================== */
 
 const users = {
 
@@ -291,58 +331,96 @@ const users = {
 
     "Teemarluvly": "LVT-TEE06",
 
-    "Merhmerh Lyrics": "LVT-MER07",
+    "Ameenatou Lyrics": "LVT-AME07",
 
-    "Queenjurry": "LVT-QUE08"
+    "Queenjurry Lyrics": "LVT-QUE08"
 
 };
 
 
-/* ==========================================
+/* ==================================================
    HIDDEN MALE PARTNERS
-   ========================================== */
+   ================================================== */
 
-const men = [
+const men = {
 
-    "Bakori Lyrics",
-    "Bash Lyrics",
-    "Yusufa Lyrics",
-    "Jagora Lyrics",
-    "Alkhaddab Lyrics",
-    "King Haidar Lyrics",
-    "Abbas Lyrics",
-    "IBB Lyrics"
+    1: "Bakori Lyrics",
 
+    2: "Bash Lyrics",
+
+    3: "Yusufa Lyrics",
+
+    4: "Jagora Lyrics",
+
+    5: "Alkhaddab Lyrics",
+
+    6: "King Haidar Lyrics",
+
+    7: "Abbas Lyrics",
+
+    8: "IBB Lyrics"
+
+};
+
+
+/* ==================================================
+   NUMBERS ALREADY SELECTED
+   ==================================================
+
+   1,2,3,4,5,7,8 = LOCKED
+   6 = AVAILABLE
+   ================================================== */
+
+const lockedNumbers = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8
 ];
 
 
-/* ==========================================
-   SESSION
-   ========================================== */
+/* ==================================================
+   STORAGE
+   ================================================== */
 
-let currentUser = "";
-let selectedNumber = null;
-
-
-/*
-IMPORTANT:
-We use a NEW storage key so old test selections
-will NOT appear in this new version.
-*/
-
-const STORAGE_KEY = "LVT_TODAY_SELECTION_V2";
+const STORAGE_KEY =
+    "LVT_SELECTION_FINAL_2026";
 
 
-let data =
+let savedData =
     JSON.parse(
-        localStorage.getItem(STORAGE_KEY) ||
-        '{"used":[],"users":[]}'
+        localStorage.getItem(STORAGE_KEY)
+        || '{"completedUsers":[],"selectedNumbers":[1,2,3,4,5,7,8]}'
     );
 
 
-/* ==========================================
+/*
+Make sure the already-selected numbers
+are always locked.
+*/
+
+lockedNumbers.forEach(number => {
+
+    if(!savedData.selectedNumbers.includes(number)){
+
+        savedData.selectedNumbers.push(number);
+
+    }
+
+});
+
+
+let currentUser = "";
+
+let selectedNumber = null;
+
+
+/* ==================================================
    LOGIN
-   ========================================== */
+   ================================================== */
 
 function login(){
 
@@ -382,10 +460,11 @@ function login(){
 
 
     /*
-    CHECK IF THIS WOMAN HAS ALREADY SELECTED
+    If this participant has already selected,
+    do not allow another selection.
     */
 
-    if(data.users.includes(name)){
+    if(savedData.completedUsers.includes(name)){
 
         error.textContent =
             "You have already completed your selection.";
@@ -399,15 +478,18 @@ function login(){
     currentUser = name;
 
 
-    document.getElementById("loginScreen")
+    document
+        .getElementById("loginScreen")
         .style.display = "none";
 
 
-    document.getElementById("selectionScreen")
+    document
+        .getElementById("selectionScreen")
         .style.display = "block";
 
 
-    document.getElementById("welcomeName")
+    document
+        .getElementById("welcomeName")
         .textContent = name;
 
 
@@ -416,9 +498,9 @@ function login(){
 }
 
 
-/* ==========================================
-   CREATE NUMBERS
-   ========================================== */
+/* ==================================================
+   CREATE NUMBER BUTTONS
+   ================================================== */
 
 function createNumbers(){
 
@@ -427,27 +509,45 @@ function createNumbers(){
 
     container.innerHTML = "";
 
+    selectedNumber = null;
 
-    for(let i=1;i<=8;i++){
+
+    for(let i = 1; i <= 8; i++){
 
         const button =
             document.createElement("button");
 
+
         button.className = "number";
+
 
         button.textContent = i;
 
 
-        if(data.used.includes(i)){
+        /*
+        LOCKED NUMBER
+        */
 
-            button.classList.add("used");
+        if(savedData.selectedNumbers.includes(i)){
+
+            button.classList.add("locked");
 
             button.disabled = true;
 
-        }else{
+        }
 
-            button.onclick =
-                () => selectNumber(i);
+
+        /*
+        AVAILABLE NUMBER
+        */
+
+        else{
+
+            button.onclick = function(){
+
+                selectNumber(i);
+
+            };
 
         }
 
@@ -462,14 +562,16 @@ function createNumbers(){
 }
 
 
-/* ==========================================
+/* ==================================================
    SELECT NUMBER
-   ========================================== */
+   ================================================== */
 
 function selectNumber(number){
 
-    if(data.used.includes(number)){
+    if(savedData.selectedNumbers.includes(number)){
+
         return;
+
     }
 
 
@@ -486,7 +588,7 @@ function selectNumber(number){
 
 
     document
-        .querySelectorAll(".number")[number-1]
+        .querySelectorAll(".number")[number - 1]
         .classList.add("selected");
 
 
@@ -497,22 +599,31 @@ function selectNumber(number){
 }
 
 
-/* ==========================================
+/* ==================================================
    CONFIRM SELECTION
-   ========================================== */
+   ================================================== */
 
 function confirmSelection(){
 
-    if(!currentUser || !selectedNumber){
+    if(!currentUser){
+
         return;
+
+    }
+
+
+    if(!selectedNumber){
+
+        return;
+
     }
 
 
     /*
-    CHECK AGAIN BEFORE SAVING
+    DOUBLE CHECK
     */
 
-    if(data.used.includes(selectedNumber)){
+    if(savedData.selectedNumbers.includes(selectedNumber)){
 
         alert(
             "Sorry, this number has already been selected."
@@ -521,31 +632,46 @@ function confirmSelection(){
         createNumbers();
 
         return;
+
     }
 
 
-    if(data.users.includes(currentUser)){
+    /*
+    CHECK PARTICIPANT
+    */
+
+    if(savedData.completedUsers.includes(currentUser)){
 
         alert(
             "You have already completed your selection."
         );
 
         return;
+
     }
 
 
     /*
-    SAVE
+    SAVE NUMBER
     */
 
-    data.used.push(selectedNumber);
+    savedData.selectedNumbers.push(
+        selectedNumber
+    );
 
-    data.users.push(currentUser);
+
+    /*
+    SAVE PARTICIPANT
+    */
+
+    savedData.completedUsers.push(
+        currentUser
+    );
 
 
     localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify(data)
+        JSON.stringify(savedData)
     );
 
 
@@ -553,25 +679,20 @@ function confirmSelection(){
     REVEAL PARTNER
     */
 
-    const partner =
-        men[selectedNumber - 1];
+    document
+        .getElementById("partner")
+        .textContent =
+        men[selectedNumber];
 
 
-    document.getElementById("partner")
-        .textContent = partner;
-
-
-    document.getElementById("result")
+    document
+        .getElementById("result")
         .classList.add("show");
 
 
     /*
-    LOCK EVERYTHING
+    LOCK ALL BUTTONS
     */
-
-    document.getElementById("confirmBtn")
-        .disabled = true;
-
 
     document
         .querySelectorAll(".number")
@@ -582,22 +703,40 @@ function confirmSelection(){
         });
 
 
+    document
+        .getElementById("confirmBtn")
+        .disabled = true;
+
+
     updateStatus();
 
 }
 
 
-/* ==========================================
+/* ==================================================
    STATUS
-   ========================================== */
+   ================================================== */
 
 function updateStatus(){
 
     const available =
-        8 - data.used.length;
+        8 - savedData.selectedNumbers.length;
 
 
-    document.getElementById("status")
+    if(available <= 0){
+
+        document
+            .getElementById("status")
+            .textContent =
+            "All numbers have been selected.";
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("status")
         .textContent =
         available +
         (available === 1
@@ -605,6 +744,16 @@ function updateStatus(){
             : " numbers available");
 
 }
+
+
+/* ==================================================
+   SAVE CURRENT DATA
+   ================================================== */
+
+localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(savedData)
+);
 
 </script>
 
