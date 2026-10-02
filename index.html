@@ -3,241 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>LVT Competition Selection</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:radial-gradient(circle at top,#123d68,#061522 50%,#02070c);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
 
-body {
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background:
-        radial-gradient(circle at top, #123d68 0%, #061522 45%, #02070c 100%);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+.card{
+    width:100%;
+    max-width:460px;
+    background:rgba(5,18,30,.97);
+    border:1px solid rgba(212,175,55,.55);
+    border-radius:24px;
+    padding:28px 22px;
+    box-shadow:0 20px 60px rgba(0,0,0,.55);
 }
 
-.card {
-    width: 100%;
-    max-width: 460px;
-    background: rgba(5, 18, 30, 0.96);
-    border: 1px solid rgba(212, 175, 55, 0.55);
-    border-radius: 24px;
-    padding: 28px 22px;
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.55),
-        0 0 30px rgba(212,175,55,0.08);
+.logo{
+    text-align:center;
+    color:#d4af37;
+    font-weight:bold;
+    letter-spacing:4px;
+    margin-bottom:8px;
 }
 
-.logo {
-    text-align: center;
-    color: #d4af37;
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    margin-bottom: 8px;
+h1{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:8px;
 }
 
-h1 {
-    text-align: center;
-    font-size: 29px;
-    margin-bottom: 8px;
+.subtitle{
+    text-align:center;
+    color:#aebdca;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:25px;
 }
 
-.subtitle {
-    text-align: center;
-    color: #aebdca;
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 28px;
+label{
+    display:block;
+    color:#d4af37;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:8px;
 }
 
-label {
-    display: block;
-    font-size: 14px;
-    color: #d4af37;
-    font-weight: bold;
-    margin-bottom: 8px;
+input,select{
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #36536b;
+    background:#0b2235;
+    color:white;
+    font-size:16px;
+    outline:none;
+    margin-bottom:18px;
 }
 
-select {
-    width: 100%;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid #36536b;
-    background: #0b2235;
-    color: white;
-    font-size: 16px;
-    outline: none;
-    margin-bottom: 24px;
+button{
+    cursor:pointer;
 }
 
-select:focus {
-    border-color: #d4af37;
+.main-btn{
+    width:100%;
+    padding:16px;
+    border:0;
+    border-radius:13px;
+    background:linear-gradient(135deg,#d4af37,#f0d46a);
+    color:#071521;
+    font-weight:800;
+    font-size:15px;
 }
 
-.numbers {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
+.main-btn:disabled{
+    opacity:.4;
+    cursor:not-allowed;
 }
 
-.number {
-    height: 62px;
-    border-radius: 15px;
-    border: 1px solid #49677f;
-    background: #0c263b;
-    color: white;
-    font-size: 21px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
+.error{
+    display:none;
+    color:#ffaaaa;
+    background:rgba(190,50,50,.15);
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    font-size:13px;
+    margin-bottom:15px;
 }
 
-.number:hover:not(.used) {
-    transform: translateY(-2px);
-    border-color: #d4af37;
+.error.show{
+    display:block;
 }
 
-.number.selected {
-    background: #d4af37;
-    color: #071521;
-    border-color: #f2d675;
-    box-shadow: 0 0 18px rgba(212,175,55,0.35);
+#selectionScreen{
+    display:none;
 }
 
-.number.used {
-    background: #20272c;
-    color: #68737b;
-    border-color: #30383d;
-    cursor: not-allowed;
-    position: relative;
+.numbers{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin:10px 0 22px;
 }
 
-.number.used::after {
-    content: "✓";
-    display: block;
-    font-size: 12px;
-    margin-top: 2px;
+.number{
+    height:62px;
+    border-radius:15px;
+    border:1px solid #49677f;
+    background:#0c263b;
+    color:white;
+    font-size:21px;
+    font-weight:bold;
 }
 
-button#confirm {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 13px;
-    background: linear-gradient(135deg, #d4af37, #f0d46a);
-    color: #071521;
-    font-size: 15px;
-    font-weight: 800;
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: 0.2s;
+.number:hover:not(:disabled){
+    border-color:#d4af37;
 }
 
-button#confirm:hover:not(:disabled) {
-    transform: translateY(-2px);
+.number.selected{
+    background:#d4af37;
+    color:#071521;
+    border-color:#f2d675;
 }
 
-button#confirm:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
+.number.used{
+    background:#20272c;
+    color:#68737b;
+    cursor:not-allowed;
 }
 
-.result {
-    display: none;
-    margin-top: 24px;
-    padding: 22px;
-    text-align: center;
-    border-radius: 16px;
-    background: linear-gradient(
-        145deg,
-        rgba(212,175,55,0.12),
-        rgba(12,38,59,0.8)
-    );
-    border: 1px solid rgba(212,175,55,0.45);
+.result{
+    display:none;
+    margin-top:22px;
+    padding:22px;
+    text-align:center;
+    border-radius:16px;
+    background:rgba(212,175,55,.10);
+    border:1px solid rgba(212,175,55,.45);
 }
 
-.result.show {
-    display: block;
+.result.show{
+    display:block;
 }
 
-.result small {
-    display: block;
-    color: #aebdca;
-    margin-bottom: 9px;
+.result small{
+    color:#aebdca;
 }
 
-.result strong {
-    display: block;
-    color: #f0d46a;
-    font-size: 25px;
+.result strong{
+    display:block;
+    color:#f0d46a;
+    font-size:25px;
+    margin-top:8px;
 }
 
-.status {
-    text-align: center;
-    margin-top: 18px;
-    color: #9db0be;
-    font-size: 13px;
+.status{
+    text-align:center;
+    color:#9db0be;
+    font-size:13px;
+    margin-top:17px;
 }
 
-.note {
-    text-align: center;
-    color: #637785;
-    font-size: 12px;
-    margin-top: 10px;
+.note{
+    text-align:center;
+    color:#637785;
+    font-size:12px;
+    margin-top:9px;
 }
 
-.message {
-    display: none;
-    text-align: center;
-    margin-top: 15px;
-    padding: 12px;
-    border-radius: 10px;
-    background: rgba(190,50,50,0.15);
-    color: #ffaaaa;
-    font-size: 13px;
-}
-
-.message.show {
-    display: block;
-}
-
-.reset {
-    display: block;
-    margin: 18px auto 0;
-    background: transparent;
-    border: none;
-    color: #596e7d;
-    font-size: 11px;
-    cursor: pointer;
-}
-
-.reset:hover {
-    color: #d4af37;
-}
-
-@media (max-width: 360px) {
-    .card {
-        padding: 22px 16px;
-    }
-
-    h1 {
-        font-size: 25px;
-    }
-
-    .number {
-        height: 55px;
-    }
+.hidden{
+    display:none!important;
 }
 </style>
 </head>
@@ -246,278 +192,345 @@ button#confirm:disabled {
 
 <div class="card">
 
-    <div class="logo">LVT COMPETITION</div>
+    <!-- LOGIN -->
+    <div id="loginScreen">
 
-    <h1>Private Selection</h1>
+        <div class="logo">LVT COMPETITION</div>
 
-    <div class="subtitle">
-        Choose your name, select one available number,
-        then confirm your selection.
-    </div>
+        <h1>Private Access</h1>
 
-    <label for="woman">Your Name</label>
+        <div class="subtitle">
+            Enter your name and personal password to continue.
+        </div>
 
-    <select id="woman">
-        <option value="">Select your name</option>
+        <div id="loginError" class="error">
+            Incorrect name or password.
+        </div>
 
-        <option value="Mar’atussaliha">
-            Mar’atussaliha
-        </option>
+        <label>Your Name</label>
 
-        <option value="Auntyn Yara">
-            Auntyn Yara
-        </option>
+        <select id="loginName">
+            <option value="">Select your name</option>
+            <option>Mar’atussaliha</option>
+            <option>Auntyn Yara</option>
+            <option>Zahraty</option>
+            <option>Cutieteemah Lyrics</option>
+            <option>Autah Lyrics</option>
+            <option>Teemarluvly</option>
+            <option>Merhmerh Lyrics</option>
+            <option>Queenjurry</option>
+        </select>
 
-        <option value="Zahraty">
-            Zahraty
-        </option>
+        <label>Password</label>
 
-        <option value="Cutieteemah Lyrics">
-            Cutieteemah Lyrics
-        </option>
+        <input
+            id="loginPassword"
+            type="password"
+            placeholder="Enter your password"
+        >
 
-        <option value="Autah Lyrics">
-            Autah Lyrics
-        </option>
-
-        <option value="Teemarluvly">
-            Teemarluvly
-        </option>
-
-        <option value="Merhmerh Lyrics">
-            Merhmerh Lyrics
-        </option>
-
-        <option value="Queenjurry">
-            Queenjurry
-        </option>
-    </select>
-
-    <label>Select Number</label>
-
-    <div class="numbers" id="numbers"></div>
-
-    <button id="confirm" disabled>
-        CONFIRM SELECTION
-    </button>
-
-    <div class="message" id="message"></div>
-
-    <div class="result" id="result">
-
-        <small>Your selected partner is:</small>
-
-        <strong id="partner"></strong>
+        <button class="main-btn" onclick="login()">
+            ENTER COMPETITION
+        </button>
 
     </div>
 
-    <div class="status" id="status">
-        8 numbers available
-    </div>
 
-    <div class="note">
-        Each participant can select only once.
-    </div>
+    <!-- SELECTION -->
+    <div id="selectionScreen">
 
-    <button class="reset" onclick="resetDemo()">
-        Reset demo
-    </button>
+        <div class="logo">LVT COMPETITION</div>
+
+        <h1>Private Selection</h1>
+
+        <div class="subtitle">
+            Welcome, <strong id="welcomeName"></strong>.
+            Select one available number.
+        </div>
+
+        <label>Select Number</label>
+
+        <div class="numbers" id="numbers"></div>
+
+        <button
+            id="confirmBtn"
+            class="main-btn"
+            disabled
+            onclick="confirmSelection()"
+        >
+            CONFIRM SELECTION
+        </button>
+
+        <div id="result" class="result">
+            <small>Your selected partner is:</small>
+            <strong id="partner"></strong>
+        </div>
+
+        <div id="status" class="status">
+            8 numbers available
+        </div>
+
+        <div class="note">
+            Your selection can only be made once on this device.
+        </div>
+
+    </div>
 
 </div>
 
+
 <script>
 
-/*
-====================================================
-LVT COMPETITION SELECTION SYSTEM
-====================================================
+/* =========================================
+   LVT FEMALE PASSWORDS
+   ========================================= */
 
-IMPORTANT:
+const users = {
 
-The male names below are intentionally hidden
-from the participant until confirmation.
+    "Mar’atussaliha": "LVT-MAR01",
 
-Number 1 = Bakori Lyrics
-Number 2 = Bash Lyrics
-Number 3 = Yusufa Lyrics
-Number 4 = Jagora Lyrics
-Number 5 = Alkhaddab Lyrics
-Number 6 = King Haidar Lyrics
-Number 7 = Abbas Lyrics
-Number 8 = IBB Lyrics
-====================================================
-*/
+    "Auntyn Yara": "LVT-AUN02",
+
+    "Zahraty": "LVT-ZAH03",
+
+    "Cutieteemah Lyrics": "LVT-CUT04",
+
+    "Autah Lyrics": "LVT-AUT05",
+
+    "Teemarluvly": "LVT-TEE06",
+
+    "Merhmerh Lyrics": "LVT-MER07",
+
+    "Queenjurry": "LVT-QUE08"
+
+};
 
 
-// HIDDEN MALE NAMES
+/* =========================================
+   HIDDEN MALE NAMES
+   ========================================= */
+
 const men = [
+
     "Bakori Lyrics",
+
     "Bash Lyrics",
+
     "Yusufa Lyrics",
+
     "Jagora Lyrics",
+
     "Alkhaddab Lyrics",
+
     "King Haidar Lyrics",
+
     "Abbas Lyrics",
+
     "IBB Lyrics"
+
 ];
 
 
-// FEMALE PARTICIPANTS
-const women = [
-    "Mar’atussaliha",
-    "Auntyn Yara",
-    "Zahraty",
-    "Cutieteemah Lyrics",
-    "Autah Lyrics",
-    "Teemarluvly",
-    "Merhmerh Lyrics",
-    "Queenjurry"
-];
+/* =========================================
+   SYSTEM VARIABLES
+   ========================================= */
 
+let currentUser = "";
 
-// HTML ELEMENTS
-const womanSelect = document.getElementById("woman");
-const numbersContainer = document.getElementById("numbers");
-const confirmButton = document.getElementById("confirm");
-const resultBox = document.getElementById("result");
-const partnerText = document.getElementById("partner");
-const statusText = document.getElementById("status");
-const messageBox = document.getElementById("message");
-
-
-// SELECTED NUMBER
 let selectedNumber = null;
 
-
-// GET SAVED DATA
 let usedNumbers =
-    JSON.parse(localStorage.getItem("LVT_USED_NUMBERS") || "[]");
+    JSON.parse(
+        localStorage.getItem("LVT_USED_NUMBERS") || "[]"
+    );
 
-let completedWomen =
-    JSON.parse(localStorage.getItem("LVT_COMPLETED_WOMEN") || "[]");
+let completedUsers =
+    JSON.parse(
+        localStorage.getItem("LVT_COMPLETED_USERS") || "[]"
+    );
 
 
-// CREATE NUMBER BUTTONS
-function createNumbers() {
+/* =========================================
+   LOGIN
+   ========================================= */
 
-    numbersContainer.innerHTML = "";
+function login(){
 
-    for (let i = 1; i <= 8; i++) {
+    const name =
+        document.getElementById("loginName").value;
 
-        const button = document.createElement("button");
+    const password =
+        document.getElementById("loginPassword").value;
 
-        button.className = "number";
+    const error =
+        document.getElementById("loginError");
 
-        button.textContent = i;
 
-        // CHECK IF NUMBER IS ALREADY USED
-        if (usedNumbers.includes(i)) {
+    if(!name || !password){
 
-            button.classList.add("used");
+        error.textContent =
+            "Please select your name and enter your password.";
 
-            button.disabled = true;
+        error.classList.add("show");
 
-        } else {
-
-            button.addEventListener("click", function () {
-
-                selectNumber(i);
-
-            });
-
-        }
-
-        numbersContainer.appendChild(button);
+        return;
     }
 
-    updateStatus();
+
+    if(
+        users[name] &&
+        users[name] === password
+    ){
+
+        if(completedUsers.includes(name)){
+
+            error.textContent =
+                "This participant has already completed a selection.";
+
+            error.classList.add("show");
+
+            return;
+        }
+
+
+        currentUser = name;
+
+
+        document
+            .getElementById("loginScreen")
+            .classList.add("hidden");
+
+
+        document
+            .getElementById("selectionScreen")
+            .style.display = "block";
+
+
+        document
+            .getElementById("welcomeName")
+            .textContent = name;
+
+
+        createNumbers();
+
+    }else{
+
+        error.textContent =
+            "Incorrect name or password.";
+
+        error.classList.add("show");
+
+    }
+
 }
 
 
-// SELECT NUMBER
-function selectNumber(number) {
+/* =========================================
+   CREATE NUMBERS
+   ========================================= */
 
-    if (usedNumbers.includes(number)) {
+function createNumbers(){
+
+    const container =
+        document.getElementById("numbers");
+
+    container.innerHTML = "";
+
+    selectedNumber = null;
+
+    document
+        .getElementById("confirmBtn")
+        .disabled = true;
+
+
+    for(let i=1;i<=8;i++){
+
+        const btn =
+            document.createElement("button");
+
+        btn.className = "number";
+
+        btn.textContent = i;
+
+
+        if(usedNumbers.includes(i)){
+
+            btn.classList.add("used");
+
+            btn.disabled = true;
+
+        }else{
+
+            btn.onclick = function(){
+
+                selectNumber(i);
+
+            };
+
+        }
+
+
+        container.appendChild(btn);
+
+    }
+
+
+    updateStatus();
+
+}
+
+
+/* =========================================
+   SELECT NUMBER
+   ========================================= */
+
+function selectNumber(number){
+
+    if(usedNumbers.includes(number)){
         return;
     }
 
     selectedNumber = number;
 
-    const allButtons =
-        document.querySelectorAll(".number");
 
-    allButtons.forEach(button => {
+    document
+        .querySelectorAll(".number")
+        .forEach(btn => {
 
-        button.classList.remove("selected");
+            btn.classList.remove("selected");
 
-    });
+        });
 
-    allButtons[number - 1]
+
+    document
+        .querySelectorAll(".number")[number-1]
         .classList.add("selected");
 
-    confirmButton.disabled =
-        womanSelect.value === "";
+
+    document
+        .getElementById("confirmBtn")
+        .disabled = false;
+
 }
 
 
-// CHECK WOMAN SELECTION
-womanSelect.addEventListener("change", function () {
+/* =========================================
+   CONFIRM
+   ========================================= */
 
-    hideMessage();
+function confirmSelection(){
 
-    resultBox.classList.remove("show");
-
-    selectedNumber = null;
-
-    document.querySelectorAll(".number")
-        .forEach(button => {
-            button.classList.remove("selected");
-        });
-
-    const selectedWoman = womanSelect.value;
-
-    if (completedWomen.includes(selectedWoman)) {
-
-        showMessage(
-            "This participant has already completed a selection."
-        );
-
-        confirmButton.disabled = true;
-
-        return;
-    }
-
-    confirmButton.disabled = true;
-
-});
-
-
-// CONFIRM SELECTION
-confirmButton.addEventListener("click", function () {
-
-    const woman = womanSelect.value;
-
-    if (!woman) {
-
-        showMessage("Please select your name first.");
-
+    if(!currentUser || !selectedNumber){
         return;
     }
 
 
-    if (selectedNumber === null) {
+    if(
+        usedNumbers.includes(selectedNumber)
+    ){
 
-        showMessage("Please select a number.");
-
-        return;
-    }
-
-
-    // CHECK AGAIN
-    if (usedNumbers.includes(selectedNumber)) {
-
-        showMessage(
-            "Sorry, this number has already been selected."
+        alert(
+            "Sorry, this number is already selected."
         );
 
         createNumbers();
@@ -526,10 +539,12 @@ confirmButton.addEventListener("click", function () {
     }
 
 
-    if (completedWomen.includes(woman)) {
+    if(
+        completedUsers.includes(currentUser)
+    ){
 
-        showMessage(
-            "This participant has already completed a selection."
+        alert(
+            "You have already completed your selection."
         );
 
         return;
@@ -537,14 +552,13 @@ confirmButton.addEventListener("click", function () {
 
 
     /*
-    ================================================
-    SAVE SELECTION
-    ================================================
+      SAVE NUMBER
     */
 
     usedNumbers.push(selectedNumber);
 
-    completedWomen.push(woman);
+
+    completedUsers.push(currentUser);
 
 
     localStorage.setItem(
@@ -552,128 +566,72 @@ confirmButton.addEventListener("click", function () {
         JSON.stringify(usedNumbers)
     );
 
+
     localStorage.setItem(
-        "LVT_COMPLETED_WOMEN",
-        JSON.stringify(completedWomen)
+        "LVT_COMPLETED_USERS",
+        JSON.stringify(completedUsers)
     );
 
 
     /*
-    ================================================
-    REVEAL MALE NAME
-    ================================================
+      REVEAL PARTNER
     */
 
-    const selectedMan =
+    const partner =
         men[selectedNumber - 1];
 
 
-    partnerText.textContent =
-        selectedMan;
+    document
+        .getElementById("partner")
+        .textContent = partner;
 
 
-    resultBox.classList.add("show");
+    document
+        .getElementById("result")
+        .classList.add("show");
 
 
-    // DISABLE EVERYTHING
-    womanSelect.disabled = true;
+    /*
+      LOCK EVERYTHING
+    */
 
-    confirmButton.disabled = true;
+    document
+        .getElementById("confirmBtn")
+        .disabled = true;
 
-    document.querySelectorAll(".number")
-        .forEach(button => {
-            button.disabled = true;
+
+    document
+        .querySelectorAll(".number")
+        .forEach(btn => {
+
+            btn.disabled = true;
+
         });
 
 
     updateStatus();
 
-
-    /*
-    SECURITY MESSAGE
-    */
-
-    showMessage(
-        "Selection confirmed successfully.",
-        true
-    );
-
-});
+}
 
 
-// UPDATE STATUS
-function updateStatus() {
+/* =========================================
+   STATUS
+   ========================================= */
+
+function updateStatus(){
 
     const available =
         8 - usedNumbers.length;
 
-    if (available === 0) {
 
-        statusText.textContent =
-            "All numbers have been selected.";
-
-    } else {
-
-        statusText.textContent =
-            available + " numbers available";
-
-    }
-}
-
-
-// SHOW MESSAGE
-function showMessage(text, success = false) {
-
-    messageBox.textContent = text;
-
-    messageBox.style.color =
-        success ? "#b8e6c1" : "#ffaaaa";
-
-    messageBox.style.background =
-        success
-            ? "rgba(50,160,80,0.15)"
-            : "rgba(190,50,50,0.15)";
-
-    messageBox.classList.add("show");
-}
-
-
-// HIDE MESSAGE
-function hideMessage() {
-
-    messageBox.classList.remove("show");
+    document
+        .getElementById("status")
+        .textContent =
+        available > 0
+        ? available + " numbers available"
+        : "All numbers have been selected.";
 
 }
-
-
-// RESET DEMO
-function resetDemo() {
-
-    const confirmReset =
-        confirm(
-            "Reset all selections on this device?"
-        );
-
-    if (!confirmReset) {
-        return;
-    }
-
-
-    localStorage.removeItem(
-        "LVT_USED_NUMBERS"
-    );
-
-    localStorage.removeItem(
-        "LVT_COMPLETED_WOMEN"
-    );
-
-
-    location.reload();
-}
-
-
-// START SYSTEM
-createNumbers();
 
 </script>
 
