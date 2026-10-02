@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LVT Competition Selection</title>
+<title>LVT Competition</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -11,7 +11,7 @@
 body{
     min-height:100vh;
     font-family:Arial,sans-serif;
-    background:radial-gradient(circle at top,#123d68,#061522 50%,#02070c);
+    background:linear-gradient(145deg,#03101c,#0b2b49,#03101c);
     color:white;
     display:flex;
     justify-content:center;
@@ -22,25 +22,25 @@ body{
 .card{
     width:100%;
     max-width:460px;
-    background:rgba(5,18,30,.97);
-    border:1px solid rgba(212,175,55,.55);
+    background:#061827;
+    border:1px solid #c9a52b;
     border-radius:24px;
     padding:28px 22px;
-    box-shadow:0 20px 60px rgba(0,0,0,.55);
+    box-shadow:0 20px 60px #000;
 }
 
 .logo{
     text-align:center;
-    color:#d4af37;
+    color:#d8b63f;
     font-weight:bold;
     letter-spacing:4px;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 h1{
     text-align:center;
     font-size:28px;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .subtitle{
@@ -53,7 +53,7 @@ h1{
 
 label{
     display:block;
-    color:#d4af37;
+    color:#d8b63f;
     font-weight:bold;
     font-size:14px;
     margin-bottom:8px;
@@ -63,43 +63,38 @@ input,select{
     width:100%;
     padding:15px;
     border-radius:12px;
-    border:1px solid #36536b;
-    background:#0b2235;
+    border:1px solid #42627b;
+    background:#0a2439;
     color:white;
     font-size:16px;
-    outline:none;
     margin-bottom:18px;
+    outline:none;
 }
 
-button{
-    cursor:pointer;
+input:focus,select:focus{
+    border-color:#d8b63f;
 }
 
-.main-btn{
+.btn{
     width:100%;
     padding:16px;
     border:0;
     border-radius:13px;
-    background:linear-gradient(135deg,#d4af37,#f0d46a);
+    background:linear-gradient(135deg,#c9a52b,#f0d46a);
     color:#071521;
-    font-weight:800;
+    font-weight:bold;
     font-size:15px;
-}
-
-.main-btn:disabled{
-    opacity:.4;
-    cursor:not-allowed;
 }
 
 .error{
     display:none;
-    color:#ffaaaa;
-    background:rgba(190,50,50,.15);
     padding:12px;
+    margin-bottom:15px;
     border-radius:10px;
     text-align:center;
+    background:#4b1717;
+    color:#ffb0b0;
     font-size:13px;
-    margin-bottom:15px;
 }
 
 .error.show{
@@ -120,26 +115,26 @@ button{
 .number{
     height:62px;
     border-radius:15px;
-    border:1px solid #49677f;
-    background:#0c263b;
+    border:1px solid #48677e;
+    background:#0b2940;
     color:white;
     font-size:21px;
     font-weight:bold;
 }
 
-.number:hover:not(:disabled){
-    border-color:#d4af37;
-}
-
 .number.selected{
-    background:#d4af37;
+    background:#d8b63f;
     color:#071521;
-    border-color:#f2d675;
+    border-color:#f5dc72;
 }
 
 .number.used{
-    background:#20272c;
-    color:#68737b;
+    background:#242b30;
+    color:#69747c;
+    cursor:not-allowed;
+}
+
+.number:disabled{
     cursor:not-allowed;
 }
 
@@ -149,8 +144,8 @@ button{
     padding:22px;
     text-align:center;
     border-radius:16px;
-    background:rgba(212,175,55,.10);
-    border:1px solid rgba(212,175,55,.45);
+    border:1px solid #c9a52b;
+    background:#102c40;
 }
 
 .result.show{
@@ -175,15 +170,11 @@ button{
     margin-top:17px;
 }
 
-.note{
+.locked{
     text-align:center;
-    color:#637785;
-    font-size:12px;
-    margin-top:9px;
-}
-
-.hidden{
-    display:none!important;
+    color:#d8b63f;
+    font-size:13px;
+    margin-top:15px;
 }
 </style>
 </head>
@@ -192,98 +183,99 @@ button{
 
 <div class="card">
 
-    <!-- LOGIN -->
-    <div id="loginScreen">
+<!-- ================= LOGIN ================= -->
 
-        <div class="logo">LVT COMPETITION</div>
+<div id="loginScreen">
 
-        <h1>Private Access</h1>
+    <div class="logo">LVT COMPETITION</div>
 
-        <div class="subtitle">
-            Enter your name and personal password to continue.
-        </div>
+    <h1>Private Access</h1>
 
-        <div id="loginError" class="error">
-            Incorrect name or password.
-        </div>
+    <div class="subtitle">
+        Enter your name and personal password to continue.
+    </div>
 
-        <label>Your Name</label>
+    <div id="loginError" class="error"></div>
 
-        <select id="loginName">
-            <option value="">Select your name</option>
-            <option>Mar’atussaliha</option>
-            <option>Auntyn Yara</option>
-            <option>Zahraty</option>
-            <option>Cutieteemah Lyrics</option>
-            <option>Autah Lyrics</option>
-            <option>Teemarluvly</option>
-            <option>Merhmerh Lyrics</option>
-            <option>Queenjurry</option>
-        </select>
+    <label>Your Name</label>
 
-        <label>Password</label>
+    <select id="loginName">
+        <option value="">Select your name</option>
+        <option>Mar’atussaliha</option>
+        <option>Auntyn Yara</option>
+        <option>Zahraty</option>
+        <option>Cutieteemah Lyrics</option>
+        <option>Autah Lyrics</option>
+        <option>Teemarluvly</option>
+        <option>Merhmerh Lyrics</option>
+        <option>Queenjurry</option>
+    </select>
 
-        <input
-            id="loginPassword"
-            type="password"
-            placeholder="Enter your password"
-        >
+    <label>Password</label>
 
-        <button class="main-btn" onclick="login()">
-            ENTER COMPETITION
-        </button>
+    <input
+        id="loginPassword"
+        type="password"
+        placeholder="Enter your password"
+    >
+
+    <button class="btn" onclick="login()">
+        ENTER COMPETITION
+    </button>
+
+</div>
+
+
+<!-- ================= SELECTION ================= -->
+
+<div id="selectionScreen">
+
+    <div class="logo">LVT COMPETITION</div>
+
+    <h1>Private Selection</h1>
+
+    <div class="subtitle">
+        Welcome, <strong id="welcomeName"></strong>.<br>
+        Choose one number.
+    </div>
+
+    <label>Select Number</label>
+
+    <div id="numbers" class="numbers"></div>
+
+    <button
+        id="confirmBtn"
+        class="btn"
+        disabled
+        onclick="confirmSelection()"
+    >
+        CONFIRM SELECTION
+    </button>
+
+    <div id="result" class="result">
+
+        <small>Your selected partner is:</small>
+
+        <strong id="partner"></strong>
 
     </div>
 
+    <div id="status" class="status"></div>
 
-    <!-- SELECTION -->
-    <div id="selectionScreen">
-
-        <div class="logo">LVT COMPETITION</div>
-
-        <h1>Private Selection</h1>
-
-        <div class="subtitle">
-            Welcome, <strong id="welcomeName"></strong>.
-            Select one available number.
-        </div>
-
-        <label>Select Number</label>
-
-        <div class="numbers" id="numbers"></div>
-
-        <button
-            id="confirmBtn"
-            class="main-btn"
-            disabled
-            onclick="confirmSelection()"
-        >
-            CONFIRM SELECTION
-        </button>
-
-        <div id="result" class="result">
-            <small>Your selected partner is:</small>
-            <strong id="partner"></strong>
-        </div>
-
-        <div id="status" class="status">
-            8 numbers available
-        </div>
-
-        <div class="note">
-            Your selection can only be made once on this device.
-        </div>
-
+    <div class="locked">
+        Your selection can only be made once.
     </div>
+
+</div>
 
 </div>
 
 
 <script>
 
-/* =========================================
-   LVT FEMALE PASSWORDS
-   ========================================= */
+/* ==========================================
+   USERS + PASSWORDS
+   ========================================== */
 
 const users = {
 
@@ -306,53 +298,51 @@ const users = {
 };
 
 
-/* =========================================
-   HIDDEN MALE NAMES
-   ========================================= */
+/* ==========================================
+   HIDDEN MALE PARTNERS
+   ========================================== */
 
 const men = [
 
     "Bakori Lyrics",
-
     "Bash Lyrics",
-
     "Yusufa Lyrics",
-
     "Jagora Lyrics",
-
     "Alkhaddab Lyrics",
-
     "King Haidar Lyrics",
-
     "Abbas Lyrics",
-
     "IBB Lyrics"
 
 ];
 
 
-/* =========================================
-   SYSTEM VARIABLES
-   ========================================= */
+/* ==========================================
+   SESSION
+   ========================================== */
 
 let currentUser = "";
-
 let selectedNumber = null;
 
-let usedNumbers =
+
+/*
+IMPORTANT:
+We use a NEW storage key so old test selections
+will NOT appear in this new version.
+*/
+
+const STORAGE_KEY = "LVT_TODAY_SELECTION_V2";
+
+
+let data =
     JSON.parse(
-        localStorage.getItem("LVT_USED_NUMBERS") || "[]"
+        localStorage.getItem(STORAGE_KEY) ||
+        '{"used":[],"users":[]}'
     );
 
-let completedUsers =
-    JSON.parse(
-        localStorage.getItem("LVT_COMPLETED_USERS") || "[]"
-    );
 
-
-/* =========================================
+/* ==========================================
    LOGIN
-   ========================================= */
+   ========================================== */
 
 function login(){
 
@@ -366,6 +356,9 @@ function login(){
         document.getElementById("loginError");
 
 
+    error.classList.remove("show");
+
+
     if(!name || !password){
 
         error.textContent =
@@ -377,57 +370,55 @@ function login(){
     }
 
 
-    if(
-        users[name] &&
-        users[name] === password
-    ){
-
-        if(completedUsers.includes(name)){
-
-            error.textContent =
-                "This participant has already completed a selection.";
-
-            error.classList.add("show");
-
-            return;
-        }
-
-
-        currentUser = name;
-
-
-        document
-            .getElementById("loginScreen")
-            .classList.add("hidden");
-
-
-        document
-            .getElementById("selectionScreen")
-            .style.display = "block";
-
-
-        document
-            .getElementById("welcomeName")
-            .textContent = name;
-
-
-        createNumbers();
-
-    }else{
+    if(users[name] !== password){
 
         error.textContent =
             "Incorrect name or password.";
 
         error.classList.add("show");
 
+        return;
     }
+
+
+    /*
+    CHECK IF THIS WOMAN HAS ALREADY SELECTED
+    */
+
+    if(data.users.includes(name)){
+
+        error.textContent =
+            "You have already completed your selection.";
+
+        error.classList.add("show");
+
+        return;
+    }
+
+
+    currentUser = name;
+
+
+    document.getElementById("loginScreen")
+        .style.display = "none";
+
+
+    document.getElementById("selectionScreen")
+        .style.display = "block";
+
+
+    document.getElementById("welcomeName")
+        .textContent = name;
+
+
+    createNumbers();
 
 }
 
 
-/* =========================================
+/* ==========================================
    CREATE NUMBERS
-   ========================================= */
+   ========================================== */
 
 function createNumbers(){
 
@@ -436,41 +427,32 @@ function createNumbers(){
 
     container.innerHTML = "";
 
-    selectedNumber = null;
-
-    document
-        .getElementById("confirmBtn")
-        .disabled = true;
-
 
     for(let i=1;i<=8;i++){
 
-        const btn =
+        const button =
             document.createElement("button");
 
-        btn.className = "number";
+        button.className = "number";
 
-        btn.textContent = i;
+        button.textContent = i;
 
 
-        if(usedNumbers.includes(i)){
+        if(data.used.includes(i)){
 
-            btn.classList.add("used");
+            button.classList.add("used");
 
-            btn.disabled = true;
+            button.disabled = true;
 
         }else{
 
-            btn.onclick = function(){
-
-                selectNumber(i);
-
-            };
+            button.onclick =
+                () => selectNumber(i);
 
         }
 
 
-        container.appendChild(btn);
+        container.appendChild(button);
 
     }
 
@@ -480,24 +462,25 @@ function createNumbers(){
 }
 
 
-/* =========================================
+/* ==========================================
    SELECT NUMBER
-   ========================================= */
+   ========================================== */
 
 function selectNumber(number){
 
-    if(usedNumbers.includes(number)){
+    if(data.used.includes(number)){
         return;
     }
+
 
     selectedNumber = number;
 
 
     document
         .querySelectorAll(".number")
-        .forEach(btn => {
+        .forEach(button => {
 
-            btn.classList.remove("selected");
+            button.classList.remove("selected");
 
         });
 
@@ -514,9 +497,9 @@ function selectNumber(number){
 }
 
 
-/* =========================================
-   CONFIRM
-   ========================================= */
+/* ==========================================
+   CONFIRM SELECTION
+   ========================================== */
 
 function confirmSelection(){
 
@@ -525,12 +508,14 @@ function confirmSelection(){
     }
 
 
-    if(
-        usedNumbers.includes(selectedNumber)
-    ){
+    /*
+    CHECK AGAIN BEFORE SAVING
+    */
+
+    if(data.used.includes(selectedNumber)){
 
         alert(
-            "Sorry, this number is already selected."
+            "Sorry, this number has already been selected."
         );
 
         createNumbers();
@@ -539,9 +524,7 @@ function confirmSelection(){
     }
 
 
-    if(
-        completedUsers.includes(currentUser)
-    ){
+    if(data.users.includes(currentUser)){
 
         alert(
             "You have already completed your selection."
@@ -552,59 +535,49 @@ function confirmSelection(){
 
 
     /*
-      SAVE NUMBER
+    SAVE
     */
 
-    usedNumbers.push(selectedNumber);
+    data.used.push(selectedNumber);
 
-
-    completedUsers.push(currentUser);
-
-
-    localStorage.setItem(
-        "LVT_USED_NUMBERS",
-        JSON.stringify(usedNumbers)
-    );
+    data.users.push(currentUser);
 
 
     localStorage.setItem(
-        "LVT_COMPLETED_USERS",
-        JSON.stringify(completedUsers)
+        STORAGE_KEY,
+        JSON.stringify(data)
     );
 
 
     /*
-      REVEAL PARTNER
+    REVEAL PARTNER
     */
 
     const partner =
         men[selectedNumber - 1];
 
 
-    document
-        .getElementById("partner")
+    document.getElementById("partner")
         .textContent = partner;
 
 
-    document
-        .getElementById("result")
+    document.getElementById("result")
         .classList.add("show");
 
 
     /*
-      LOCK EVERYTHING
+    LOCK EVERYTHING
     */
 
-    document
-        .getElementById("confirmBtn")
+    document.getElementById("confirmBtn")
         .disabled = true;
 
 
     document
         .querySelectorAll(".number")
-        .forEach(btn => {
+        .forEach(button => {
 
-            btn.disabled = true;
+            button.disabled = true;
 
         });
 
@@ -614,22 +587,22 @@ function confirmSelection(){
 }
 
 
-/* =========================================
+/* ==========================================
    STATUS
-   ========================================= */
+   ========================================== */
 
 function updateStatus(){
 
     const available =
-        8 - usedNumbers.length;
+        8 - data.used.length;
 
 
-    document
-        .getElementById("status")
+    document.getElementById("status")
         .textContent =
-        available > 0
-        ? available + " numbers available"
-        : "All numbers have been selected.";
+        available +
+        (available === 1
+            ? " number available"
+            : " numbers available");
 
 }
 
