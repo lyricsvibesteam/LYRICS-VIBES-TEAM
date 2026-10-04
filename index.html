@@ -7,752 +7,1460 @@
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-    min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
-    background:
-        radial-gradient(circle at top,#123b60 0%,#061522 48%,#02070c 100%);
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+  font-family:Arial, sans-serif;
+  background:
+    radial-gradient(circle at top,#173d73 0%,#071426 45%,#030914 100%);
+  color:white;
+  min-height:100vh;
 }
 
-.card{
-    width:100%;
-    max-width:460px;
-    background:rgba(5,18,30,.97);
-    border:1px solid rgba(212,175,55,.65);
-    border-radius:24px;
-    padding:28px 22px;
-    box-shadow:0 20px 60px rgba(0,0,0,.6);
+.container{
+  width:94%;
+  max-width:1100px;
+  margin:auto;
+}
+
+header{
+  text-align:center;
+  padding:30px 10px 20px;
+  border-bottom:1px solid rgba(255,215,0,.25);
 }
 
 .logo{
-    text-align:center;
-    color:#d4af37;
-    font-size:15px;
-    font-weight:bold;
-    letter-spacing:4px;
-    margin-bottom:8px;
-}
-
-h1{
-    text-align:center;
-    font-size:28px;
-    margin-bottom:8px;
+  font-size:38px;
+  font-weight:900;
+  color:#ffd700;
+  letter-spacing:3px;
 }
 
 .subtitle{
-    text-align:center;
-    color:#aebdca;
-    font-size:14px;
-    line-height:1.5;
-    margin-bottom:25px;
+  margin-top:8px;
+  color:#dce8ff;
+  font-size:14px;
 }
 
-label{
-    display:block;
-    color:#d4af37;
-    font-weight:bold;
-    font-size:14px;
-    margin-bottom:8px;
+.gold{
+  color:#ffd700;
 }
 
-select,
-input{
-    width:100%;
-    padding:15px;
-    border-radius:12px;
-    border:1px solid #36536b;
-    background:#0b2235;
-    color:white;
-    font-size:16px;
-    outline:none;
-    margin-bottom:18px;
+/* LOGIN */
+#loginPage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
-select:focus,
-input:focus{
-    border-color:#d4af37;
+.login-box{
+  width:100%;
+  max-width:430px;
+  background:rgba(7,20,38,.96);
+  border:1px solid rgba(255,215,0,.45);
+  border-radius:22px;
+  padding:30px 22px;
+  box-shadow:0 15px 50px rgba(0,0,0,.5);
+  text-align:center;
 }
 
-.main-btn{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:13px;
-    background:linear-gradient(135deg,#d4af37,#f0d46a);
-    color:#071521;
-    font-size:15px;
-    font-weight:800;
-    cursor:pointer;
+.login-box h1{
+  color:#ffd700;
+  margin-bottom:8px;
 }
 
-.main-btn:disabled{
-    opacity:.4;
-    cursor:not-allowed;
+.login-box p{
+  color:#bfcce2;
+  margin-bottom:25px;
+  font-size:14px;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  margin:8px 0;
+  border-radius:12px;
+  border:1px solid #35537d;
+  background:#0b1b31;
+  color:white;
+  outline:none;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#ffd700,#f2b900);
+  color:#06111f;
+  font-weight:800;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+button:hover{
+  transform:translateY(-1px);
 }
 
 .error{
-    display:none;
-    padding:12px;
-    margin-bottom:15px;
-    border-radius:10px;
-    text-align:center;
-    background:rgba(190,50,50,.15);
-    color:#ffaaaa;
-    font-size:13px;
+  color:#ff7272;
+  margin-top:12px;
+  font-size:14px;
 }
 
-.error.show{
-    display:block;
+/* MAIN */
+#mainPage{
+  display:none;
 }
 
-#selectionScreen{
-    display:none;
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(3,12,25,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,215,0,.2);
+}
+
+.nav-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:10px;
+}
+
+.nav-inner button{
+  width:auto;
+  white-space:nowrap;
+  margin:0;
+  padding:10px 15px;
+}
+
+section{
+  padding:30px 0;
+}
+
+.card{
+  background:rgba(10,28,52,.85);
+  border:1px solid rgba(255,215,0,.2);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 8px 30px rgba(0,0,0,.2);
+}
+
+.section-title{
+  color:#ffd700;
+  text-align:center;
+  font-size:26px;
+  margin-bottom:18px;
+}
+
+/* USER */
+.user-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.logout{
+  width:auto;
+  padding:9px 16px;
+  background:#182d49;
+  color:white;
+}
+
+/* SELECTION */
+.selection-info{
+  text-align:center;
+  color:#c7d4e8;
+  margin-bottom:20px;
 }
 
 .numbers{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin:10px 0 22px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
 
-.number{
-    height:62px;
-    border-radius:15px;
-    border:1px solid #49677f;
-    background:#0c263b;
-    color:white;
-    font-size:21px;
-    font-weight:bold;
-    cursor:pointer;
-    position:relative;
+.number-card{
+  background:linear-gradient(145deg,#102b50,#07182e);
+  border:1px solid #31537d;
+  border-radius:16px;
+  padding:20px 10px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.number:hover:not(:disabled){
-    border-color:#d4af37;
-    transform:translateY(-2px);
+.number-card:hover{
+  border-color:#ffd700;
+  transform:translateY(-3px);
 }
 
-.number.selected{
-    background:#d4af37;
-    color:#071521;
-    border-color:#f2d675;
-    box-shadow:0 0 18px rgba(212,175,55,.3);
+.number-card .num{
+  font-size:30px;
+  font-weight:900;
+  color:#ffd700;
 }
 
-.number.locked{
-    background:#222a2f;
-    color:#68737b;
-    border-color:#343c41;
-    cursor:not-allowed;
+.number-card small{
+  display:block;
+  margin-top:6px;
+  color:#c8d5e8;
 }
 
-.number.locked::after{
-    content:"LOCKED";
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:5px;
-    font-size:7px;
-    letter-spacing:1px;
+.number-card.locked{
+  opacity:.45;
+  cursor:not-allowed;
+  filter:grayscale(.7);
 }
 
-.result{
-    display:none;
-    margin-top:22px;
-    padding:22px;
-    text-align:center;
-    border-radius:16px;
-    background:rgba(212,175,55,.10);
-    border:1px solid rgba(212,175,55,.5);
+.number-card.locked:hover{
+  transform:none;
+  border-color:#31537d;
 }
 
-.result.show{
-    display:block;
+.number-card.selected{
+  border-color:#ffd700;
+  box-shadow:0 0 20px rgba(255,215,0,.25);
 }
 
-.result small{
-    display:block;
-    color:#aebdca;
-    margin-bottom:8px;
+/* RESULT */
+#resultBox{
+  display:none;
 }
 
-.result strong{
-    display:block;
-    color:#f0d46a;
-    font-size:25px;
+.partner{
+  text-align:center;
+  padding:25px;
+  border:1px solid #ffd700;
+  border-radius:18px;
+  background:rgba(255,215,0,.06);
+}
+
+.partner .big{
+  font-size:36px;
+  color:#ffd700;
+  font-weight:900;
+  margin:10px 0;
+}
+
+/* COMPETITION */
+.match{
+  background:linear-gradient(145deg,#0c2545,#08172b);
+  border:1px solid rgba(255,215,0,.2);
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:14px;
+}
+
+.match-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  color:#9fb3ce;
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.players{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:10px;
+  text-align:center;
+}
+
+.player{
+  font-weight:800;
+  font-size:16px;
+}
+
+.vs{
+  color:#ffd700;
+  font-weight:900;
 }
 
 .status{
-    text-align:center;
-    margin-top:18px;
-    color:#9db0be;
-    font-size:13px;
+  margin-top:12px;
+  text-align:center;
+  font-size:13px;
+  padding:7px;
+  border-radius:20px;
+  background:#142f50;
+  color:#dce8ff;
 }
 
-.warning{
-    text-align:center;
-    margin-top:10px;
-    color:#7f929f;
-    font-size:11px;
-    line-height:1.5;
+.live{
+  background:#3a1111;
+  color:#ff7676;
 }
 
-.success{
-    color:#b8e6c1;
+.upcoming{
+  background:#152d48;
 }
 
-.hidden{
-    display:none !important;
+.done{
+  background:#173a2a;
+  color:#75e6a1;
+}
+
+/* CRITERIA */
+.criteria{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.criteria div{
+  padding:15px;
+  border-radius:13px;
+  background:#0b1d34;
+  border:1px solid #203e62;
+}
+
+.points{
+  color:#ffd700;
+  float:right;
+  font-weight:900;
+}
+
+/* BRACKET */
+.bracket{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  overflow-x:auto;
+}
+
+.round{
+  min-width:190px;
+}
+
+.round h3{
+  color:#ffd700;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.bracket-match{
+  background:#0a1d34;
+  border:1px solid #244567;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
+  font-size:13px;
+}
+
+.bracket-match div{
+  padding:5px 0;
+  border-bottom:1px solid #18334f;
+}
+
+.bracket-match div:last-child{
+  border-bottom:0;
+}
+
+footer{
+  text-align:center;
+  padding:30px 10px;
+  color:#7185a0;
+  font-size:13px;
+  border-top:1px solid rgba(255,215,0,.15);
+}
+
+@media(max-width:650px){
+  .numbers{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .criteria{
+    grid-template-columns:1fr;
+  }
+
+  .bracket{
+    grid-template-columns:repeat(4,190px);
+  }
+
+  .logo{
+    font-size:30px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- LOGIN PAGE -->
+<div id="loginPage">
 
-<!-- ================= LOGIN ================= -->
+  <div class="login-box">
 
-<div id="loginScreen">
+    <div class="logo">LVT</div>
 
-    <div class="logo">LVT COMPETITION</div>
+    <h1>Lyrics Competition</h1>
 
-    <h1>Private Access</h1>
+    <p>
+      Enter your participant name and personal password
+      to continue.
+    </p>
 
-    <div class="subtitle">
-        Enter your name and personal password to continue.
-    </div>
+    <select id="username">
+      <option value="">Select your name</option>
+      <option>Mar’atussaliha</option>
+      <option>Auntyn Yara</option>
+      <option>Zahraty</option>
+      <option>Cutieteemah Lyrics</option>
+      <option>Autah Lyrics</option>
+      <option>Teemarluvly</option>
+      <option>Ameenatou Lyrics</option>
+      <option>Queenjurry Lyrics</option>
+    </select>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter your password"
+    >
+
+    <button onclick="login()">LOGIN</button>
 
     <div id="loginError" class="error"></div>
 
-    <label>Your Name</label>
-
-    <select id="loginName">
-        <option value="">Select your name</option>
-
-        <option>Mar’atussaliha</option>
-        <option>Auntyn Yara</option>
-        <option>Zahraty</option>
-        <option>Cutieteemah Lyrics</option>
-        <option>Autah Lyrics</option>
-        <option>Teemarluvly</option>
-        <option>Ameenatou Lyrics</option>
-        <option>Queenjurry Lyrics</option>
-    </select>
-
-    <label>Password</label>
-
-    <input
-        id="loginPassword"
-        type="password"
-        placeholder="Enter your password"
-    >
-
-    <button class="main-btn" onclick="login()">
-        ENTER COMPETITION
-    </button>
+  </div>
 
 </div>
 
 
-<!-- ================= SELECTION ================= -->
+<!-- MAIN WEBSITE -->
+<div id="mainPage">
 
-<div id="selectionScreen">
+<header>
 
-    <div class="logo">LVT COMPETITION</div>
+  <div class="logo">LVT</div>
 
-    <h1>Private Selection</h1>
+  <h2>LYRICS COMPETITION</h2>
 
-    <div class="subtitle">
-        Welcome, <strong id="welcomeName"></strong>.<br>
-        Select one available number.
-    </div>
+  <div class="subtitle">
+    <span class="gold">October 5, 2026</span>
+    —
+    <span class="gold">November 6, 2026</span>
+  </div>
 
-    <label>Select Number</label>
+</header>
 
-    <div id="numbers" class="numbers"></div>
 
-    <button
-        id="confirmBtn"
-        class="main-btn"
-        disabled
-        onclick="confirmSelection()"
-    >
-        CONFIRM SELECTION
+<nav>
+  <div class="nav-inner">
+
+    <button onclick="showSection('selection')">
+      🎯 Selection
     </button>
 
-    <div id="result" class="result">
+    <button onclick="showSection('live')">
+      🔴 Live Competition
+    </button>
 
-        <small>Your selected partner is:</small>
+    <button onclick="showSection('schedule')">
+      📅 Schedule
+    </button>
 
-        <strong id="partner"></strong>
+    <button onclick="showSection('bracket')">
+      🏆 Bracket
+    </button>
+
+    <button onclick="showSection('judging')">
+      📊 Judging
+    </button>
+
+  </div>
+</nav>
+
+
+<main class="container">
+
+<!-- USER BAR -->
+<section>
+
+  <div class="card user-bar">
+
+    <div>
+      Welcome,
+      <strong class="gold" id="currentUser"></strong>
+    </div>
+
+    <button class="logout" onclick="logout()">
+      Logout
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- SELECTION -->
+<section id="selection">
+
+  <h2 class="section-title">
+    🎯 SELECT YOUR NUMBER
+  </h2>
+
+  <div class="card">
+
+    <p class="selection-info">
+      Choose one available number. Once a number is selected,
+      it becomes locked.
+    </p>
+
+    <div class="numbers" id="numbers"></div>
+
+  </div>
+
+
+  <div class="card" id="resultBox">
+
+    <div class="partner">
+
+      <div>Your Selection</div>
+
+      <div class="big" id="selectedNumber"></div>
+
+      <div>Your Partner</div>
+
+      <div class="big" id="partnerName"></div>
+
+      <p>
+        🔒 Your selection has been saved.
+      </p>
 
     </div>
 
-    <div id="status" class="status"></div>
+  </div>
 
-    <div class="warning">
-        Numbers already selected are locked and cannot be chosen.
+</section>
+
+
+<!-- LIVE -->
+<section id="live">
+
+  <h2 class="section-title">
+    🔴 LIVE COMPETITION
+  </h2>
+
+  <div class="card">
+
+    <div class="match">
+
+      <div class="match-top">
+        <span>ROUND OF 16 • MATCH 1</span>
+        <span>MONDAY • 9:30 PM</span>
+      </div>
+
+      <div class="players">
+        <div class="player">
+          Cutieemah Lyrics
+        </div>
+
+        <div class="vs">VS</div>
+
+        <div class="player">
+          Bash Lyrics
+        </div>
+      </div>
+
+      <div class="status live">
+        🔴 LIVE
+      </div>
+
     </div>
 
-</div>
+
+    <div class="match">
+
+      <div class="match-top">
+        <span>ROUND OF 16 • MATCH 2</span>
+        <span>MONDAY • 10:00 PM</span>
+      </div>
+
+      <div class="players">
+        <div class="player">
+          Ameenatou Lyrics
+        </div>
+
+        <div class="vs">VS</div>
+
+        <div class="player">
+          King Haidar Lyrics
+        </div>
+      </div>
+
+      <div class="status upcoming">
+        ⏳ UPCOMING
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SCHEDULE -->
+<section id="schedule">
+
+  <h2 class="section-title">
+    📅 COMPETITION SCHEDULE
+  </h2>
+
+
+  <div class="card">
+
+    <h3 class="gold">ROUND OF 16</h3>
+
+    <br>
+
+    <div class="match">
+      <div class="match-top">
+        <span>Monday, October 5</span>
+        <span>9:30 PM</span>
+      </div>
+      <div class="players">
+        <div>Cutieemah Lyrics</div>
+        <div class="vs">VS</div>
+        <div>Bash Lyrics</div>
+      </div>
+    </div>
+
+
+    <div class="match">
+      <div class="match-top">
+        <span>Monday, October 5</span>
+        <span>10:00 PM</span>
+      </div>
+      <div class="players">
+        <div>Ameenatou Lyrics</div>
+        <div class="vs">VS</div>
+        <div>King Haidar Lyrics</div>
+      </div>
+    </div>
+
+
+    <div class="match">
+      <div class="match-top">
+        <span>Tuesday, October 6</span>
+        <span>9:30 PM</span>
+      </div>
+      <div class="players">
+        <div>Shalele Lyrics</div>
+        <div class="vs">VS</div>
+        <div>Yusufa Lyrics</div>
+      </div>
+    </div>
+
+
+    <div class="match">
+      <div class="match-top">
+        <span>Tuesday, October 6</span>
+        <span>10:00 PM</span>
+      </div>
+      <div class="players">
+        <div>Queenjurry Lyrics</div>
+        <div class="vs">VS</div>
+        <div>Abbas Lyrics</div>
+      </div>
+    </div>
+
+
+    <div class="match">
+      <div class="match-top">
+        <span>Wednesday, October 7</span>
+        <span>9:30 PM</span>
+      </div>
+      <div class="players">
+        <div>Autah Lyrics</div>
+        <div class="vs">VS</div>
+        <div>IBB Lyrics</div>
+      </div>
+    </div>
+
+
+    <div class="match">
+      <div class="match-top">
+        <span>Wednesday, October 7</span>
+        <span>10:00 PM</span>
+      </div>
+      <div class="players">
+        <div>Auntyn Lyrics</div>
+        <div class="vs">VS</div>
+        <div>Alkhaddab Lyrics</div>
+      </div>
+    </div>
+
+
+    <div class="match">
+      <div class="match-top">
+        <span>Thursday, October 8</span>
+        <span>9:30 PM</span>
+      </div>
+      <div class="players">
+        <div>Teemarluvly Lyrics</div>
+        <div class="vs">VS</div>
+        <div>Jagora Lyrics</div>
+      </div>
+    </div>
+
+
+    <div class="match">
+      <div class="match-top">
+        <span>Thursday, October 8</span>
+        <span>10:00 PM</span>
+      </div>
+      <div class="players">
+        <div>X Lyrics</div>
+        <div class="vs">VS</div>
+        <div>Bakori Lyrics</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- QUARTER -->
+  <div class="card">
+
+    <h3 class="gold">QUARTER FINAL</h3>
+
+    <br>
+
+    <div class="match">
+      <div class="match-top">
+        <span>Monday, October 12</span>
+        <span>9:30 PM</span>
+      </div>
+
+      <div class="players">
+        <div>Winner Match 1</div>
+        <div class="vs">VS</div>
+        <div>Winner Match 2</div>
+      </div>
+    </div>
+
+    <div class="match">
+      <div class="match-top">
+        <span>Monday, October 12</span>
+        <span>10:00 PM</span>
+      </div>
+
+      <div class="players">
+        <div>Winner Match 3</div>
+        <div class="vs">VS</div>
+        <div>Winner Match 4</div>
+      </div>
+    </div>
+
+    <div class="match">
+      <div class="match-top">
+        <span>Tuesday, October 13</span>
+        <span>9:30 PM</span>
+      </div>
+
+      <div class="players">
+        <div>Winner Match 5</div>
+        <div class="vs">VS</div>
+        <div>Winner Match 6</div>
+      </div>
+    </div>
+
+    <div class="match">
+      <div class="match-top">
+        <span>Tuesday, October 13</span>
+        <span>10:00 PM</span>
+      </div>
+
+      <div class="players">
+        <div>Winner Match 7</div>
+        <div class="vs">VS</div>
+        <div>Winner Match 8</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- SEMI -->
+  <div class="card">
+
+    <h3 class="gold">SEMI FINAL</h3>
+
+    <br>
+
+    <div class="match">
+
+      <div class="match-top">
+        <span>Monday, October 26</span>
+        <span>9:30 PM</span>
+      </div>
+
+      <div class="players">
+        <div>Winner QF1</div>
+        <div class="vs">VS</div>
+        <div>Winner QF2</div>
+      </div>
+
+    </div>
+
+
+    <div class="match">
+
+      <div class="match-top">
+        <span>Monday, October 26</span>
+        <span>10:00 PM</span>
+      </div>
+
+      <div class="players">
+        <div>Winner QF3</div>
+        <div class="vs">VS</div>
+        <div>Winner QF4</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FINAL -->
+  <div class="card">
+
+    <h3 class="gold">🏆 GRAND FINAL</h3>
+
+    <br>
+
+    <div class="match">
+
+      <div class="match-top">
+        <span>Friday, November 6</span>
+        <span>10:00 PM</span>
+      </div>
+
+      <div class="players">
+        <div>Winner SF1</div>
+        <div class="vs">VS</div>
+        <div>Winner SF2</div>
+      </div>
+
+      <div class="status upcoming">
+        🏆 GRAND FINAL
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BRACKET -->
+<section id="bracket">
+
+  <h2 class="section-title">
+    🏆 TOURNAMENT BRACKET
+  </h2>
+
+  <div class="card">
+
+    <div class="bracket">
+
+      <div class="round">
+
+        <h3>ROUND OF 16</h3>
+
+        <div class="bracket-match">
+          <div>Cutieemah Lyrics</div>
+          <div>Bash Lyrics</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Ameenatou Lyrics</div>
+          <div>King Haidar Lyrics</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Shalele Lyrics</div>
+          <div>Yusufa Lyrics</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Queenjurry Lyrics</div>
+          <div>Abbas Lyrics</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Autah Lyrics</div>
+          <div>IBB Lyrics</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Auntyn Lyrics</div>
+          <div>Alkhaddab Lyrics</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Teemarluvly Lyrics</div>
+          <div>Jagora Lyrics</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>X Lyrics</div>
+          <div>Bakori Lyrics</div>
+        </div>
+
+      </div>
+
+
+      <div class="round">
+
+        <h3>QUARTER FINAL</h3>
+
+        <div class="bracket-match">
+          <div>Winner M1</div>
+          <div>Winner M2</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Winner M3</div>
+          <div>Winner M4</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Winner M5</div>
+          <div>Winner M6</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Winner M7</div>
+          <div>Winner M8</div>
+        </div>
+
+      </div>
+
+
+      <div class="round">
+
+        <h3>SEMI FINAL</h3>
+
+        <div class="bracket-match">
+          <div>Winner QF1</div>
+          <div>Winner QF2</div>
+        </div>
+
+        <div class="bracket-match">
+          <div>Winner QF3</div>
+          <div>Winner QF4</div>
+        </div>
+
+      </div>
+
+
+      <div class="round">
+
+        <h3>FINAL</h3>
+
+        <div class="bracket-match">
+
+          <div>🏆 Winner SF1</div>
+
+          <div>🏆 Winner SF2</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- JUDGING -->
+<section id="judging">
+
+  <h2 class="section-title">
+    📊 JUDGING CRITERIA
+  </h2>
+
+  <div class="card">
+
+    <p style="text-align:center;color:#c8d5e8;margin-bottom:18px;">
+      Total Score: <strong class="gold">100 POINTS</strong>
+    </p>
+
+    <div class="criteria">
+
+      <div>
+        🖼️ Background
+        <span class="points">20/20</span>
+      </div>
+
+      <div>
+        ✨ Animation
+        <span class="points">20/20</span>
+      </div>
+
+      <div>
+        🎨 Colour Text
+        <span class="points">20/20</span>
+      </div>
+
+      <div>
+        🎥 Video Quality
+        <span class="points">20/20</span>
+      </div>
+
+      <div>
+        📝 Lyrics Word By Word
+        <span class="points">20/20</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div>
+    <strong class="gold">LVT LYRICS COMPETITION</strong>
+  </div>
+
+  <div style="margin-top:7px;">
+    October 5, 2026 — November 6, 2026
+  </div>
+
+  <div style="margin-top:7px;">
+    © 2026 LVT • All Rights Reserved
+  </div>
+
+</footer>
 
 </div>
 
 
 <script>
 
-/* ==================================================
-   PARTICIPANTS + PASSWORDS
-   ================================================== */
+/* =========================
+   PARTICIPANT PASSWORDS
+========================= */
 
 const users = {
 
-    "Mar’atussaliha": "LVT-MAR01",
+  "Mar’atussaliha": "LVT-MAR01",
 
-    "Auntyn Yara": "LVT-AUN02",
+  "Auntyn Yara": "LVT-AUN02",
 
-    "Zahraty": "LVT-ZAH03",
+  "Zahraty": "LVT-ZAH03",
 
-    "Cutieteemah Lyrics": "LVT-CUT04",
+  "Cutieteemah Lyrics": "LVT-CUT04",
 
-    "Autah Lyrics": "LVT-AUT05",
+  "Autah Lyrics": "LVT-AUT05",
 
-    "Teemarluvly": "LVT-TEE06",
+  "Teemarluvly": "LVT-TEE06",
 
-    "Ameenatou Lyrics": "LVT-AME07",
+  "Ameenatou Lyrics": "LVT-AME07",
 
-    "Queenjurry Lyrics": "LVT-QUE08"
-
-};
-
-
-/* ==================================================
-   HIDDEN MALE PARTNERS
-   ================================================== */
-
-const men = {
-
-    1: "Bakori Lyrics",
-
-    2: "Bash Lyrics",
-
-    3: "Yusufa Lyrics",
-
-    4: "Jagora Lyrics",
-
-    5: "Alkhaddab Lyrics",
-
-    6: "King Haidar Lyrics",
-
-    7: "Abbas Lyrics",
-
-    8: "IBB Lyrics"
+  "Queenjurry Lyrics": "LVT-QUE08"
 
 };
 
 
-/* ==================================================
-   NUMBERS ALREADY SELECTED
-   ==================================================
+/* =========================
+   MALE PARTNERS
+========================= */
 
-   1,2,3,4,5,7,8 = LOCKED
-   6 = AVAILABLE
-   ================================================== */
+const partners = {
 
-const lockedNumbers = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    7,
-    8
-];
+  1: "Bakori Lyrics",
 
+  2: "Bash Lyrics",
 
-/* ==================================================
-   STORAGE
-   ================================================== */
+  3: "Yusufa Lyrics",
 
-const STORAGE_KEY =
-    "LVT_SELECTION_FINAL_2026";
+  4: "Jagora Lyrics",
+
+  5: "Alkhaddab Lyrics",
+
+  6: "King Haidar Lyrics",
+
+  7: "Abbas Lyrics",
+
+  8: "IBB Lyrics"
+
+};
 
 
-let savedData =
-    JSON.parse(
-        localStorage.getItem(STORAGE_KEY)
-        || '{"completedUsers":[],"selectedNumbers":[1,2,3,4,5,7,8]}'
-    );
+/* =========================
+   INITIAL LOCKED NUMBERS
+========================= */
+
+const STORAGE_KEY = "LVT_SELECTION_FINAL_2026";
+
+let data = JSON.parse(
+  localStorage.getItem(STORAGE_KEY)
+) || {
+
+  selectedNumbers: [
+    1,2,3,4,5,7,8
+  ],
+
+  completedUsers: {}
+
+};
 
 
-/*
-Make sure the already-selected numbers
-are always locked.
-*/
-
-lockedNumbers.forEach(number => {
-
-    if(!savedData.selectedNumbers.includes(number)){
-
-        savedData.selectedNumbers.push(number);
-
-    }
-
-});
-
-
-let currentUser = "";
-
-let selectedNumber = null;
-
-
-/* ==================================================
+/* =========================
    LOGIN
-   ================================================== */
+========================= */
 
 function login(){
 
-    const name =
-        document.getElementById("loginName").value;
+  const name =
+    document.getElementById("username").value;
 
-    const password =
-        document.getElementById("loginPassword").value;
+  const password =
+    document.getElementById("password").value;
 
-    const error =
-        document.getElementById("loginError");
-
-
-    error.classList.remove("show");
+  const error =
+    document.getElementById("loginError");
 
 
-    if(!name || !password){
+  if(!name || !password){
 
-        error.textContent =
-            "Please select your name and enter your password.";
+    error.textContent =
+      "Please select your name and enter your password.";
 
-        error.classList.add("show");
-
-        return;
-    }
+    return;
+  }
 
 
-    if(users[name] !== password){
+  if(users[name] !== password){
 
-        error.textContent =
-            "Incorrect name or password.";
+    error.textContent =
+      "Incorrect password. Please try again.";
 
-        error.classList.add("show");
-
-        return;
-    }
+    return;
+  }
 
 
-    /*
-    If this participant has already selected,
-    do not allow another selection.
-    */
-
-    if(savedData.completedUsers.includes(name)){
-
-        error.textContent =
-            "You have already completed your selection.";
-
-        error.classList.add("show");
-
-        return;
-    }
+  sessionStorage.setItem(
+    "LVT_CURRENT_USER",
+    name
+  );
 
 
-    currentUser = name;
+  document.getElementById("loginPage").style.display =
+    "none";
+
+  document.getElementById("mainPage").style.display =
+    "block";
 
 
-    document
-        .getElementById("loginScreen")
-        .style.display = "none";
+  document.getElementById("currentUser").textContent =
+    name;
 
 
-    document
-        .getElementById("selectionScreen")
-        .style.display = "block";
+  renderNumbers();
 
-
-    document
-        .getElementById("welcomeName")
-        .textContent = name;
-
-
-    createNumbers();
+  showPreviousSelection();
 
 }
 
 
-/* ==================================================
-   CREATE NUMBER BUTTONS
-   ================================================== */
+/* =========================
+   LOGOUT
+========================= */
 
-function createNumbers(){
+function logout(){
 
-    const container =
-        document.getElementById("numbers");
+  sessionStorage.removeItem(
+    "LVT_CURRENT_USER"
+  );
 
-    container.innerHTML = "";
-
-    selectedNumber = null;
-
-
-    for(let i = 1; i <= 8; i++){
-
-        const button =
-            document.createElement("button");
-
-
-        button.className = "number";
-
-
-        button.textContent = i;
-
-
-        /*
-        LOCKED NUMBER
-        */
-
-        if(savedData.selectedNumbers.includes(i)){
-
-            button.classList.add("locked");
-
-            button.disabled = true;
-
-        }
-
-
-        /*
-        AVAILABLE NUMBER
-        */
-
-        else{
-
-            button.onclick = function(){
-
-                selectNumber(i);
-
-            };
-
-        }
-
-
-        container.appendChild(button);
-
-    }
-
-
-    updateStatus();
+  location.reload();
 
 }
 
 
-/* ==================================================
+/* =========================
+   RENDER NUMBERS
+========================= */
+
+function renderNumbers(){
+
+  const container =
+    document.getElementById("numbers");
+
+  container.innerHTML = "";
+
+
+  for(let i=1;i<=8;i++){
+
+    const locked =
+      data.selectedNumbers.includes(i);
+
+
+    const div =
+      document.createElement("div");
+
+
+    div.className =
+      "number-card " +
+      (locked ? "locked" : "");
+
+
+    div.innerHTML = `
+
+      <div class="num">${i}</div>
+
+      <small>
+        ${
+          locked
+          ? "🔒 LOCKED"
+          : "AVAILABLE"
+        }
+      </small>
+
+    `;
+
+
+    if(!locked){
+
+      div.onclick = function(){
+
+        selectNumber(i);
+
+      };
+
+    }
+
+
+    container.appendChild(div);
+
+  }
+
+}
+
+
+/* =========================
    SELECT NUMBER
-   ================================================== */
+========================= */
 
 function selectNumber(number){
 
-    if(savedData.selectedNumbers.includes(number)){
-
-        return;
-
-    }
-
-
-    selectedNumber = number;
-
-
-    document
-        .querySelectorAll(".number")
-        .forEach(button => {
-
-            button.classList.remove("selected");
-
-        });
-
-
-    document
-        .querySelectorAll(".number")[number - 1]
-        .classList.add("selected");
-
-
-    document
-        .getElementById("confirmBtn")
-        .disabled = false;
-
-}
-
-
-/* ==================================================
-   CONFIRM SELECTION
-   ================================================== */
-
-function confirmSelection(){
-
-    if(!currentUser){
-
-        return;
-
-    }
-
-
-    if(!selectedNumber){
-
-        return;
-
-    }
-
-
-    /*
-    DOUBLE CHECK
-    */
-
-    if(savedData.selectedNumbers.includes(selectedNumber)){
-
-        alert(
-            "Sorry, this number has already been selected."
-        );
-
-        createNumbers();
-
-        return;
-
-    }
-
-
-    /*
-    CHECK PARTICIPANT
-    */
-
-    if(savedData.completedUsers.includes(currentUser)){
-
-        alert(
-            "You have already completed your selection."
-        );
-
-        return;
-
-    }
-
-
-    /*
-    SAVE NUMBER
-    */
-
-    savedData.selectedNumbers.push(
-        selectedNumber
+  const user =
+    sessionStorage.getItem(
+      "LVT_CURRENT_USER"
     );
 
 
-    /*
-    SAVE PARTICIPANT
-    */
+  if(!user) return;
 
-    savedData.completedUsers.push(
-        currentUser
+
+  if(data.selectedNumbers.includes(number)){
+
+    alert("This number is already locked.");
+
+    return;
+
+  }
+
+
+  if(data.completedUsers[user]){
+
+    alert(
+      "You have already completed your selection."
+    );
+
+    return;
+
+  }
+
+
+  const confirmChoice =
+    confirm(
+      "Are you sure you want to select Number " +
+      number +
+      "?"
     );
 
 
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(savedData)
-    );
+  if(!confirmChoice) return;
 
 
-    /*
-    REVEAL PARTNER
-    */
-
-    document
-        .getElementById("partner")
-        .textContent =
-        men[selectedNumber];
+  data.selectedNumbers.push(number);
 
 
-    document
-        .getElementById("result")
-        .classList.add("show");
+  data.completedUsers[user] = {
+
+    number:number,
+
+    partner:partners[number]
+
+  };
 
 
-    /*
-    LOCK ALL BUTTONS
-    */
+  localStorage.setItem(
 
-    document
-        .querySelectorAll(".number")
-        .forEach(button => {
-
-            button.disabled = true;
-
-        });
-
-
-    document
-        .getElementById("confirmBtn")
-        .disabled = true;
-
-
-    updateStatus();
-
-}
-
-
-/* ==================================================
-   STATUS
-   ================================================== */
-
-function updateStatus(){
-
-    const available =
-        8 - savedData.selectedNumbers.length;
-
-
-    if(available <= 0){
-
-        document
-            .getElementById("status")
-            .textContent =
-            "All numbers have been selected.";
-
-        return;
-
-    }
-
-
-    document
-        .getElementById("status")
-        .textContent =
-        available +
-        (available === 1
-            ? " number available"
-            : " numbers available");
-
-}
-
-
-/* ==================================================
-   SAVE CURRENT DATA
-   ================================================== */
-
-localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify(savedData)
+
+    JSON.stringify(data)
+
+  );
+
+
+  showResult(
+    number,
+    partners[number]
+  );
+
+
+  renderNumbers();
+
+}
+
+
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showResult(number, partner){
+
+  document.getElementById(
+    "resultBox"
+  ).style.display = "block";
+
+
+  document.getElementById(
+    "selectedNumber"
+  ).textContent =
+    "NUMBER " + number;
+
+
+  document.getElementById(
+    "partnerName"
+  ).textContent =
+    partner;
+
+}
+
+
+/* =========================
+   SHOW PREVIOUS SELECTION
+========================= */
+
+function showPreviousSelection(){
+
+  const user =
+    sessionStorage.getItem(
+      "LVT_CURRENT_USER"
+    );
+
+
+  if(
+    data.completedUsers[user]
+  ){
+
+    const result =
+      data.completedUsers[user];
+
+
+    showResult(
+      result.number,
+      result.partner
+    );
+
+  }
+
+}
+
+
+/* =========================
+   SECTION NAVIGATION
+========================= */
+
+function showSection(id){
+
+  const element =
+    document.getElementById(id);
+
+  if(element){
+
+    element.scrollIntoView({
+
+      behavior:"smooth",
+
+      block:"start"
+
+    });
+
+  }
+
+}
+
+
+/* =========================
+   AUTO LOGIN SESSION
+========================= */
+
+window.addEventListener(
+  "load",
+  function(){
+
+    const savedUser =
+      sessionStorage.getItem(
+        "LVT_CURRENT_USER"
+      );
+
+
+    if(savedUser){
+
+      document.getElementById(
+        "loginPage"
+      ).style.display = "none";
+
+
+      document.getElementById(
+        "mainPage"
+      ).style.display = "block";
+
+
+      document.getElementById(
+        "currentUser"
+      ).textContent =
+        savedUser;
+
+
+      renderNumbers();
+
+      showPreviousSelection();
+
+    }
+
+  }
 );
 
 </script>
