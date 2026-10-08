@@ -30,6 +30,7 @@
 
 html{
   scroll-behavior:smooth;
+  scroll-padding-top:85px;
 }
 
 body{
@@ -546,6 +547,7 @@ body{
 .judge-row{
   display:flex;
   justify-content:space-between;
+  gap:12px;
   padding:11px 0;
   border-bottom:1px solid var(--line);
   font-size:11px;
@@ -558,6 +560,7 @@ body{
 
 .judge-row b{
   color:var(--gold);
+  white-space:nowrap;
 }
 
 .total-score{
@@ -568,11 +571,44 @@ body{
   border:1px solid rgba(255,211,61,.2);
   display:flex;
   justify-content:space-between;
+  gap:10px;
   font-weight:900;
 }
 
 .total-score strong{
   color:var(--gold);
+  text-align:right;
+}
+
+/* JUDGING RESULTS BUTTON */
+
+.results-button-wrap{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.results-button{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:14px 22px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.4px;
+  box-shadow:0 8px 25px rgba(20,115,255,.2);
+  transition:transform .2s,background .2s;
+}
+
+.results-button:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg,#3285ff,#1260df);
 }
 
 /* CHAMPION */
@@ -685,71 +721,39 @@ footer strong{
 <!-- TOP BAR -->
 
 <header class="topbar">
-
   <div class="topbar-inner">
-
     <div class="brand">
-
-      <div class="brand-logo">
-        LVT
-      </div>
-
+      <div class="brand-logo">LVT</div>
       <div class="brand-name">
         LVT <span>LYRICS</span>
       </div>
-
     </div>
 
     <div class="live-pill">
       <span class="live-dot"></span>
       LIVE COMPETITION
     </div>
-
   </div>
-
 </header>
-
 
 <!-- NAV -->
 
 <nav>
-
   <div class="nav">
-
-    <a href="#home" class="active">
-      HOME
-    </a>
-
-    <a href="#live">
-      LIVE
-    </a>
-
-    <a href="#fixtures">
-      FIXTURES
-    </a>
-
-    <a href="#bracket">
-      BRACKET
-    </a>
-
-    <a href="#judging">
-      JUDGING
-    </a>
-
+    <a href="#home" class="active">HOME</a>
+    <a href="#live">LIVE</a>
+    <a href="#fixtures">FIXTURES</a>
+    <a href="#bracket">BRACKET</a>
+    <a href="#judging">JUDGING</a>
   </div>
-
 </nav>
 
-
 <main class="container">
-
 
 <!-- HERO -->
 
 <section id="home">
-
   <div class="hero">
-
     <div class="hero-content">
 
       <div class="hero-tag">
@@ -768,309 +772,180 @@ footer strong{
       </p>
 
       <div class="hero-meta">
-
-        <div class="meta">
-          📅 OCT 05 — NOV 06, 2026
-        </div>
-
-        <div class="meta">
-          🏆 16 PLAYERS
-        </div>
-
-        <div class="meta">
-          📊 100 POINTS
-        </div>
-
+        <div class="meta">📅 OCT 05 — NOV 06, 2026</div>
+        <div class="meta">🏆 16 PLAYERS</div>
+        <div class="meta">📊 100 POINTS</div>
       </div>
 
     </div>
-
   </div>
-
 </section>
-
 
 <!-- TODAY'S MATCH -->
 
 <section id="live">
 
   <div class="section-head">
-
     <div>
       <div class="section-title">
         <span>●</span> TODAY
       </div>
-
       <div class="section-sub">
-        October 07 • Round of 16
+        October 08 • Round of 16
       </div>
     </div>
 
     <div style="color:var(--gold);font-size:10px;font-weight:900;">
       UPCOMING
     </div>
-
   </div>
-
 
   <div class="live-match">
 
     <div class="live-header">
-
-      <div class="competition">
-        LVT Lyrics Competition
-      </div>
-
+      <div class="competition">LVT Lyrics Competition</div>
       <div style="color:var(--gold);font-size:10px;font-weight:900;">
-        OCT 07 • 9:30 PM
+        OCT 08 • 9:30 PM
       </div>
-
     </div>
-
 
     <div class="scoreboard">
 
       <div class="round">
-        ROUND OF 16 • MATCH 5
+        ROUND OF 16 • MATCH 7
       </div>
 
       <div class="teams">
 
         <div class="team">
-
-          <div class="team-logo">
-            AL
-          </div>
-
-          <div class="team-name">
-            Autah Lyrics
-          </div>
-
+          <div class="team-logo">TL</div>
+          <div class="team-name">Teemarluvly Lyrics</div>
         </div>
 
-
         <div>
-
-          <div class="score">
-            VS
-          </div>
-
+          <div class="score">VS</div>
           <div class="match-status" style="color:var(--gold);">
             ● UPCOMING
           </div>
-
         </div>
-
 
         <div class="team">
-
-          <div class="team-logo">
-            IL
-          </div>
-
-          <div class="team-name">
-            IBB Lyrics
-          </div>
-
+          <div class="team-logo">JL</div>
+          <div class="team-name">Jagora Lyrics</div>
         </div>
 
       </div>
-
     </div>
 
-
     <div class="score-grid">
-
       <div class="score-box">
         <label>BACKGROUND</label>
-        <strong>20</strong>
+        <strong>—</strong>
       </div>
-
       <div class="score-box">
         <label>ANIMATION</label>
-        <strong>20</strong>
+        <strong>—</strong>
       </div>
-
       <div class="score-box">
         <label>COLOUR</label>
-        <strong>20</strong>
+        <strong>—</strong>
       </div>
-
       <div class="score-box">
         <label>VIDEO</label>
-        <strong>20</strong>
+        <strong>—</strong>
       </div>
-
       <div class="score-box">
         <label>LYRICS</label>
-        <strong>20</strong>
+        <strong>—</strong>
       </div>
-
     </div>
 
   </div>
-
 </section>
-
 
 <!-- NEXT MATCHES -->
 
 <section>
 
   <div class="section-head">
-
-    <div class="section-title">
-      NEXT MATCHES
-    </div>
-
-    <div class="section-sub">
-      ROUND OF 16
-    </div>
-
+    <div class="section-title">NEXT MATCHES</div>
+    <div class="section-sub">ROUND OF 16</div>
   </div>
-
 
   <div class="next-grid">
 
     <div class="next-card">
-
       <div class="next-top">
-        <span>MATCH 5</span>
-        <span>OCT 07</span>
+        <span>MATCH 7</span>
+        <span>OCT 08</span>
       </div>
 
       <div class="next-teams">
-
-        <b>Autah</b>
-
+        <b>Teemarluvly</b>
         <span class="vs">VS</span>
-
-        <b>IBB</b>
-
+        <b>Jagora</b>
       </div>
 
-      <div class="next-time">
-        🕤 9:30 PM
-      </div>
-
+      <div class="next-time">🕤 9:30 PM</div>
     </div>
 
-
     <div class="next-card">
-
       <div class="next-top">
-        <span>MATCH 6</span>
-        <span>OCT 07</span>
+        <span>MATCH 8</span>
+        <span>OCT 08</span>
       </div>
 
       <div class="next-teams">
-
-        <b>Auntyn</b>
-
+        <b>X Lyrics</b>
         <span class="vs">VS</span>
-
-        <b>Alkhaddab</b>
-
+        <b>Bakori</b>
       </div>
 
-      <div class="next-time">
-        🕙 10:00 PM
-      </div>
-
+      <div class="next-time">🕙 10:00 PM</div>
     </div>
 
   </div>
-
 </section>
-
 
 <!-- COMPLETED RESULTS -->
 
-<section>
+<section id="completed-results">
 
   <div class="section-head">
-
     <div>
-
       <div class="section-title">
         COMPLETED <span>RESULTS</span>
       </div>
-
       <div class="section-sub">
-        Official judging results
+        Official judging results • Matches 1–6
       </div>
-
     </div>
-
   </div>
 
-
   <div class="judge-grid">
-
 
     <!-- MATCH 1 -->
 
     <div class="judge-card">
 
-      <h3>
-        🏆 MATCH 1 • CUTIEEMAH vs BASH
-      </h3>
+      <h3>🏆 MATCH 1 • CUTIEEMAH vs BASH</h3>
 
-      <div class="judge-row">
-        <span>Cutieemah Lyrics — Background</span>
-        <b>15%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Cutieemah Lyrics — Animation</span>
-        <b>18%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Cutieemah Lyrics — Colour Text</span>
-        <b>10%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Cutieemah Lyrics — Video Quality</span>
-        <b>20%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Cutieemah Lyrics — Lyrics Word By Word</span>
-        <b>15%</b>
-      </div>
+      <div class="judge-row"><span>Cutieemah Lyrics — Background</span><b>15</b></div>
+      <div class="judge-row"><span>Cutieemah Lyrics — Animation</span><b>18</b></div>
+      <div class="judge-row"><span>Cutieemah Lyrics — Colour Text</span><b>10</b></div>
+      <div class="judge-row"><span>Cutieemah Lyrics — Video Quality</span><b>20</b></div>
+      <div class="judge-row"><span>Cutieemah Lyrics — Lyrics Word By Word</span><b>15</b></div>
 
       <div class="total-score">
         <span>CUTIEEMAH TOTAL</span>
         <strong>78%</strong>
       </div>
 
-
-      <div class="judge-row" style="margin-top:12px;">
-        <span>Bash Lyrics — Background</span>
-        <b>15%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Bash Lyrics — Animation</span>
-        <b>15%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Bash Lyrics — Colour Text</span>
-        <b>20%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Bash Lyrics — Video Quality</span>
-        <b>10%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Bash Lyrics — Lyrics Word By Word</span>
-        <b>15%</b>
-      </div>
+      <div class="judge-row" style="margin-top:12px;"><span>Bash Lyrics — Background</span><b>15</b></div>
+      <div class="judge-row"><span>Bash Lyrics — Animation</span><b>15</b></div>
+      <div class="judge-row"><span>Bash Lyrics — Colour Text</span><b>20</b></div>
+      <div class="judge-row"><span>Bash Lyrics — Video Quality</span><b>10</b></div>
+      <div class="judge-row"><span>Bash Lyrics — Lyrics Word By Word</span><b>15</b></div>
 
       <div class="total-score">
         <span>BASH TOTAL</span>
@@ -1084,70 +959,28 @@ footer strong{
 
     </div>
 
-
     <!-- MATCH 2 -->
 
     <div class="judge-card">
 
-      <h3>
-        🏆 MATCH 2 • AMEENATOU vs KING HAIDAR
-      </h3>
+      <h3>🏆 MATCH 2 • AMEENATOU vs KING HAIDAR</h3>
 
-      <div class="judge-row">
-        <span>🎨 Background mai tsari</span>
-        <b>10</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🎞 Animation mai tsari</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🌈 Colour text mai kyau</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📝 Tsaewar lyrics</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📖 Fitar da kalmomi cikin tsari</span>
-        <b>20</b>
-      </div>
+      <div class="judge-row"><span>Ameenatou — 🎨 Background</span><b>10</b></div>
+      <div class="judge-row"><span>Ameenatou — 🎞 Animation</span><b>15</b></div>
+      <div class="judge-row"><span>Ameenatou — 🌈 Colour Text</span><b>15</b></div>
+      <div class="judge-row"><span>Ameenatou — 📝 Tsaewar Lyrics</span><b>20</b></div>
+      <div class="judge-row"><span>Ameenatou — 📖 Fitar da kalmomi</span><b>20</b></div>
 
       <div class="total-score">
         <span>AMEENATOU TOTAL</span>
         <strong>80%</strong>
       </div>
 
-
-      <div class="judge-row" style="margin-top:12px;">
-        <span>🎨 Background mai tsari</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🎞 Animation mai tsari</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🌈 Colour text mai kyau</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📝 Tsaewar lyrics</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📖 Fitar da kalmomi cikin tsari</span>
-        <b>15</b>
-      </div>
+      <div class="judge-row" style="margin-top:12px;"><span>King Haidar — 🎨 Background</span><b>15</b></div>
+      <div class="judge-row"><span>King Haidar — 🎞 Animation</span><b>20</b></div>
+      <div class="judge-row"><span>King Haidar — 🌈 Colour Text</span><b>15</b></div>
+      <div class="judge-row"><span>King Haidar — 📝 Tsaewar Lyrics</span><b>20</b></div>
+      <div class="judge-row"><span>King Haidar — 📖 Fitar da kalmomi</span><b>15</b></div>
 
       <div class="total-score">
         <span>KING HAIDAR TOTAL</span>
@@ -1161,70 +994,28 @@ footer strong{
 
     </div>
 
-
     <!-- MATCH 3 -->
 
     <div class="judge-card">
 
-      <h3>
-        🏆 MATCH 3 • SHALELE vs YUSUFA
-      </h3>
+      <h3>🏆 MATCH 3 • SHALELE vs YUSUFA</h3>
 
-      <div class="judge-row">
-        <span>🎨 Shalele — Background mai tsari</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🎞 Shalele — Animation mai tsari</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🌈 Shalele — Colour text mai kyau</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📝 Shalele — Tsaewar lyrics</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📖 Shalele — Fitar da kalmomi cikin tsari</span>
-        <b>20</b>
-      </div>
+      <div class="judge-row"><span>Shalele — 🎨 Background</span><b>20</b></div>
+      <div class="judge-row"><span>Shalele — 🎞 Animation</span><b>20</b></div>
+      <div class="judge-row"><span>Shalele — 🌈 Colour Text</span><b>15</b></div>
+      <div class="judge-row"><span>Shalele — 📝 Tsaewar Lyrics</span><b>20</b></div>
+      <div class="judge-row"><span>Shalele — 📖 Fitar da kalmomi</span><b>20</b></div>
 
       <div class="total-score">
         <span>SHALELE TOTAL</span>
         <strong>95%</strong>
       </div>
 
-
-      <div class="judge-row" style="margin-top:12px;">
-        <span>🎨 Yusufa — Background mai tsari</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🎞 Yusufa — Animation mai tsari</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🌈 Yusufa — Colour text mai kyau</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📝 Yusufa — Tsaewar lyrics</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📖 Yusufa — Fitar da kalmomi cikin tsari</span>
-        <b>20</b>
-      </div>
+      <div class="judge-row" style="margin-top:12px;"><span>Yusufa — 🎨 Background</span><b>20</b></div>
+      <div class="judge-row"><span>Yusufa — 🎞 Animation</span><b>15</b></div>
+      <div class="judge-row"><span>Yusufa — 🌈 Colour Text</span><b>15</b></div>
+      <div class="judge-row"><span>Yusufa — 📝 Tsaewar Lyrics</span><b>15</b></div>
+      <div class="judge-row"><span>Yusufa — 📖 Fitar da kalmomi</span><b>20</b></div>
 
       <div class="total-score">
         <span>YUSUFA TOTAL</span>
@@ -1238,74 +1029,32 @@ footer strong{
 
     </div>
 
-
     <!-- MATCH 4 -->
 
     <div class="judge-card">
 
-      <h3>
-        🏆 MATCH 4 • ABBAS vs SIYAH
-      </h3>
+      <h3>🏆 MATCH 4 • SIYAH vs ABBAS</h3>
 
-      <div class="judge-row">
-        <span>🎨 Abbas — Background mai tsari</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🎞 Abbas — Animation mai tsari</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🌈 Abbas — Colour text mai kyau</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📝 Abbas — Tsaewar lyrics</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📖 Abbas — Fitar da kalmomi cikin tsari</span>
-        <b>20</b>
-      </div>
-
-      <div class="total-score">
-        <span>ABBAS TOTAL</span>
-        <strong>95%</strong>
-      </div>
-
-
-      <div class="judge-row" style="margin-top:12px;">
-        <span>🎨 Siyah — Background mai tsari</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🎞 Siyah — Animation mai tsari</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🌈 Siyah — Colour text mai kyau</span>
-        <b>15</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📝 Siyah — Tsaewar lyrics</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📖 Siyah — Fitar da kalmomi cikin tsari</span>
-        <b>20</b>
-      </div>
+      <div class="judge-row"><span>Siyah — 🎨 Background</span><b>20</b></div>
+      <div class="judge-row"><span>Siyah — 🎞 Animation</span><b>15</b></div>
+      <div class="judge-row"><span>Siyah — 🌈 Colour Text</span><b>15</b></div>
+      <div class="judge-row"><span>Siyah — 📝 Tsaewar Lyrics</span><b>20</b></div>
+      <div class="judge-row"><span>Siyah — 📖 Fitar da kalmomi</span><b>20</b></div>
 
       <div class="total-score">
         <span>SIYAH TOTAL</span>
         <strong>90%</strong>
+      </div>
+
+      <div class="judge-row" style="margin-top:12px;"><span>Abbas — 🎨 Background</span><b>20</b></div>
+      <div class="judge-row"><span>Abbas — 🎞 Animation</span><b>20</b></div>
+      <div class="judge-row"><span>Abbas — 🌈 Colour Text</span><b>15</b></div>
+      <div class="judge-row"><span>Abbas — 📝 Tsaewar Lyrics</span><b>20</b></div>
+      <div class="judge-row"><span>Abbas — 📖 Fitar da kalmomi</span><b>20</b></div>
+
+      <div class="total-score">
+        <span>ABBAS TOTAL</span>
+        <strong>95%</strong>
       </div>
 
       <div class="total-score">
@@ -1315,230 +1064,240 @@ footer strong{
 
     </div>
 
+    <!-- MATCH 5 -->
+
+    <div class="judge-card">
+
+      <h3>🏆 MATCH 5 • AUTARH vs IBB</h3>
+
+      <div class="judge-row"><span>Autarh Lyrics — 🎨 Background</span><b>10</b></div>
+      <div class="judge-row"><span>Autarh Lyrics — 🎞 Animation</span><b>18</b></div>
+      <div class="judge-row"><span>Autarh Lyrics — 🌈 Colour Text</span><b>10</b></div>
+      <div class="judge-row"><span>Autarh Lyrics — 📹 Video Quality</span><b>20</b></div>
+      <div class="judge-row"><span>Autarh Lyrics — 📖 Lyrics Arrangement</span><b>15</b></div>
+
+      <div class="total-score">
+        <span>AUTARH TOTAL</span>
+        <strong>73%</strong>
+      </div>
+
+      <div class="judge-row" style="margin-top:12px;"><span>IBB Lyrics — 🎨 Background</span><b>20</b></div>
+      <div class="judge-row"><span>IBB Lyrics — 🎞 Animation</span><b>18</b></div>
+      <div class="judge-row"><span>IBB Lyrics — 🌈 Colour Text</span><b>10</b></div>
+      <div class="judge-row"><span>IBB Lyrics — 📹 Video Quality</span><b>20</b></div>
+      <div class="judge-row"><span>IBB Lyrics — 📖 Lyrics Arrangement</span><b>15</b></div>
+
+      <div class="total-score">
+        <span>IBB TOTAL</span>
+        <strong>84%</strong>
+      </div>
+
+      <div class="total-score">
+        <span>WINNER</span>
+        <strong>IBB Lyrics</strong>
+      </div>
+
+    </div>
+
+    <!-- MATCH 6 -->
+
+    <div class="judge-card">
+
+      <h3>🏆 MATCH 6 • AUNTYN YARA vs ALKHADDAB</h3>
+
+      <div class="judge-row"><span>Auntyn Yara — 🎨 Background</span><b>20</b></div>
+      <div class="judge-row"><span>Auntyn Yara — 🎞 Animation</span><b>20</b></div>
+      <div class="judge-row"><span>Auntyn Yara — 🌈 Colour Text</span><b>15</b></div>
+      <div class="judge-row"><span>Auntyn Yara — 📹 Video Quality</span><b>20</b></div>
+      <div class="judge-row"><span>Auntyn Yara — 📖 Lyrics Arrangement</span><b>15</b></div>
+
+      <div class="total-score">
+        <span>AUNTYN YARA TOTAL</span>
+        <strong>90%</strong>
+      </div>
+
+      <div class="judge-row" style="margin-top:12px;"><span>Alkhaddab — 🎨 Background</span><b>20</b></div>
+      <div class="judge-row"><span>Alkhaddab — 🎞 Animation</span><b>18</b></div>
+      <div class="judge-row"><span>Alkhaddab — 🌈 Colour Text</span><b>20</b></div>
+      <div class="judge-row"><span>Alkhaddab — 📹 Video Quality</span><b>20</b></div>
+      <div class="judge-row"><span>Alkhaddab — 📖 Lyrics Arrangement</span><b>15</b></div>
+
+      <div class="total-score">
+        <span>ALKHADDAB TOTAL</span>
+        <strong>93%</strong>
+      </div>
+
+      <div class="total-score">
+        <span>WINNER</span>
+        <strong>Alkhaddab Lyrics</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BUTTON TO JUDGING RESULTS -->
+
+  <div class="results-button-wrap">
+    <a class="results-button" href="#judging">
+      VIEW JUDGING RESULTS ↓
+    </a>
   </div>
 
 </section>
-
 
 <!-- FIXTURES -->
 
 <section id="fixtures">
 
   <div class="section-head">
-
     <div>
-
-      <div class="section-title">
-        FIXTURES
-      </div>
-
-      <div class="section-sub">
-        Complete competition schedule
-      </div>
-
+      <div class="section-title">FIXTURES</div>
+      <div class="section-sub">Complete competition schedule</div>
     </div>
-
   </div>
-
 
   <div class="fixtures">
 
     <div class="fixture">
       <div class="fixture-date">OCT 05 • 9:30</div>
-      <div class="fixture-teams">
-        Cutieemah Lyrics vs Bash Lyrics
-      </div>
+      <div class="fixture-teams">Cutieemah Lyrics vs Bash Lyrics</div>
       <div class="fixture-round">R16 • M1 • FINAL</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 05 • 10:00</div>
-      <div class="fixture-teams">
-        Ameenatou Lyrics vs King Haidar Lyrics
-      </div>
+      <div class="fixture-teams">Ameenatou Lyrics vs King Haidar Lyrics</div>
       <div class="fixture-round">R16 • M2 • FINAL</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 06 • 9:30</div>
-      <div class="fixture-teams">
-        Shalele Lyrics vs Yusufa Lyrics
-      </div>
+      <div class="fixture-teams">Shalele Lyrics vs Yusufa Lyrics</div>
       <div class="fixture-round">R16 • M3 • FINAL</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 06 • 10:00</div>
-      <div class="fixture-teams">
-        Siyah Lyrics vs Abbas Lyrics
-      </div>
+      <div class="fixture-teams">Siyah Lyrics vs Abbas Lyrics</div>
       <div class="fixture-round">R16 • M4 • FINAL</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 07 • 9:30</div>
-      <div class="fixture-teams">
-        Autah Lyrics vs IBB Lyrics
-      </div>
-      <div class="fixture-round">R16 • M5</div>
+      <div class="fixture-teams">Autarh Lyrics vs IBB Lyrics</div>
+      <div class="fixture-round">R16 • M5 • FINAL</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 07 • 10:00</div>
-      <div class="fixture-teams">
-        Auntyn Lyrics vs Alkhaddab Lyrics
-      </div>
-      <div class="fixture-round">R16 • M6</div>
+      <div class="fixture-teams">Auntyn Yara Lyrics vs Alkhaddab Lyrics</div>
+      <div class="fixture-round">R16 • M6 • FINAL</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 08 • 9:30</div>
-      <div class="fixture-teams">
-        Teemarluvly Lyrics vs Jagora Lyrics
-      </div>
+      <div class="fixture-teams">Teemarluvly Lyrics vs Jagora Lyrics</div>
       <div class="fixture-round">R16 • M7</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 08 • 10:00</div>
-      <div class="fixture-teams">
-        X Lyrics vs Bakori Lyrics
-      </div>
+      <div class="fixture-teams">X Lyrics vs Bakori Lyrics</div>
       <div class="fixture-round">R16 • M8</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 12</div>
-      <div class="fixture-teams">
-        Cutieemah Lyrics vs King Haidar Lyrics
-      </div>
+      <div class="fixture-teams">Cutieemah Lyrics vs King Haidar Lyrics</div>
       <div class="fixture-round">QF1</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 12</div>
-      <div class="fixture-teams">
-        Shalele Lyrics vs Abbas Lyrics
-      </div>
+      <div class="fixture-teams">Shalele Lyrics vs Abbas Lyrics</div>
       <div class="fixture-round">QF2</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 13</div>
-      <div class="fixture-teams">
-        Winner M5 vs Winner M6
-      </div>
+      <div class="fixture-teams">IBB Lyrics vs Alkhaddab Lyrics</div>
       <div class="fixture-round">QF3</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 13</div>
-      <div class="fixture-teams">
-        Winner M7 vs Winner M8
-      </div>
+      <div class="fixture-teams">Winner M7 vs Winner M8</div>
       <div class="fixture-round">QF4</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 26</div>
-      <div class="fixture-teams">
-        Winner QF1 vs Winner QF2
-      </div>
+      <div class="fixture-teams">Winner QF1 vs Winner QF2</div>
       <div class="fixture-round">SF1</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">OCT 26</div>
-      <div class="fixture-teams">
-        Winner QF3 vs Winner QF4
-      </div>
+      <div class="fixture-teams">Winner QF3 vs Winner QF4</div>
       <div class="fixture-round">SF2</div>
     </div>
 
     <div class="fixture">
       <div class="fixture-date">NOV 06 • 10:00</div>
-      <div class="fixture-teams">
-        Winner SF1 vs Winner SF2
-      </div>
+      <div class="fixture-teams">Winner SF1 vs Winner SF2</div>
       <div class="fixture-round">🏆 FINAL</div>
     </div>
 
   </div>
-
 </section>
-
 
 <!-- BRACKET -->
 
 <section id="bracket">
 
   <div class="section-head">
-
-    <div class="section-title">
-      TOURNAMENT
-      <span>BRACKET</span>
-    </div>
-
-    <div class="section-sub">
-      16 → 8 → 4 → 2 → 1
-    </div>
-
+    <div class="section-title">TOURNAMENT <span>BRACKET</span></div>
+    <div class="section-sub">16 → 8 → 4 → 2 → 1</div>
   </div>
 
-
   <div class="bracket-scroll">
-
     <div class="bracket">
 
+      <!-- ROUND OF 16 -->
 
       <div class="bracket-column">
 
         <h3>ROUND OF 16</h3>
 
         <div class="bracket-game">
-          <div class="winner">
-            Cutieemah Lyrics — 78%
-          </div>
-          <div>
-            Bash Lyrics — 75%
-          </div>
+          <div class="winner">Cutieemah Lyrics — 78%</div>
+          <div>Bash Lyrics — 75%</div>
         </div>
 
         <div class="bracket-game">
-          <div>
-            Ameenatou Lyrics — 80%
-          </div>
-          <div class="winner">
-            King Haidar Lyrics — 85%
-          </div>
+          <div>Ameenatou Lyrics — 80%</div>
+          <div class="winner">King Haidar Lyrics — 85%</div>
         </div>
 
         <div class="bracket-game">
-          <div class="winner">
-            Shalele Lyrics — 95%
-          </div>
-          <div>
-            Yusufa Lyrics — 85%
-          </div>
+          <div class="winner">Shalele Lyrics — 95%</div>
+          <div>Yusufa Lyrics — 85%</div>
         </div>
 
         <div class="bracket-game">
-          <div>
-            Siyah Lyrics — 90%
-          </div>
-          <div class="winner">
-            Abbas Lyrics — 95%
-          </div>
+          <div>Siyah Lyrics — 90%</div>
+          <div class="winner">Abbas Lyrics — 95%</div>
         </div>
 
         <div class="bracket-game">
-          <div>Autah Lyrics</div>
-          <div>IBB Lyrics</div>
+          <div>Autarh Lyrics — 73%</div>
+          <div class="winner">IBB Lyrics — 84%</div>
         </div>
 
         <div class="bracket-game">
-          <div>Auntyn Lyrics</div>
-          <div>Alkhaddab Lyrics</div>
+          <div>Auntyn Yara Lyrics — 90%</div>
+          <div class="winner">Alkhaddab Lyrics — 93%</div>
         </div>
 
         <div class="bracket-game">
@@ -1553,32 +1312,25 @@ footer strong{
 
       </div>
 
+      <!-- QUARTER FINAL -->
 
       <div class="bracket-column">
 
         <h3>QUARTER FINAL</h3>
 
         <div class="bracket-game">
-          <div>
-            Cutieemah Lyrics — 78%
-          </div>
-          <div class="winner">
-            King Haidar Lyrics — 85%
-          </div>
+          <div>Cutieemah Lyrics</div>
+          <div>King Haidar Lyrics</div>
         </div>
 
         <div class="bracket-game">
-          <div class="winner">
-            Shalele Lyrics — 95%
-          </div>
-          <div>
-            Abbas Lyrics — 95%
-          </div>
+          <div>Shalele Lyrics</div>
+          <div>Abbas Lyrics</div>
         </div>
 
         <div class="bracket-game">
-          <div>Winner Match 5</div>
-          <div>Winner Match 6</div>
+          <div>IBB Lyrics</div>
+          <div>Alkhaddab Lyrics</div>
         </div>
 
         <div class="bracket-game">
@@ -1588,6 +1340,7 @@ footer strong{
 
       </div>
 
+      <!-- SEMI FINAL -->
 
       <div class="bracket-column">
 
@@ -1605,100 +1358,53 @@ footer strong{
 
       </div>
 
+      <!-- GRAND FINAL -->
 
       <div class="bracket-column">
 
         <h3>GRAND FINAL</h3>
 
         <div class="bracket-game">
-
-          <div>
-            🏆 Winner SF1
-          </div>
-
-          <div>
-            🏆 Winner SF2
-          </div>
-
+          <div>🏆 Winner SF1</div>
+          <div>🏆 Winner SF2</div>
         </div>
 
         <div class="champion">
-
-          <div class="trophy">
-            🏆
-          </div>
-
+          <div class="trophy">🏆</div>
           <h2>CHAMPION</h2>
-
-          <p>
-            To be decided
-          </p>
-
+          <p>To be decided</p>
         </div>
 
       </div>
 
     </div>
-
   </div>
-
 </section>
-
 
 <!-- JUDGING -->
 
 <section id="judging">
 
   <div class="section-head">
-
     <div>
-
-      <div class="section-title">
-        JUDGING <span>SCOREBOARD</span>
-      </div>
-
-      <div class="section-sub">
-        Maximum 100 points
-      </div>
-
+      <div class="section-title">JUDGING <span>SCOREBOARD</span></div>
+      <div class="section-sub">Maximum 100 points</div>
     </div>
-
   </div>
-
 
   <div class="judge-grid">
 
+    <!-- OFFICIAL CRITERIA -->
 
     <div class="judge-card">
 
-      <h3>
-        📊 OFFICIAL CRITERIA
-      </h3>
+      <h3>📊 OFFICIAL CRITERIA</h3>
 
-      <div class="judge-row">
-        <span>🖼️ Background</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>✨ Animation</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🎨 Colour Text</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>🎥 Video Quality</span>
-        <b>20</b>
-      </div>
-
-      <div class="judge-row">
-        <span>📝 Lyrics Word By Word</span>
-        <b>20</b>
-      </div>
+      <div class="judge-row"><span>🖼️ Background</span><b>20</b></div>
+      <div class="judge-row"><span>✨ Animation</span><b>20</b></div>
+      <div class="judge-row"><span>🎨 Colour Text</span><b>20</b></div>
+      <div class="judge-row"><span>🎥 Video Quality</span><b>20</b></div>
+      <div class="judge-row"><span>📝 Lyrics Word By Word</span><b>20</b></div>
 
       <div class="total-score">
         <span>TOTAL</span>
@@ -1707,105 +1413,89 @@ footer strong{
 
     </div>
 
+    <!-- MATCH RESULTS -->
 
     <div class="judge-card">
 
-      <h3>
-        🏆 MATCH RESULTS
-      </h3>
+      <h3>🏆 MATCH RESULTS</h3>
 
-      <div class="judge-row">
-        <span>Cutieemah Lyrics</span>
-        <b>78%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Bash Lyrics</span>
-        <b>75%</b>
-      </div>
+      <div class="judge-row"><span>Cutieemah Lyrics</span><b>78%</b></div>
+      <div class="judge-row"><span>Bash Lyrics</span><b>75%</b></div>
 
       <div class="total-score">
         <span>MATCH 1 WINNER</span>
         <strong>Cutieemah</strong>
       </div>
 
-      <div class="judge-row" style="margin-top:12px;">
-        <span>Ameenatou Lyrics</span>
-        <b>80%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>King Haidar Lyrics</span>
-        <b>85%</b>
-      </div>
+      <div class="judge-row" style="margin-top:12px;"><span>Ameenatou Lyrics</span><b>80%</b></div>
+      <div class="judge-row"><span>King Haidar Lyrics</span><b>85%</b></div>
 
       <div class="total-score">
         <span>MATCH 2 WINNER</span>
         <strong>King Haidar</strong>
       </div>
 
-      <div class="judge-row" style="margin-top:12px;">
-        <span>Shalele Lyrics</span>
-        <b>95%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Yusufa Lyrics</span>
-        <b>85%</b>
-      </div>
+      <div class="judge-row" style="margin-top:12px;"><span>Shalele Lyrics</span><b>95%</b></div>
+      <div class="judge-row"><span>Yusufa Lyrics</span><b>85%</b></div>
 
       <div class="total-score">
         <span>MATCH 3 WINNER</span>
         <strong>Shalele</strong>
       </div>
 
-      <div class="judge-row" style="margin-top:12px;">
-        <span>Abbas Lyrics</span>
-        <b>95%</b>
-      </div>
-
-      <div class="judge-row">
-        <span>Siyah Lyrics</span>
-        <b>90%</b>
-      </div>
+      <div class="judge-row" style="margin-top:12px;"><span>Siyah Lyrics</span><b>90%</b></div>
+      <div class="judge-row"><span>Abbas Lyrics</span><b>95%</b></div>
 
       <div class="total-score">
         <span>MATCH 4 WINNER</span>
         <strong>Abbas</strong>
       </div>
 
+      <div class="judge-row" style="margin-top:12px;"><span>Autarh Lyrics</span><b>73%</b></div>
+      <div class="judge-row"><span>IBB Lyrics</span><b>84%</b></div>
+
+      <div class="total-score">
+        <span>MATCH 5 WINNER</span>
+        <strong>IBB Lyrics</strong>
+      </div>
+
+      <div class="judge-row" style="margin-top:12px;"><span>Auntyn Yara Lyrics</span><b>90%</b></div>
+      <div class="judge-row"><span>Alkhaddab Lyrics</span><b>93%</b></div>
+
+      <div class="total-score">
+        <span>MATCH 6 WINNER</span>
+        <strong>Alkhaddab</strong>
+      </div>
+
     </div>
 
   </div>
 
-</section>
+  <!-- BOTTOM BUTTON -->
 
+  <div class="results-button-wrap">
+    <a class="results-button" href="#completed-results">
+      ↑ BACK TO ALL MATCH RESULTS
+    </a>
+  </div>
+
+</section>
 
 <!-- CHAMPION -->
 
 <section>
-
   <div class="champion">
+    <div class="trophy">🏆</div>
 
-    <div class="trophy">
-      🏆
-    </div>
-
-    <h2>
-      LVT LYRICS CHAMPION 2026
-    </h2>
+    <h2>LVT LYRICS CHAMPION 2026</h2>
 
     <p>
       The champion will be crowned on November 6, 2026.
     </p>
-
   </div>
-
 </section>
 
-
 </main>
-
 
 <footer>
 
