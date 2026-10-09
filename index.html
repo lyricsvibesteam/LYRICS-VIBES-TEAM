@@ -3,731 +3,765 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LVT • Live Lyrics Competition</title>
 
+<meta name="description" content="Official LVT Live Lyrics Competition. Follow live results, fixtures, bracket, judging and the road to the championship.">
+<meta name="theme-color" content="#050b14">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+:root {
+  --bg: #050b14;
+  --panel: #0b1422;
+  --panel2: #101d30;
+  --blue: #1473ff;
+  --gold: #ffd33d;
+  --red: #ff4d5e;
+  --green: #22c985;
+  --text: #f4f7fb;
+  --muted: #91a1b7;
+  --border: rgba(255,255,255,.09);
 }
 
-:root{
-  --bg:#050b14;
-  --panel:#0b1422;
-  --panel2:#101d2e;
-  --blue:#1473ff;
-  --blue2:#0b4fc4;
-  --gold:#ffd33d;
-  --text:#f7f9fc;
-  --muted:#8d9bb0;
-  --line:rgba(255,255,255,.08);
-  --red:#ff4d5e;
-  --green:#22c985;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html{
-  scroll-behavior:smooth;
-  scroll-padding-top:85px;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
 }
 
-body{
-  font-family:Inter,Arial,sans-serif;
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+.container {
+  width: min(1160px, 92%);
+  margin: auto;
+}
+
+.topbar {
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(5,11,20,.94);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #080d16;
+  font-size: 17px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffe77a, var(--gold));
+  box-shadow: 0 4px 20px rgba(255,211,61,.13);
+}
+
+.brand-title {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .8px;
+}
+
+.brand-subtitle {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,77,94,.28);
+  background: rgba(255,77,94,.08);
+  border-radius: 30px;
+  padding: 7px 11px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .7px;
+  white-space: nowrap;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,77,94,.45); }
+  50% { opacity: .65; box-shadow: 0 0 0 6px rgba(255,77,94,0); }
+}
+
+nav {
+  border-bottom: 1px solid var(--border);
+  background: rgba(11,20,34,.75);
+}
+
+.nav-inner {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-inner a {
+  padding: 14px 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .7px;
+  white-space: nowrap;
+  transition: color .2s;
+}
+
+.nav-inner a:hover {
+  color: var(--gold);
+}
+
+.hero {
+  padding: 64px 0 42px;
   background:
-    radial-gradient(circle at 50% -10%,#153c73 0%,#081322 35%,#050b14 70%);
-  color:var(--text);
-  min-height:100vh;
+    radial-gradient(ellipse at 80% 15%, rgba(20,115,255,.16), transparent 40%),
+    radial-gradient(ellipse at 10% 70%, rgba(255,211,61,.06), transparent 40%);
 }
 
-/* TOP BAR */
-
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  height:64px;
-  background:rgba(5,11,20,.88);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line);
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
-.topbar-inner{
-  max-width:1200px;
-  height:100%;
-  margin:auto;
-  padding:0 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.eyebrow::before {
+  content: "";
+  width: 23px;
+  height: 2px;
+  background: var(--gold);
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.hero h1 {
+  max-width: 780px;
+  font-size: clamp(34px, 6vw, 65px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -2.4px;
+  margin-bottom: 20px;
 }
 
-.brand-logo{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--gold),#ff9f00);
-  color:#07101c;
-  font-weight:900;
-  font-size:17px;
+.hero h1 span {
+  color: var(--gold);
 }
 
-.brand-name{
-  font-size:15px;
-  font-weight:800;
-  letter-spacing:.4px;
+.hero-description {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
 }
 
-.brand-name span{
-  color:var(--gold);
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
 }
 
-.live-pill{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-  background:rgba(255,77,94,.12);
-  border:1px solid rgba(255,77,94,.35);
-  padding:8px 11px;
-  border-radius:30px;
+.badge {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.025);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #dce6f5;
+  font-size: 11px;
+  font-weight: 700;
 }
 
-.live-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 12px var(--red);
-  animation:pulse 1.3s infinite;
+.badge strong {
+  color: var(--gold);
 }
 
-@keyframes pulse{
-  50%{opacity:.35;transform:scale(.7)}
+.section {
+  padding: 35px 0;
 }
 
-/* NAV */
-
-.nav{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 18px 4px;
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 22px;
 }
 
-.nav a{
-  color:var(--muted);
-  text-decoration:none;
-  white-space:nowrap;
-  padding:9px 13px;
-  border-radius:9px;
-  font-size:12px;
-  font-weight:700;
+.section-label {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
-.nav a:hover,
-.nav a.active{
-  color:#fff;
-  background:rgba(20,115,255,.16);
+.section-heading h2 {
+  font-size: clamp(22px, 4vw, 31px);
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: -.8px;
 }
 
-/* MAIN */
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:0 18px 50px;
+.section-description {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 7px;
 }
 
-/* HERO */
+.panel {
+  background: linear-gradient(145deg, rgba(16,29,48,.95), rgba(11,20,34,.95));
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  overflow: hidden;
+}
 
-.hero{
-  margin-top:18px;
-  min-height:260px;
-  border-radius:25px;
-  overflow:hidden;
-  position:relative;
+.panel-padding {
+  padding: 23px;
+}
+
+.panel-title {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  margin-bottom: 17px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 18px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+}
+
+.match-card {
+  position: relative;
+  padding: 23px;
+  background: linear-gradient(145deg, #101d30, #0b1422);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  overflow: hidden;
+}
+
+.match-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
+}
+
+.match-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.match-number {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.status {
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .7px;
+}
+
+.status-final {
+  color: var(--green);
+  background: rgba(34,201,133,.1);
+  border: 1px solid rgba(34,201,133,.18);
+}
+
+.status-upcoming {
+  color: var(--gold);
+  background: rgba(255,211,61,.08);
+  border: 1px solid rgba(255,211,61,.18);
+}
+
+.versus {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.competitor {
+  min-width: 0;
+}
+
+.competitor:last-child {
+  text-align: right;
+}
+
+.competitor-name {
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 800;
+}
+
+.competitor-score {
+  display: block;
+  margin-top: 8px;
+  color: var(--gold);
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.competitor-score small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.vs {
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.winner-name {
+  color: var(--green);
+}
+
+.match-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.winner-tag {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .5px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 13px;
+  margin-top: 24px;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.025);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1.2;
+}
+
+.stat-label {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+th, td {
+  padding: 15px 17px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+th {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(255,255,255,.025);
+}
+
+td {
+  color: #dce6f5;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.table-winner {
+  color: var(--green);
+  font-weight: 800;
+}
+
+.table-score {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.round-label {
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 8px 0 15px;
+}
+
+.bracket-round {
+  margin-bottom: 28px;
+}
+
+.bracket-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 13px;
+}
+
+.bracket-match {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255,255,255,.02);
+  padding: 15px;
+}
+
+.bracket-match .bracket-id {
+  display: block;
+  margin-bottom: 11px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.bracket-team {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  font-size: 12px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.bracket-team:last-child {
+  border-bottom: none;
+}
+
+.bracket-team.winner {
+  color: var(--green);
+}
+
+.bracket-team.pending {
+  color: var(--muted);
+}
+
+.bracket-score {
+  color: var(--gold);
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.judging-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 15px;
+}
+
+.judging-card {
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, rgba(16,29,48,.9), rgba(11,20,34,.95));
+  border-radius: 14px;
+  padding: 19px;
+}
+
+.judging-card h3 {
+  font-size: 12px;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+
+.judging-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  font-size: 12px;
+}
+
+.judging-row:last-child {
+  border-bottom: none;
+}
+
+.judging-row .score {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.judging-row .score.winner {
+  color: var(--green);
+}
+
+.champion-panel {
+  text-align: center;
+  padding: 42px 20px;
   background:
-    linear-gradient(100deg,rgba(6,17,31,.97),rgba(9,37,72,.72)),
-    radial-gradient(circle at right,#176dff,#06101e 60%);
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 25px 80px rgba(0,0,0,.35);
+    radial-gradient(ellipse at center, rgba(255,211,61,.09), transparent 65%),
+    linear-gradient(145deg, #101d30, #0b1422);
+  border: 1px solid rgba(255,211,61,.2);
+  border-radius: 18px;
 }
 
-.hero::after{
-  content:"LVT";
-  position:absolute;
-  right:-30px;
-  bottom:-60px;
-  font-size:190px;
-  font-weight:900;
-  color:rgba(255,255,255,.025);
+.trophy {
+  font-size: 44px;
+  margin-bottom: 12px;
 }
 
-.hero-content{
-  position:relative;
-  z-index:2;
-  padding:35px;
+.champion-panel h3 {
+  color: var(--gold);
+  font-size: 25px;
+  font-weight: 900;
+  margin-bottom: 9px;
 }
 
-.hero-tag{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  color:var(--gold);
-  font-size:11px;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:13px;
+.champion-panel p {
+  color: var(--muted);
+  font-size: 12px;
 }
 
-.hero h1{
-  font-size:clamp(30px,6vw,58px);
-  line-height:1;
-  max-width:650px;
-  letter-spacing:-2px;
+.champion-status {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 8px 13px;
+  border: 1px solid rgba(255,211,61,.2);
+  background: rgba(255,211,61,.06);
+  color: var(--gold);
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
 }
 
-.hero h1 span{
-  color:var(--gold);
+.notice {
+  border: 1px solid rgba(20,115,255,.2);
+  background: rgba(20,115,255,.055);
+  color: #bdcce1;
+  border-radius: 12px;
+  padding: 15px 17px;
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 18px;
 }
 
-.hero p{
-  color:#a9b7ca;
-  max-width:600px;
-  line-height:1.7;
-  margin-top:16px;
-  font-size:13px;
+footer {
+  margin-top: 30px;
+  border-top: 1px solid var(--border);
+  padding: 27px 0;
+  color: var(--muted);
+  font-size: 11px;
 }
 
-.hero-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-top:20px;
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.meta{
-  padding:9px 12px;
-  border-radius:9px;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--line);
-  color:#cbd6e5;
-  font-size:11px;
-  font-weight:700;
+.footer-brand {
+  color: var(--gold);
+  font-weight: 900;
+  letter-spacing: 1px;
 }
 
-/* SECTION */
-
-.section{
-  margin-top:34px;
-}
-
-.section-head{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  margin-bottom:14px;
-}
-
-.section-title{
-  font-size:20px;
-  font-weight:900;
-}
-
-.section-title span{
-  color:var(--gold);
-}
-
-.section-sub{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* LIVE MATCH */
-
-.live-match{
-  position:relative;
-  background:linear-gradient(145deg,#0d1e32,#08111e);
-  border:1px solid rgba(255,211,61,.25);
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:0 18px 55px rgba(0,0,0,.28);
-}
-
-.live-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 18px;
-  border-bottom:1px solid var(--line);
-}
-
-.competition{
-  font-size:10px;
-  font-weight:800;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.7px;
-}
-
-.live-now{
-  color:var(--red);
-  font-size:10px;
-  font-weight:900;
-}
-
-.scoreboard{
-  padding:28px 20px;
-  text-align:center;
-}
-
-.round{
-  color:var(--muted);
-  font-size:10px;
-  font-weight:700;
-  text-transform:uppercase;
-}
-
-.teams{
-  margin-top:23px;
-  display:grid;
-  grid-template-columns:1fr 100px 1fr;
-  align-items:center;
-}
-
-.team{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-}
-
-.team-logo{
-  width:58px;
-  height:58px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(145deg,#172c48,#0b1625);
-  border:1px solid #284666;
-  color:var(--gold);
-  font-weight:900;
-  font-size:13px;
-}
-
-.team-name{
-  font-size:13px;
-  font-weight:800;
-}
-
-.score{
-  font-size:39px;
-  font-weight:900;
-  letter-spacing:-2px;
-}
-
-.score small{
-  font-size:12px;
-  color:var(--muted);
-  letter-spacing:0;
-}
-
-.match-status{
-  margin-top:21px;
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  color:#ff7784;
-  font-size:11px;
-  font-weight:800;
-}
-
-/* JUDGES SCORE */
-
-.score-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:8px;
-  padding:0 18px 18px;
-}
-
-.score-box{
-  background:#091522;
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:12px 7px;
-  text-align:center;
-}
-
-.score-box label{
-  display:block;
-  color:var(--muted);
-  font-size:8px;
-  line-height:1.3;
-  min-height:22px;
-}
-
-.score-box strong{
-  display:block;
-  color:var(--gold);
-  margin-top:5px;
-  font-size:15px;
-}
-
-/* NEXT MATCH */
-
-.next-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
-.next-card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:17px;
-  padding:17px;
-}
-
-.next-top{
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font-size:10px;
-  font-weight:700;
-}
-
-.next-teams{
-  margin-top:17px;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  text-align:center;
-  align-items:center;
-  gap:7px;
-}
-
-.next-teams b{
-  font-size:12px;
-}
-
-.vs{
-  color:var(--gold);
-  font-size:10px;
-  font-weight:900;
-}
-
-.next-time{
-  margin-top:15px;
-  padding-top:12px;
-  border-top:1px solid var(--line);
-  color:#c5d0df;
-  font-size:10px;
-}
-
-/* TABLE */
-
-.fixtures{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:19px;
-  overflow:hidden;
-}
-
-.fixture{
-  display:grid;
-  grid-template-columns:115px 1fr 90px;
-  align-items:center;
-  gap:12px;
-  padding:15px 17px;
-  border-bottom:1px solid var(--line);
-}
-
-.fixture:last-child{
-  border-bottom:0;
-}
-
-.fixture-date{
-  color:var(--gold);
-  font-size:10px;
-  font-weight:800;
-}
-
-.fixture-teams{
-  font-size:12px;
-  font-weight:700;
-}
-
-.fixture-round{
-  text-align:right;
-  color:var(--muted);
-  font-size:9px;
-  font-weight:700;
-}
-
-/* BRACKET */
-
-.bracket-scroll{
-  overflow-x:auto;
-  padding-bottom:8px;
-}
-
-.bracket{
-  min-width:1000px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:13px;
-}
-
-.bracket-column h3{
-  color:var(--muted);
-  text-align:center;
-  font-size:10px;
-  letter-spacing:.8px;
-  margin-bottom:14px;
-}
-
-.bracket-game{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:13px;
-  overflow:hidden;
-  margin-bottom:22px;
-}
-
-.bracket-game div{
-  padding:10px;
-  font-size:10px;
-  font-weight:700;
-  border-bottom:1px solid var(--line);
-}
-
-.bracket-game div:last-child{
-  border-bottom:0;
-}
-
-.bracket-game .winner{
-  color:var(--gold);
-}
-
-/* JUDGING */
-
-.judge-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.judge-card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:19px;
-}
-
-.judge-card h3{
-  font-size:13px;
-  margin-bottom:15px;
-}
-
-.judge-row{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  padding:11px 0;
-  border-bottom:1px solid var(--line);
-  font-size:11px;
-  color:#b8c5d5;
-}
-
-.judge-row:last-child{
-  border-bottom:0;
-}
-
-.judge-row b{
-  color:var(--gold);
-  white-space:nowrap;
-}
-
-.total-score{
-  margin-top:15px;
-  padding:14px;
-  border-radius:12px;
-  background:rgba(255,211,61,.07);
-  border:1px solid rgba(255,211,61,.2);
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  font-weight:900;
-}
-
-.total-score strong{
-  color:var(--gold);
-  text-align:right;
-}
-
-/* JUDGING RESULTS BUTTON */
-
-.results-button-wrap{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.results-button{
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-  padding:14px 22px;
-  border-radius:12px;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  border:1px solid rgba(255,255,255,.12);
-  color:#fff;
-  text-decoration:none;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:.4px;
-  box-shadow:0 8px 25px rgba(20,115,255,.2);
-  transition:transform .2s,background .2s;
-}
-
-.results-button:hover{
-  transform:translateY(-2px);
-  background:linear-gradient(135deg,#3285ff,#1260df);
-}
-
-/* CHAMPION */
-
-.champion{
-  text-align:center;
-  padding:35px 20px;
-  border-radius:22px;
-  background:
-    radial-gradient(circle at center,#173d70,#081321 65%);
-  border:1px solid rgba(255,211,61,.25);
-}
-
-.trophy{
-  font-size:50px;
-}
-
-.champion h2{
-  margin-top:10px;
-  font-size:25px;
-}
-
-.champion p{
-  color:var(--muted);
-  margin-top:8px;
-  font-size:12px;
-}
-
-/* FOOTER */
-
-footer{
-  border-top:1px solid var(--line);
-  padding:30px 18px;
-  text-align:center;
-  color:var(--muted);
-  font-size:10px;
-}
-
-footer strong{
-  color:var(--gold);
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-  .topbar{
-    height:60px;
+@media (max-width: 760px) {
+  .hero {
+    padding-top: 45px;
   }
 
-  .brand-name{
-    font-size:12px;
+  .hero h1 {
+    letter-spacing: -1.5px;
   }
 
-  .hero-content{
-    padding:28px 22px;
+  .grid-3 {
+    grid-template-columns: repeat(2,minmax(0,1fr));
   }
 
-  .hero{
-    min-height:310px;
+  .grid-2,
+  .judging-grid {
+    grid-template-columns: 1fr;
   }
 
-  .teams{
-    grid-template-columns:1fr 75px 1fr;
+  .panel-padding {
+    padding: 17px;
   }
 
-  .team-name{
-    font-size:11px;
+  .match-card {
+    padding: 18px;
   }
 
-  .score{
-    font-size:31px;
+  .competitor-name {
+    font-size: 13px;
   }
 
-  .score-grid{
-    grid-template-columns:repeat(5,1fr);
+  .competitor-score {
+    font-size: 24px;
   }
 
-  .score-box{
-    padding:9px 3px;
+  .bracket-grid {
+    grid-template-columns: 1fr;
   }
 
-  .score-box label{
-    font-size:7px;
+  .stats-grid {
+    gap: 8px;
   }
 
-  .next-grid{
-    grid-template-columns:1fr;
+  .stat {
+    padding: 13px;
   }
 
-  .fixture{
-    grid-template-columns:85px 1fr;
+  .stat-number {
+    font-size: 23px;
   }
 
-  .fixture-round{
-    grid-column:2;
-    text-align:left;
+  .stat-label {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-title {
+    font-size: 11px;
   }
 
-  .judge-grid{
-    grid-template-columns:1fr;
+  .live-pill {
+    font-size: 8px;
+    padding: 6px 8px;
   }
 
+  .logo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .versus {
+    gap: 7px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
-
 <header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <div class="brand-logo">LVT</div>
-      <div class="brand-name">
-        LVT <span>LYRICS</span>
+  <div class="container topbar-inner">
+    <a href="#home" class="brand">
+      <div class="logo">LVT</div>
+      <div>
+        <div class="brand-title">LVT LYRICS</div>
+        <div class="brand-subtitle">LYRICS VIBES TEAM</div>
       </div>
-    </div>
+    </a>
 
     <div class="live-pill">
       <span class="live-dot"></span>
@@ -736,779 +770,774 @@ footer strong{
   </div>
 </header>
 
-<!-- NAV -->
-
 <nav>
-  <div class="nav">
-    <a href="#home" class="active">HOME</a>
+  <div class="container nav-inner">
+    <a href="#home">HOME</a>
     <a href="#live">LIVE</a>
     <a href="#fixtures">FIXTURES</a>
     <a href="#bracket">BRACKET</a>
     <a href="#judging">JUDGING</a>
+    <a href="#champion">CHAMPION</a>
   </div>
 </nav>
 
-<main class="container">
+<main>
 
-<!-- HERO -->
+<!-- HOME -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="eyebrow">Lyrics Vibes Team Presents</div>
 
-<section id="home">
-  <div class="hero">
-    <div class="hero-content">
+    <h1>
+      LVT <span>Lyrics</span><br>
+      Competition
+    </h1>
 
-      <div class="hero-tag">
-        ● OFFICIAL LVT COMPETITION 2026
+    <p class="hero-description">
+      Welcome to the official LVT Lyrics Competition.
+      Follow the results, track every matchup and see who advances
+      on the road to becoming the champion.
+    </p>
+
+    <div class="hero-badges">
+      <div class="badge">🏆 <strong>Round of 16 completed</strong></div>
+      <div class="badge">⚡ <strong>Quarter Finals next</strong></div>
+      <div class="badge">📅 Final: <strong>November 6</strong></div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-number">16</div>
+        <div class="stat-label">Competitors</div>
       </div>
 
-      <h1>
-        The Battle of
-        <span>Lyrics.</span>
-      </h1>
-
-      <p>
-        Eight matches. One champion.
-        Follow every battle, score and tournament stage
-        from Round of 16 to the Grand Final.
-      </p>
-
-      <div class="hero-meta">
-        <div class="meta">📅 OCT 05 — NOV 06, 2026</div>
-        <div class="meta">🏆 16 PLAYERS</div>
-        <div class="meta">📊 100 POINTS</div>
+      <div class="stat">
+        <div class="stat-number">8/8</div>
+        <div class="stat-label">Round of 16 matches</div>
       </div>
 
+      <div class="stat">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Quarter Finalists</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TODAY'S MATCH -->
-
-<section id="live">
-
-  <div class="section-head">
-    <div>
-      <div class="section-title">
-        <span>●</span> TODAY
+<!-- LIVE RESULTS -->
+<section class="section" id="live">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <div class="section-label">Competition Live</div>
+        <h2>Latest Match Results</h2>
+        <p class="section-description">
+          All eight Round of 16 matches are completed.
+        </p>
       </div>
-      <div class="section-sub">
-        October 08 • Round of 16
-      </div>
-    </div>
 
-    <div style="color:var(--gold);font-size:10px;font-weight:900;">
-      UPCOMING
-    </div>
-  </div>
-
-  <div class="live-match">
-
-    <div class="live-header">
-      <div class="competition">LVT Lyrics Competition</div>
-      <div style="color:var(--gold);font-size:10px;font-weight:900;">
-        OCT 08 • 9:30 PM
+      <div class="live-pill">
+        <span class="live-dot"></span>
+        RESULTS UPDATED
       </div>
     </div>
 
-    <div class="scoreboard">
+    <div class="grid-2">
 
-      <div class="round">
-        ROUND OF 16 • MATCH 7
-      </div>
-
-      <div class="teams">
-
-        <div class="team">
-          <div class="team-logo">TL</div>
-          <div class="team-name">Teemarluvly Lyrics</div>
+      <!-- MATCH 1 -->
+      <article class="match-card">
+        <div class="match-meta">
+          <span class="match-number">MATCH 01 · ROUND OF 16</span>
+          <span class="status status-final">FINAL</span>
         </div>
 
-        <div>
-          <div class="score">VS</div>
-          <div class="match-status" style="color:var(--gold);">
-            ● UPCOMING
+        <div class="versus">
+          <div class="competitor">
+            <div class="competitor-name winner-name">Cutieemah Lyrics</div>
+            <span class="competitor-score">78<small>%</small></span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="competitor">
+            <div class="competitor-name">Bash Lyrics</div>
+            <span class="competitor-score">75<small>%</small></span>
           </div>
         </div>
 
-        <div class="team">
-          <div class="team-logo">JL</div>
-          <div class="team-name">Jagora Lyrics</div>
+        <div class="match-footer">
+          <span>Round of 16</span>
+          <span class="winner-tag">✓ CUTIEEMAH ADVANCES</span>
+        </div>
+      </article>
+
+      <!-- MATCH 2 -->
+      <article class="match-card">
+        <div class="match-meta">
+          <span class="match-number">MATCH 02 · ROUND OF 16</span>
+          <span class="status status-final">FINAL</span>
         </div>
 
-      </div>
-    </div>
+        <div class="versus">
+          <div class="competitor">
+            <div class="competitor-name">Ameenatou Lyrics</div>
+            <span class="competitor-score">80<small>%</small></span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="competitor">
+            <div class="competitor-name winner-name">King Haidar Lyrics</div>
+            <span class="competitor-score">85<small>%</small></span>
+          </div>
+        </div>
 
-    <div class="score-grid">
-      <div class="score-box">
-        <label>BACKGROUND</label>
-        <strong>—</strong>
-      </div>
-      <div class="score-box">
-        <label>ANIMATION</label>
-        <strong>—</strong>
-      </div>
-      <div class="score-box">
-        <label>COLOUR</label>
-        <strong>—</strong>
-      </div>
-      <div class="score-box">
-        <label>VIDEO</label>
-        <strong>—</strong>
-      </div>
-      <div class="score-box">
-        <label>LYRICS</label>
-        <strong>—</strong>
-      </div>
-    </div>
+        <div class="match-footer">
+          <span>Round of 16</span>
+          <span class="winner-tag">✓ KING HAIDAR ADVANCES</span>
+        </div>
+      </article>
 
+      <!-- MATCH 3 -->
+      <article class="match-card">
+        <div class="match-meta">
+          <span class="match-number">MATCH 03 · ROUND OF 16</span>
+          <span class="status status-final">FINAL</span>
+        </div>
+
+        <div class="versus">
+          <div class="competitor">
+            <div class="competitor-name winner-name">Shalele Lyrics</div>
+            <span class="competitor-score">95<small>%</small></span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="competitor">
+            <div class="competitor-name">Yusufa Lyrics</div>
+            <span class="competitor-score">85<small>%</small></span>
+          </div>
+        </div>
+
+        <div class="match-footer">
+          <span>Round of 16</span>
+          <span class="winner-tag">✓ SHALELE ADVANCES</span>
+        </div>
+      </article>
+
+      <!-- MATCH 4 -->
+      <article class="match-card">
+        <div class="match-meta">
+          <span class="match-number">MATCH 04 · ROUND OF 16</span>
+          <span class="status status-final">FINAL</span>
+        </div>
+
+        <div class="versus">
+          <div class="competitor">
+            <div class="competitor-name">Siyah Lyrics</div>
+            <span class="competitor-score">90<small>%</small></span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="competitor">
+            <div class="competitor-name winner-name">Abbas Lyrics</div>
+            <span class="competitor-score">95<small>%</small></span>
+          </div>
+        </div>
+
+        <div class="match-footer">
+          <span>Round of 16</span>
+          <span class="winner-tag">✓ ABBAS ADVANCES</span>
+        </div>
+      </article>
+
+      <!-- MATCH 5 -->
+      <article class="match-card">
+        <div class="match-meta">
+          <span class="match-number">MATCH 05 · ROUND OF 16</span>
+          <span class="status status-final">FINAL</span>
+        </div>
+
+        <div class="versus">
+          <div class="competitor">
+            <div class="competitor-name">Autarh Lyrics</div>
+            <span class="competitor-score">73<small>%</small></span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="competitor">
+            <div class="competitor-name winner-name">IBB Lyrics</div>
+            <span class="competitor-score">84<small>%</small></span>
+          </div>
+        </div>
+
+        <div class="match-footer">
+          <span>Round of 16</span>
+          <span class="winner-tag">✓ IBB ADVANCES</span>
+        </div>
+      </article>
+
+      <!-- MATCH 6 -->
+      <article class="match-card">
+        <div class="match-meta">
+          <span class="match-number">MATCH 06 · ROUND OF 16</span>
+          <span class="status status-final">FINAL</span>
+        </div>
+
+        <div class="versus">
+          <div class="competitor">
+            <div class="competitor-name">Auntyn Yara Lyrics</div>
+            <span class="competitor-score">90<small>%</small></span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="competitor">
+            <div class="competitor-name winner-name">Alkhaddab Lyrics</div>
+            <span class="competitor-score">93<small>%</small></span>
+          </div>
+        </div>
+
+        <div class="match-footer">
+          <span>Round of 16</span>
+          <span class="winner-tag">✓ ALKHADDAB ADVANCES</span>
+        </div>
+      </article>
+
+      <!-- MATCH 7 -->
+      <article class="match-card">
+        <div class="match-meta">
+          <span class="match-number">MATCH 07 · ROUND OF 16</span>
+          <span class="status status-final">FINAL</span>
+        </div>
+
+        <div class="versus">
+          <div class="competitor">
+            <div class="competitor-name winner-name">Teemarluvly Lyrics</div>
+            <span class="competitor-score">85<small>%</small></span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="competitor">
+            <div class="competitor-name">Jagora Lyrics</div>
+            <span class="competitor-score">79<small>%</small></span>
+          </div>
+        </div>
+
+        <div class="match-footer">
+          <span>Round of 16</span>
+          <span class="winner-tag">✓ TEEMARLUVLY ADVANCES</span>
+        </div>
+      </article>
+
+      <!-- MATCH 8 -->
+      <article class="match-card">
+        <div class="match-meta">
+          <span class="match-number">MATCH 08 · ROUND OF 16</span>
+          <span class="status status-final">FINAL</span>
+        </div>
+
+        <div class="versus">
+          <div class="competitor">
+            <div class="competitor-name winner-name">Bakori Lyrics</div>
+            <span class="competitor-score">95<small>%</small></span>
+          </div>
+          <div class="vs">VS</div>
+          <div class="competitor">
+            <div class="competitor-name">X Lyrics</div>
+            <span class="competitor-score">94<small>%</small></span>
+          </div>
+        </div>
+
+        <div class="match-footer">
+          <span>Round of 16</span>
+          <span class="winner-tag">✓ BAKORI ADVANCES</span>
+        </div>
+      </article>
+
+    </div>
   </div>
-</section>
-
-<!-- NEXT MATCHES -->
-
-<section>
-
-  <div class="section-head">
-    <div class="section-title">NEXT MATCHES</div>
-    <div class="section-sub">ROUND OF 16</div>
-  </div>
-
-  <div class="next-grid">
-
-    <div class="next-card">
-      <div class="next-top">
-        <span>MATCH 7</span>
-        <span>OCT 08</span>
-      </div>
-
-      <div class="next-teams">
-        <b>Teemarluvly</b>
-        <span class="vs">VS</span>
-        <b>Jagora</b>
-      </div>
-
-      <div class="next-time">🕤 9:30 PM</div>
-    </div>
-
-    <div class="next-card">
-      <div class="next-top">
-        <span>MATCH 8</span>
-        <span>OCT 08</span>
-      </div>
-
-      <div class="next-teams">
-        <b>X Lyrics</b>
-        <span class="vs">VS</span>
-        <b>Bakori</b>
-      </div>
-
-      <div class="next-time">🕙 10:00 PM</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- COMPLETED RESULTS -->
-
-<section id="completed-results">
-
-  <div class="section-head">
-    <div>
-      <div class="section-title">
-        COMPLETED <span>RESULTS</span>
-      </div>
-      <div class="section-sub">
-        Official judging results • Matches 1–6
-      </div>
-    </div>
-  </div>
-
-  <div class="judge-grid">
-
-    <!-- MATCH 1 -->
-
-    <div class="judge-card">
-
-      <h3>🏆 MATCH 1 • CUTIEEMAH vs BASH</h3>
-
-      <div class="judge-row"><span>Cutieemah Lyrics — Background</span><b>15</b></div>
-      <div class="judge-row"><span>Cutieemah Lyrics — Animation</span><b>18</b></div>
-      <div class="judge-row"><span>Cutieemah Lyrics — Colour Text</span><b>10</b></div>
-      <div class="judge-row"><span>Cutieemah Lyrics — Video Quality</span><b>20</b></div>
-      <div class="judge-row"><span>Cutieemah Lyrics — Lyrics Word By Word</span><b>15</b></div>
-
-      <div class="total-score">
-        <span>CUTIEEMAH TOTAL</span>
-        <strong>78%</strong>
-      </div>
-
-      <div class="judge-row" style="margin-top:12px;"><span>Bash Lyrics — Background</span><b>15</b></div>
-      <div class="judge-row"><span>Bash Lyrics — Animation</span><b>15</b></div>
-      <div class="judge-row"><span>Bash Lyrics — Colour Text</span><b>20</b></div>
-      <div class="judge-row"><span>Bash Lyrics — Video Quality</span><b>10</b></div>
-      <div class="judge-row"><span>Bash Lyrics — Lyrics Word By Word</span><b>15</b></div>
-
-      <div class="total-score">
-        <span>BASH TOTAL</span>
-        <strong>75%</strong>
-      </div>
-
-      <div class="total-score">
-        <span>WINNER</span>
-        <strong>Cutieemah Lyrics</strong>
-      </div>
-
-    </div>
-
-    <!-- MATCH 2 -->
-
-    <div class="judge-card">
-
-      <h3>🏆 MATCH 2 • AMEENATOU vs KING HAIDAR</h3>
-
-      <div class="judge-row"><span>Ameenatou — 🎨 Background</span><b>10</b></div>
-      <div class="judge-row"><span>Ameenatou — 🎞 Animation</span><b>15</b></div>
-      <div class="judge-row"><span>Ameenatou — 🌈 Colour Text</span><b>15</b></div>
-      <div class="judge-row"><span>Ameenatou — 📝 Tsaewar Lyrics</span><b>20</b></div>
-      <div class="judge-row"><span>Ameenatou — 📖 Fitar da kalmomi</span><b>20</b></div>
-
-      <div class="total-score">
-        <span>AMEENATOU TOTAL</span>
-        <strong>80%</strong>
-      </div>
-
-      <div class="judge-row" style="margin-top:12px;"><span>King Haidar — 🎨 Background</span><b>15</b></div>
-      <div class="judge-row"><span>King Haidar — 🎞 Animation</span><b>20</b></div>
-      <div class="judge-row"><span>King Haidar — 🌈 Colour Text</span><b>15</b></div>
-      <div class="judge-row"><span>King Haidar — 📝 Tsaewar Lyrics</span><b>20</b></div>
-      <div class="judge-row"><span>King Haidar — 📖 Fitar da kalmomi</span><b>15</b></div>
-
-      <div class="total-score">
-        <span>KING HAIDAR TOTAL</span>
-        <strong>85%</strong>
-      </div>
-
-      <div class="total-score">
-        <span>WINNER</span>
-        <strong>King Haidar Lyrics</strong>
-      </div>
-
-    </div>
-
-    <!-- MATCH 3 -->
-
-    <div class="judge-card">
-
-      <h3>🏆 MATCH 3 • SHALELE vs YUSUFA</h3>
-
-      <div class="judge-row"><span>Shalele — 🎨 Background</span><b>20</b></div>
-      <div class="judge-row"><span>Shalele — 🎞 Animation</span><b>20</b></div>
-      <div class="judge-row"><span>Shalele — 🌈 Colour Text</span><b>15</b></div>
-      <div class="judge-row"><span>Shalele — 📝 Tsaewar Lyrics</span><b>20</b></div>
-      <div class="judge-row"><span>Shalele — 📖 Fitar da kalmomi</span><b>20</b></div>
-
-      <div class="total-score">
-        <span>SHALELE TOTAL</span>
-        <strong>95%</strong>
-      </div>
-
-      <div class="judge-row" style="margin-top:12px;"><span>Yusufa — 🎨 Background</span><b>20</b></div>
-      <div class="judge-row"><span>Yusufa — 🎞 Animation</span><b>15</b></div>
-      <div class="judge-row"><span>Yusufa — 🌈 Colour Text</span><b>15</b></div>
-      <div class="judge-row"><span>Yusufa — 📝 Tsaewar Lyrics</span><b>15</b></div>
-      <div class="judge-row"><span>Yusufa — 📖 Fitar da kalmomi</span><b>20</b></div>
-
-      <div class="total-score">
-        <span>YUSUFA TOTAL</span>
-        <strong>85%</strong>
-      </div>
-
-      <div class="total-score">
-        <span>WINNER</span>
-        <strong>Shalele Lyrics</strong>
-      </div>
-
-    </div>
-
-    <!-- MATCH 4 -->
-
-    <div class="judge-card">
-
-      <h3>🏆 MATCH 4 • SIYAH vs ABBAS</h3>
-
-      <div class="judge-row"><span>Siyah — 🎨 Background</span><b>20</b></div>
-      <div class="judge-row"><span>Siyah — 🎞 Animation</span><b>15</b></div>
-      <div class="judge-row"><span>Siyah — 🌈 Colour Text</span><b>15</b></div>
-      <div class="judge-row"><span>Siyah — 📝 Tsaewar Lyrics</span><b>20</b></div>
-      <div class="judge-row"><span>Siyah — 📖 Fitar da kalmomi</span><b>20</b></div>
-
-      <div class="total-score">
-        <span>SIYAH TOTAL</span>
-        <strong>90%</strong>
-      </div>
-
-      <div class="judge-row" style="margin-top:12px;"><span>Abbas — 🎨 Background</span><b>20</b></div>
-      <div class="judge-row"><span>Abbas — 🎞 Animation</span><b>20</b></div>
-      <div class="judge-row"><span>Abbas — 🌈 Colour Text</span><b>15</b></div>
-      <div class="judge-row"><span>Abbas — 📝 Tsaewar Lyrics</span><b>20</b></div>
-      <div class="judge-row"><span>Abbas — 📖 Fitar da kalmomi</span><b>20</b></div>
-
-      <div class="total-score">
-        <span>ABBAS TOTAL</span>
-        <strong>95%</strong>
-      </div>
-
-      <div class="total-score">
-        <span>WINNER</span>
-        <strong>Abbas Lyrics</strong>
-      </div>
-
-    </div>
-
-    <!-- MATCH 5 -->
-
-    <div class="judge-card">
-
-      <h3>🏆 MATCH 5 • AUTARH vs IBB</h3>
-
-      <div class="judge-row"><span>Autarh Lyrics — 🎨 Background</span><b>10</b></div>
-      <div class="judge-row"><span>Autarh Lyrics — 🎞 Animation</span><b>18</b></div>
-      <div class="judge-row"><span>Autarh Lyrics — 🌈 Colour Text</span><b>10</b></div>
-      <div class="judge-row"><span>Autarh Lyrics — 📹 Video Quality</span><b>20</b></div>
-      <div class="judge-row"><span>Autarh Lyrics — 📖 Lyrics Arrangement</span><b>15</b></div>
-
-      <div class="total-score">
-        <span>AUTARH TOTAL</span>
-        <strong>73%</strong>
-      </div>
-
-      <div class="judge-row" style="margin-top:12px;"><span>IBB Lyrics — 🎨 Background</span><b>20</b></div>
-      <div class="judge-row"><span>IBB Lyrics — 🎞 Animation</span><b>18</b></div>
-      <div class="judge-row"><span>IBB Lyrics — 🌈 Colour Text</span><b>10</b></div>
-      <div class="judge-row"><span>IBB Lyrics — 📹 Video Quality</span><b>20</b></div>
-      <div class="judge-row"><span>IBB Lyrics — 📖 Lyrics Arrangement</span><b>15</b></div>
-
-      <div class="total-score">
-        <span>IBB TOTAL</span>
-        <strong>84%</strong>
-      </div>
-
-      <div class="total-score">
-        <span>WINNER</span>
-        <strong>IBB Lyrics</strong>
-      </div>
-
-    </div>
-
-    <!-- MATCH 6 -->
-
-    <div class="judge-card">
-
-      <h3>🏆 MATCH 6 • AUNTYN YARA vs ALKHADDAB</h3>
-
-      <div class="judge-row"><span>Auntyn Yara — 🎨 Background</span><b>20</b></div>
-      <div class="judge-row"><span>Auntyn Yara — 🎞 Animation</span><b>20</b></div>
-      <div class="judge-row"><span>Auntyn Yara — 🌈 Colour Text</span><b>15</b></div>
-      <div class="judge-row"><span>Auntyn Yara — 📹 Video Quality</span><b>20</b></div>
-      <div class="judge-row"><span>Auntyn Yara — 📖 Lyrics Arrangement</span><b>15</b></div>
-
-      <div class="total-score">
-        <span>AUNTYN YARA TOTAL</span>
-        <strong>90%</strong>
-      </div>
-
-      <div class="judge-row" style="margin-top:12px;"><span>Alkhaddab — 🎨 Background</span><b>20</b></div>
-      <div class="judge-row"><span>Alkhaddab — 🎞 Animation</span><b>18</b></div>
-      <div class="judge-row"><span>Alkhaddab — 🌈 Colour Text</span><b>20</b></div>
-      <div class="judge-row"><span>Alkhaddab — 📹 Video Quality</span><b>20</b></div>
-      <div class="judge-row"><span>Alkhaddab — 📖 Lyrics Arrangement</span><b>15</b></div>
-
-      <div class="total-score">
-        <span>ALKHADDAB TOTAL</span>
-        <strong>93%</strong>
-      </div>
-
-      <div class="total-score">
-        <span>WINNER</span>
-        <strong>Alkhaddab Lyrics</strong>
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- BUTTON TO JUDGING RESULTS -->
-
-  <div class="results-button-wrap">
-    <a class="results-button" href="#judging">
-      VIEW JUDGING RESULTS ↓
-    </a>
-  </div>
-
 </section>
 
 <!-- FIXTURES -->
-
-<section id="fixtures">
-
-  <div class="section-head">
-    <div>
-      <div class="section-title">FIXTURES</div>
-      <div class="section-sub">Complete competition schedule</div>
-    </div>
-  </div>
-
-  <div class="fixtures">
-
-    <div class="fixture">
-      <div class="fixture-date">OCT 05 • 9:30</div>
-      <div class="fixture-teams">Cutieemah Lyrics vs Bash Lyrics</div>
-      <div class="fixture-round">R16 • M1 • FINAL</div>
+<section class="section" id="fixtures">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <div class="section-label">Official Schedule</div>
+        <h2>Fixtures & Results</h2>
+        <p class="section-description">
+          The completed Round of 16 and upcoming knockout matches.
+        </p>
+      </div>
     </div>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 05 • 10:00</div>
-      <div class="fixture-teams">Ameenatou Lyrics vs King Haidar Lyrics</div>
-      <div class="fixture-round">R16 • M2 • FINAL</div>
-    </div>
+    <div class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Match</th>
+              <th>Stage</th>
+              <th>Contestants</th>
+              <th>Result</th>
+              <th>Status</th>
+            </tr>
+          </thead>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 06 • 9:30</div>
-      <div class="fixture-teams">Shalele Lyrics vs Yusufa Lyrics</div>
-      <div class="fixture-round">R16 • M3 • FINAL</div>
-    </div>
+          <tbody>
+            <tr>
+              <td>M1</td>
+              <td>Round of 16</td>
+              <td>Cutieemah Lyrics vs Bash Lyrics</td>
+              <td class="table-score">78–75</td>
+              <td class="table-winner">Cutieemah ✓</td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 06 • 10:00</div>
-      <div class="fixture-teams">Siyah Lyrics vs Abbas Lyrics</div>
-      <div class="fixture-round">R16 • M4 • FINAL</div>
-    </div>
+            <tr>
+              <td>M2</td>
+              <td>Round of 16</td>
+              <td>Ameenatou Lyrics vs King Haidar Lyrics</td>
+              <td class="table-score">80–85</td>
+              <td class="table-winner">King Haidar ✓</td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 07 • 9:30</div>
-      <div class="fixture-teams">Autarh Lyrics vs IBB Lyrics</div>
-      <div class="fixture-round">R16 • M5 • FINAL</div>
-    </div>
+            <tr>
+              <td>M3</td>
+              <td>Round of 16</td>
+              <td>Shalele Lyrics vs Yusufa Lyrics</td>
+              <td class="table-score">95–85</td>
+              <td class="table-winner">Shalele ✓</td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 07 • 10:00</div>
-      <div class="fixture-teams">Auntyn Yara Lyrics vs Alkhaddab Lyrics</div>
-      <div class="fixture-round">R16 • M6 • FINAL</div>
-    </div>
+            <tr>
+              <td>M4</td>
+              <td>Round of 16</td>
+              <td>Siyah Lyrics vs Abbas Lyrics</td>
+              <td class="table-score">90–95</td>
+              <td class="table-winner">Abbas ✓</td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 08 • 9:30</div>
-      <div class="fixture-teams">Teemarluvly Lyrics vs Jagora Lyrics</div>
-      <div class="fixture-round">R16 • M7</div>
-    </div>
+            <tr>
+              <td>M5</td>
+              <td>Round of 16</td>
+              <td>Autarh Lyrics vs IBB Lyrics</td>
+              <td class="table-score">73–84</td>
+              <td class="table-winner">IBB ✓</td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 08 • 10:00</div>
-      <div class="fixture-teams">X Lyrics vs Bakori Lyrics</div>
-      <div class="fixture-round">R16 • M8</div>
-    </div>
+            <tr>
+              <td>M6</td>
+              <td>Round of 16</td>
+              <td>Auntyn Yara Lyrics vs Alkhaddab Lyrics</td>
+              <td class="table-score">90–93</td>
+              <td class="table-winner">Alkhaddab ✓</td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 12</div>
-      <div class="fixture-teams">Cutieemah Lyrics vs King Haidar Lyrics</div>
-      <div class="fixture-round">QF1</div>
-    </div>
+            <tr>
+              <td>M7</td>
+              <td>Round of 16</td>
+              <td>Teemarluvly Lyrics vs Jagora Lyrics</td>
+              <td class="table-score">85–79</td>
+              <td class="table-winner">Teemarluvly ✓</td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 12</div>
-      <div class="fixture-teams">Shalele Lyrics vs Abbas Lyrics</div>
-      <div class="fixture-round">QF2</div>
-    </div>
+            <tr>
+              <td>M8</td>
+              <td>Round of 16</td>
+              <td>Bakori Lyrics vs X Lyrics</td>
+              <td class="table-score">95–94</td>
+              <td class="table-winner">Bakori ✓</td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 13</div>
-      <div class="fixture-teams">IBB Lyrics vs Alkhaddab Lyrics</div>
-      <div class="fixture-round">QF3</div>
-    </div>
+            <tr>
+              <td>QF1</td>
+              <td>Quarter Final</td>
+              <td>Cutieemah Lyrics vs King Haidar Lyrics</td>
+              <td>—</td>
+              <td><span class="status status-upcoming">UPCOMING</span></td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 13</div>
-      <div class="fixture-teams">Winner M7 vs Winner M8</div>
-      <div class="fixture-round">QF4</div>
-    </div>
+            <tr>
+              <td>QF2</td>
+              <td>Quarter Final</td>
+              <td>Shalele Lyrics vs Abbas Lyrics</td>
+              <td>—</td>
+              <td><span class="status status-upcoming">UPCOMING</span></td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 26</div>
-      <div class="fixture-teams">Winner QF1 vs Winner QF2</div>
-      <div class="fixture-round">SF1</div>
-    </div>
+            <tr>
+              <td>QF3</td>
+              <td>Quarter Final</td>
+              <td>IBB Lyrics vs Alkhaddab Lyrics</td>
+              <td>—</td>
+              <td><span class="status status-upcoming">UPCOMING</span></td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">OCT 26</div>
-      <div class="fixture-teams">Winner QF3 vs Winner QF4</div>
-      <div class="fixture-round">SF2</div>
-    </div>
+            <tr>
+              <td>QF4</td>
+              <td>Quarter Final</td>
+              <td>Teemarluvly Lyrics vs Bakori Lyrics</td>
+              <td>—</td>
+              <td><span class="status status-upcoming">UPCOMING</span></td>
+            </tr>
 
-    <div class="fixture">
-      <div class="fixture-date">NOV 06 • 10:00</div>
-      <div class="fixture-teams">Winner SF1 vs Winner SF2</div>
-      <div class="fixture-round">🏆 FINAL</div>
-    </div>
+            <tr>
+              <td>SF1</td>
+              <td>Semi Final</td>
+              <td>QF1 Winner vs QF2 Winner</td>
+              <td>—</td>
+              <td><span class="status status-upcoming">UPCOMING</span></td>
+            </tr>
 
+            <tr>
+              <td>SF2</td>
+              <td>Semi Final</td>
+              <td>QF3 Winner vs QF4 Winner</td>
+              <td>—</td>
+              <td><span class="status status-upcoming">UPCOMING</span></td>
+            </tr>
+
+            <tr>
+              <td>FINAL</td>
+              <td>Grand Final</td>
+              <td>SF1 Winner vs SF2 Winner</td>
+              <td>—</td>
+              <td><span class="status status-upcoming">NOV 6 · 10 PM</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- BRACKET -->
+<section class="section" id="bracket">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <div class="section-label">Road to the Trophy</div>
+        <h2>Competition Bracket</h2>
+        <p class="section-description">
+          Eight contestants have qualified for the Quarter Finals.
+        </p>
+      </div>
+    </div>
 
-<section id="bracket">
+    <div class="panel panel-padding">
 
-  <div class="section-head">
-    <div class="section-title">TOURNAMENT <span>BRACKET</span></div>
-    <div class="section-sub">16 → 8 → 4 → 2 → 1</div>
-  </div>
+      <div class="bracket-round">
+        <div class="round-label">Round of 16 · Completed</div>
 
-  <div class="bracket-scroll">
-    <div class="bracket">
+        <div class="bracket-grid">
 
-      <!-- ROUND OF 16 -->
+          <div class="bracket-match">
+            <span class="bracket-id">MATCH 01</span>
+            <div class="bracket-team winner">
+              Cutieemah Lyrics
+              <span class="bracket-score">78</span>
+            </div>
+            <div class="bracket-team">
+              Bash Lyrics
+              <span class="bracket-score">75</span>
+            </div>
+          </div>
 
-      <div class="bracket-column">
+          <div class="bracket-match">
+            <span class="bracket-id">MATCH 02</span>
+            <div class="bracket-team">
+              Ameenatou Lyrics
+              <span class="bracket-score">80</span>
+            </div>
+            <div class="bracket-team winner">
+              King Haidar Lyrics
+              <span class="bracket-score">85</span>
+            </div>
+          </div>
 
-        <h3>ROUND OF 16</h3>
+          <div class="bracket-match">
+            <span class="bracket-id">MATCH 03</span>
+            <div class="bracket-team winner">
+              Shalele Lyrics
+              <span class="bracket-score">95</span>
+            </div>
+            <div class="bracket-team">
+              Yusufa Lyrics
+              <span class="bracket-score">85</span>
+            </div>
+          </div>
 
-        <div class="bracket-game">
-          <div class="winner">Cutieemah Lyrics — 78%</div>
-          <div>Bash Lyrics — 75%</div>
+          <div class="bracket-match">
+            <span class="bracket-id">MATCH 04</span>
+            <div class="bracket-team">
+              Siyah Lyrics
+              <span class="bracket-score">90</span>
+            </div>
+            <div class="bracket-team winner">
+              Abbas Lyrics
+              <span class="bracket-score">95</span>
+            </div>
+          </div>
+
+          <div class="bracket-match">
+            <span class="bracket-id">MATCH 05</span>
+            <div class="bracket-team">
+              Autarh Lyrics
+              <span class="bracket-score">73</span>
+            </div>
+            <div class="bracket-team winner">
+              IBB Lyrics
+              <span class="bracket-score">84</span>
+            </div>
+          </div>
+
+          <div class="bracket-match">
+            <span class="bracket-id">MATCH 06</span>
+            <div class="bracket-team">
+              Auntyn Yara Lyrics
+              <span class="bracket-score">90</span>
+            </div>
+            <div class="bracket-team winner">
+              Alkhaddab Lyrics
+              <span class="bracket-score">93</span>
+            </div>
+          </div>
+
+          <div class="bracket-match">
+            <span class="bracket-id">MATCH 07</span>
+            <div class="bracket-team winner">
+              Teemarluvly Lyrics
+              <span class="bracket-score">85</span>
+            </div>
+            <div class="bracket-team">
+              Jagora Lyrics
+              <span class="bracket-score">79</span>
+            </div>
+          </div>
+
+          <div class="bracket-match">
+            <span class="bracket-id">MATCH 08</span>
+            <div class="bracket-team winner">
+              Bakori Lyrics
+              <span class="bracket-score">95</span>
+            </div>
+            <div class="bracket-team">
+              X Lyrics
+              <span class="bracket-score">94</span>
+            </div>
+          </div>
+
         </div>
-
-        <div class="bracket-game">
-          <div>Ameenatou Lyrics — 80%</div>
-          <div class="winner">King Haidar Lyrics — 85%</div>
-        </div>
-
-        <div class="bracket-game">
-          <div class="winner">Shalele Lyrics — 95%</div>
-          <div>Yusufa Lyrics — 85%</div>
-        </div>
-
-        <div class="bracket-game">
-          <div>Siyah Lyrics — 90%</div>
-          <div class="winner">Abbas Lyrics — 95%</div>
-        </div>
-
-        <div class="bracket-game">
-          <div>Autarh Lyrics — 73%</div>
-          <div class="winner">IBB Lyrics — 84%</div>
-        </div>
-
-        <div class="bracket-game">
-          <div>Auntyn Yara Lyrics — 90%</div>
-          <div class="winner">Alkhaddab Lyrics — 93%</div>
-        </div>
-
-        <div class="bracket-game">
-          <div>Teemarluvly Lyrics</div>
-          <div>Jagora Lyrics</div>
-        </div>
-
-        <div class="bracket-game">
-          <div>X Lyrics</div>
-          <div>Bakori Lyrics</div>
-        </div>
-
       </div>
 
-      <!-- QUARTER FINAL -->
+      <div class="bracket-round">
+        <div class="round-label">Quarter Finals · October 12–13</div>
 
-      <div class="bracket-column">
+        <div class="bracket-grid">
+          <div class="bracket-match">
+            <span class="bracket-id">QF1</span>
+            <div class="bracket-team">Cutieemah Lyrics</div>
+            <div class="bracket-team">King Haidar Lyrics</div>
+            <div class="match-footer">October 12</div>
+          </div>
 
-        <h3>QUARTER FINAL</h3>
+          <div class="bracket-match">
+            <span class="bracket-id">QF2</span>
+            <div class="bracket-team">Shalele Lyrics</div>
+            <div class="bracket-team">Abbas Lyrics</div>
+            <div class="match-footer">October 12</div>
+          </div>
 
-        <div class="bracket-game">
-          <div>Cutieemah Lyrics</div>
-          <div>King Haidar Lyrics</div>
+          <div class="bracket-match">
+            <span class="bracket-id">QF3</span>
+            <div class="bracket-team">IBB Lyrics</div>
+            <div class="bracket-team">Alkhaddab Lyrics</div>
+            <div class="match-footer">October 13</div>
+          </div>
+
+          <div class="bracket-match">
+            <span class="bracket-id">QF4</span>
+            <div class="bracket-team">Teemarluvly Lyrics</div>
+            <div class="bracket-team">Bakori Lyrics</div>
+            <div class="match-footer">October 13</div>
+          </div>
         </div>
-
-        <div class="bracket-game">
-          <div>Shalele Lyrics</div>
-          <div>Abbas Lyrics</div>
-        </div>
-
-        <div class="bracket-game">
-          <div>IBB Lyrics</div>
-          <div>Alkhaddab Lyrics</div>
-        </div>
-
-        <div class="bracket-game">
-          <div>Winner Match 7</div>
-          <div>Winner Match 8</div>
-        </div>
-
       </div>
 
-      <!-- SEMI FINAL -->
+      <div class="bracket-round">
+        <div class="round-label">Semi Finals · October 26</div>
 
-      <div class="bracket-column">
+        <div class="bracket-grid">
+          <div class="bracket-match">
+            <span class="bracket-id">SF1</span>
+            <div class="bracket-team pending">QF1 Winner</div>
+            <div class="bracket-team pending">QF2 Winner</div>
+          </div>
 
-        <h3>SEMI FINAL</h3>
-
-        <div class="bracket-game">
-          <div>Winner QF1</div>
-          <div>Winner QF2</div>
+          <div class="bracket-match">
+            <span class="bracket-id">SF2</span>
+            <div class="bracket-team pending">QF3 Winner</div>
+            <div class="bracket-team pending">QF4 Winner</div>
+          </div>
         </div>
-
-        <div class="bracket-game">
-          <div>Winner QF3</div>
-          <div>Winner QF4</div>
-        </div>
-
       </div>
 
-      <!-- GRAND FINAL -->
+      <div class="bracket-round">
+        <div class="round-label">Grand Final · November 6 · 10 PM</div>
 
-      <div class="bracket-column">
-
-        <h3>GRAND FINAL</h3>
-
-        <div class="bracket-game">
-          <div>🏆 Winner SF1</div>
-          <div>🏆 Winner SF2</div>
+        <div class="bracket-match">
+          <span class="bracket-id">CHAMPIONSHIP MATCH</span>
+          <div class="bracket-team pending">Semi Final 1 Winner</div>
+          <div class="bracket-team pending">Semi Final 2 Winner</div>
         </div>
-
-        <div class="champion">
-          <div class="trophy">🏆</div>
-          <h2>CHAMPION</h2>
-          <p>To be decided</p>
-        </div>
-
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- JUDGING -->
-
-<section id="judging">
-
-  <div class="section-head">
-    <div>
-      <div class="section-title">JUDGING <span>SCOREBOARD</span></div>
-      <div class="section-sub">Maximum 100 points</div>
-    </div>
-  </div>
-
-  <div class="judge-grid">
-
-    <!-- OFFICIAL CRITERIA -->
-
-    <div class="judge-card">
-
-      <h3>📊 OFFICIAL CRITERIA</h3>
-
-      <div class="judge-row"><span>🖼️ Background</span><b>20</b></div>
-      <div class="judge-row"><span>✨ Animation</span><b>20</b></div>
-      <div class="judge-row"><span>🎨 Colour Text</span><b>20</b></div>
-      <div class="judge-row"><span>🎥 Video Quality</span><b>20</b></div>
-      <div class="judge-row"><span>📝 Lyrics Word By Word</span><b>20</b></div>
-
-      <div class="total-score">
-        <span>TOTAL</span>
-        <strong>100 / 100</strong>
+<!-- JUDGING RESULTS -->
+<section class="section" id="judging">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <div class="section-label">Official Scoreboard</div>
+        <h2>Judging Results</h2>
+        <p class="section-description">
+          Final totals and winners from the Round of 16.
+        </p>
       </div>
-
     </div>
 
-    <!-- MATCH RESULTS -->
+    <div class="judging-grid">
 
-    <div class="judge-card">
-
-      <h3>🏆 MATCH RESULTS</h3>
-
-      <div class="judge-row"><span>Cutieemah Lyrics</span><b>78%</b></div>
-      <div class="judge-row"><span>Bash Lyrics</span><b>75%</b></div>
-
-      <div class="total-score">
-        <span>MATCH 1 WINNER</span>
-        <strong>Cutieemah</strong>
+      <div class="judging-card">
+        <h3>MATCH 01 · ROUND OF 16</h3>
+        <div class="judging-row">
+          <span>Cutieemah Lyrics</span>
+          <span class="score winner">78%</span>
+        </div>
+        <div class="judging-row">
+          <span>Bash Lyrics</span>
+          <span class="score">75%</span>
+        </div>
       </div>
 
-      <div class="judge-row" style="margin-top:12px;"><span>Ameenatou Lyrics</span><b>80%</b></div>
-      <div class="judge-row"><span>King Haidar Lyrics</span><b>85%</b></div>
-
-      <div class="total-score">
-        <span>MATCH 2 WINNER</span>
-        <strong>King Haidar</strong>
+      <div class="judging-card">
+        <h3>MATCH 02 · ROUND OF 16</h3>
+        <div class="judging-row">
+          <span>Ameenatou Lyrics</span>
+          <span class="score">80%</span>
+        </div>
+        <div class="judging-row">
+          <span>King Haidar Lyrics</span>
+          <span class="score winner">85%</span>
+        </div>
       </div>
 
-      <div class="judge-row" style="margin-top:12px;"><span>Shalele Lyrics</span><b>95%</b></div>
-      <div class="judge-row"><span>Yusufa Lyrics</span><b>85%</b></div>
-
-      <div class="total-score">
-        <span>MATCH 3 WINNER</span>
-        <strong>Shalele</strong>
+      <div class="judging-card">
+        <h3>MATCH 03 · ROUND OF 16</h3>
+        <div class="judging-row">
+          <span>Shalele Lyrics</span>
+          <span class="score winner">95%</span>
+        </div>
+        <div class="judging-row">
+          <span>Yusufa Lyrics</span>
+          <span class="score">85%</span>
+        </div>
       </div>
 
-      <div class="judge-row" style="margin-top:12px;"><span>Siyah Lyrics</span><b>90%</b></div>
-      <div class="judge-row"><span>Abbas Lyrics</span><b>95%</b></div>
-
-      <div class="total-score">
-        <span>MATCH 4 WINNER</span>
-        <strong>Abbas</strong>
+      <div class="judging-card">
+        <h3>MATCH 04 · ROUND OF 16</h3>
+        <div class="judging-row">
+          <span>Siyah Lyrics</span>
+          <span class="score">90%</span>
+        </div>
+        <div class="judging-row">
+          <span>Abbas Lyrics</span>
+          <span class="score winner">95%</span>
+        </div>
       </div>
 
-      <div class="judge-row" style="margin-top:12px;"><span>Autarh Lyrics</span><b>73%</b></div>
-      <div class="judge-row"><span>IBB Lyrics</span><b>84%</b></div>
-
-      <div class="total-score">
-        <span>MATCH 5 WINNER</span>
-        <strong>IBB Lyrics</strong>
+      <div class="judging-card">
+        <h3>MATCH 05 · ROUND OF 16</h3>
+        <div class="judging-row">
+          <span>Autarh Lyrics</span>
+          <span class="score">73%</span>
+        </div>
+        <div class="judging-row">
+          <span>IBB Lyrics</span>
+          <span class="score winner">84%</span>
+        </div>
       </div>
 
-      <div class="judge-row" style="margin-top:12px;"><span>Auntyn Yara Lyrics</span><b>90%</b></div>
-      <div class="judge-row"><span>Alkhaddab Lyrics</span><b>93%</b></div>
+      <div class="judging-card">
+        <h3>MATCH 06 · ROUND OF 16</h3>
+        <div class="judging-row">
+          <span>Auntyn Yara Lyrics</span>
+          <span class="score">90%</span>
+        </div>
+        <div class="judging-row">
+          <span>Alkhaddab Lyrics</span>
+          <span class="score winner">93%</span>
+        </div>
+      </div>
 
-      <div class="total-score">
-        <span>MATCH 6 WINNER</span>
-        <strong>Alkhaddab</strong>
+      <div class="judging-card">
+        <h3>MATCH 07 · ROUND OF 16</h3>
+        <div class="judging-row">
+          <span>Teemarluvly Lyrics</span>
+          <span class="score winner">85%</span>
+        </div>
+        <div class="judging-row">
+          <span>Jagora Lyrics</span>
+          <span class="score">79%</span>
+        </div>
+      </div>
+
+      <div class="judging-card">
+        <h3>MATCH 08 · ROUND OF 16</h3>
+        <div class="judging-row">
+          <span>Bakori Lyrics</span>
+          <span class="score winner">95%</span>
+        </div>
+        <div class="judging-row">
+          <span>X Lyrics</span>
+          <span class="score">94%</span>
+        </div>
       </div>
 
     </div>
 
+    <div class="notice">
+      <strong>Official update:</strong>
+      Round of 16 is complete. The eight winners have qualified for the
+      Quarter Finals. The judging section displays final totals only.
+    </div>
+
   </div>
-
-  <!-- BOTTOM BUTTON -->
-
-  <div class="results-button-wrap">
-    <a class="results-button" href="#completed-results">
-      ↑ BACK TO ALL MATCH RESULTS
-    </a>
-  </div>
-
 </section>
 
 <!-- CHAMPION -->
+<section class="section" id="champion">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <div class="section-label">The Ultimate Goal</div>
+        <h2>Competition Champion</h2>
+      </div>
+    </div>
 
-<section>
-  <div class="champion">
-    <div class="trophy">🏆</div>
-
-    <h2>LVT LYRICS CHAMPION 2026</h2>
-
-    <p>
-      The champion will be crowned on November 6, 2026.
-    </p>
+    <div class="champion-panel">
+      <div class="trophy">🏆</div>
+      <h3>THE LVT CHAMPION</h3>
+      <p>The champion will be announced after the Grand Final.</p>
+      <div class="champion-status">TO BE DECIDED · NOVEMBER 6</div>
+    </div>
   </div>
 </section>
 
 </main>
 
 <footer>
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-brand">LVT · LYRICS VIBES TEAM</div>
+      <div style="margin-top:5px">Live Lyrics Competition</div>
+    </div>
 
-  <strong>LVT LYRICS COMPETITION</strong>
-
-  <div style="margin-top:7px;">
-    OCTOBER 05 — NOVEMBER 06, 2026
+    <div>© 2026 LVT. All rights reserved.</div>
   </div>
-
-  <div style="margin-top:7px;">
-    Official Competition Dashboard
-  </div>
-
 </footer>
 
 </body>
